@@ -1,0 +1,11 @@
+Model Information:
+* title:	Mountainous Desert
+* source:	https://sketchfab.com/3d-models/mountainous-desert-e52a730cae444a80b85ff1ee5bd20879
+* author:	Šimon Ustal (https://sketchfab.com/simonustal)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Mountainous Desert" (https://sketchfab.com/3d-models/mountainous-desert-e52a730cae444a80b85ff1ee5bd20879) by Šimon Ustal (https://sketchfab.com/simonustal) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

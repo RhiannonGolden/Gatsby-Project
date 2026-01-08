@@ -1,6 +1,5 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene;
-let zombies = [];
+let scene, camera, zombies = [];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -11,7 +10,7 @@ window.addEventListener("DOMContentLoaded",function() {
   for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
-    let zombie = new Zombie(x,0.5,z);
+    let zombie = new Zombie(0,0.5,-5);
     zombies.push(zombie)
   }
   
@@ -21,8 +20,8 @@ window.addEventListener("DOMContentLoaded",function() {
 function loop(){
 
   for(let zombie of zombies){
-    zombie.follow();
+    zombie.follow(camera);
   }
   
-  setTimeout(loop,1);
+  window.requestAnimationFrame(loop);
 }

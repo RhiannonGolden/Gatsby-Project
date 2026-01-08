@@ -3,13 +3,13 @@ class Zombie{
     this.x = x;
     this.y = y;
     this.z = z;
+    this.speed = 0.005;
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
-    this.obj.setAttribute("animation-mixer","");
-    this.obj.setAttribute("scale", "0.05 0.05 0.05");
-
-
+    this.obj.setAttribute("animation-mixer", {clip: "Walk", loop: "repeat"
+    });
+    this.obj.setAttribute("scale", "1.25 1 1.25");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
 
     scene.append(this.obj);
@@ -21,12 +21,7 @@ class Zombie{
 
     this.angle = Math.atan(dx/dz)
     if(dz < 0){
-        this.angle += Math.PI
-    }
-
-    this.position = Math.atan(dx/dz)
-    if(dz < 0){
-        this.position += 0.001;
+        this.angle += Math.PI;
     }
 
   }
@@ -35,11 +30,19 @@ class Zombie{
   rotateTowards(that){
     this.angleTo(that);
     this.obj.object3D.rotation.y = this.angle;
-    this.obj.object3D.position.x = this.position;
   }
 
 
-  follow(){
+
+  follow(camera){
     this.rotateTowards(camera);
+
+    let move = this.obj.object3D.rotation.y;
+
+    this.x = this.obj.object3D.position.x += Math.sin(move) * this.speed;
+    this.z = this.obj.object3D.position.z += Math.cos(move) * this.speed;
+
+
+
   }
 }
