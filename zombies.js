@@ -1,13 +1,19 @@
 class Zombie{
-  constructor(x,y,z){
+  constructor(x,y,z,health, speed){
     this.x = x;
     this.y = y;
     this.z = z;
-    this.speed = 0.01;
+    this.health = health;
+    this.speed = speed;
+    this.idle = true;
+    this.walk = false;
+    this.run = false;
+    this.attack = false;
+    this.chase = true;
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
-    this.obj.setAttribute("animation-mixer", {clip: "Walk", loop:"repeat"});
+    this.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
     this.obj.setAttribute("scale", "1.25 1 1.25");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
 
@@ -31,11 +37,16 @@ class Zombie{
   }
 
   follow(camera){
-    this.rotateTowards(camera);
+    if(this.chase){
+      this.rotateTowards(camera);
 
-    let move = this.obj.object3D.rotation.y;
+      let move = this.obj.object3D.rotation.y;
 
-    this.x = this.obj.object3D.position.x += Math.sin(move) * this.speed;
-    this.z = this.obj.object3D.position.z += Math.cos(move) * this.speed;
+      this.x = this.obj.object3D.position.x += Math.sin(move) * this.speed;
+      this.z = this.obj.object3D.position.z += Math.cos(move) * this.speed;
+    }
   }
+
+  
+
 }
