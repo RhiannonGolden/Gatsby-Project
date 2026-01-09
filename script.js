@@ -30,20 +30,23 @@ function loop(){
 
   for(let zombie of zombies){
     zombie.follow(camera);
+    let d = distance(zombie.obj, camera);
 
-    if( (distance(zombie.obj, camera) < 7 && distance(zombie.obj, camera) > 3 ) && zombie.speed == 0.01){
+    if( (d < 7) && (d > 2) && zombie.speed == 0.01){
       zombie.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
+      zombie.chase = true;
     } 
-    else if( (distance(zombie.obj, camera) < 7 && distance(zombie.obj, camera) > 3 ) && zombie.speed == 0.03){
+    else if( (d < 7) && (d > 2) && zombie.speed == 0.03){
       zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
+      zombie.chase = true;
     }
-    else if(distance(zombie.obj, camera) < 3){
+    else if(d < 2){
       zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
-      //set chase to false
+      zombie.chase = false;
     }
     else{
       zombie.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
-      //set chase to false
+      zombie.chase = false;
     }
 
   

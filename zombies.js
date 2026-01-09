@@ -9,7 +9,7 @@ class Zombie{
     this.walk = false;
     this.run = false;
     this.attack = false;
-    this.chase = true;
+    this.chase = false;
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
@@ -38,6 +38,7 @@ class Zombie{
 
   follow(camera){
     if(this.chase){
+    
       this.rotateTowards(camera);
 
       let move = this.obj.object3D.rotation.y;
