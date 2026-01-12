@@ -12,6 +12,8 @@ class Zombie{
     this.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
     this.obj.setAttribute("scale", "1.25 1 1.25");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
+    
+    
 
     scene.append(this.obj);
   }
