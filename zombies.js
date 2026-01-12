@@ -1,14 +1,10 @@
 class Zombie{
-  constructor(x,y,z,health, speed){
+  constructor(x,y,z,Zhealth_count,speed){
     this.x = x;
     this.y = y;
     this.z = z;
-    this.health = health;
+    this.Zhealth_count = Zhealth_count;
     this.speed = speed;
-    this.idle = true;
-    this.walk = false;
-    this.run = false;
-    this.attack = false;
     this.chase = false;
 
     this.obj = document.createElement("a-gltf-model");

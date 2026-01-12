@@ -1,0 +1,11 @@
+Model Information:
+* title:	Riverdale Speakeasy Final
+* source:	https://sketchfab.com/3d-models/riverdale-speakeasy-final-1287d82c731c49c2bd04bf098e5e1d05
+* author:	loidekol (https://sketchfab.com/loidekol)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Riverdale Speakeasy Final" (https://sketchfab.com/3d-models/riverdale-speakeasy-final-1287d82c731c49c2bd04bf098e5e1d05) by loidekol (https://sketchfab.com/loidekol) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

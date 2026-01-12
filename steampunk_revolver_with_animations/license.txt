@@ -1,0 +1,11 @@
+Model Information:
+* title:	Steampunk Revolver (With Animations)
+* source:	https://sketchfab.com/3d-models/steampunk-revolver-with-animations-38f052a2027346e2943b4c76d2572415
+* author:	Eduardo Kuhn (https://sketchfab.com/eduardokuhn)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Steampunk Revolver (With Animations)" (https://sketchfab.com/3d-models/steampunk-revolver-with-animations-38f052a2027346e2943b4c76d2572415) by Eduardo Kuhn (https://sketchfab.com/eduardokuhn) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
