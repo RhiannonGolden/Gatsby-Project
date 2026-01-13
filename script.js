@@ -1,13 +1,12 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [], bullets = [], ammo_count = 5, Phealth_count = 100, Phealth_text, Zhealth_count, Zhealth_text, speed, xRotate, yRotate, zRotate;
+let scene, camera, zombies = [], bullets = [], ammo_count = 5, Phealth_count, Phealth_text, Zhealth_count;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
-  Zhealth_text = document.getElementById("Zhealth");
   Phealth_text = document.getElementById("Phealth");
 
-  for(let i = 0; i < 1; i++){
+  for(let i = 0; i < 2; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -18,9 +17,10 @@ window.addEventListener("DOMContentLoaded",function() {
       Zhealth_count = 100;
       speed = 0.03
     }
-    let zombie = new Zombie(0,0.5,-7,Zhealth_count,speed);
+    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed);
     zombies.push(zombie);
   }
+  Phealth_count = 105;
 
 
   window.addEventListener("keydown",function(e){
@@ -36,21 +36,9 @@ window.addEventListener("DOMContentLoaded",function() {
 
 function loop(){
 
-   
+  Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   for(let zombie of zombies){
-    zombie.follow(camera);
-
-    xRotate = zombie.obj.object3D.position.x;
-    yRotate = zombie.obj.object3D.position.y;
-    zRotate = zombie.obj.object3D.position.z;
-
-    Zhealth_text.setAttribute("value",`Health: ${zombie.Zhealth_count}`);
-    Zhealth_text.setAttribute("position",{x:zombie.x-0.5,y:zombie.y+2.25,z:zombie.z});
-    Zhealth_text.setAttribute("rotation",{x:xRotate,y:yRotate,z:zRotate});
-    //fix zombie health text rotating with zombie
-
-    Phealth_text.setAttribute("value",`Health: ${Phealth_count}`);
-  
+    zombie.follow(camera);  
 
     for(let bullet of bullets){
 
@@ -58,8 +46,9 @@ function loop(){
       if(d2 < 3 && bullet.shot == false){
         zombie.Zhealth_count -= 20;
         bullet.shot = true;
-        console.log(zombie.Zhealth_count);
+        zombie.down = true;
         bullet.obj.remove();
+        zombie.healthDown();
       }
     }
 
@@ -79,9 +68,7 @@ function loop(){
       else if(d1 < 2){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
-        Phealth_count -= 0.05;
-        //round to nearest whole number for player health
-        
+        Phealth_count -= 0.05;        
       }
 
       else{
@@ -94,13 +81,17 @@ function loop(){
       zombie.obj.setAttribute("animation-mixer", {clip:"FallingBack", loop:"once"});
       zombie.chase = false;
       setTimeout(() => {zombie.obj.remove();}, 1300);
-      Zhealth_text.setAttribute("position",{x:0,y:-99999,z:0});
       
     }
 
     if(Phealth_count > 100){
       Phealth_count = 100;
+      console.log(Phealth_count);
       //fix load at less than 100 health
+    }
+    else if(Phealth_count <= 0){
+      Phealth_count = 0;
+      //end game
     }
    
 
@@ -113,10 +104,6 @@ function loop(){
       bullet.spin();
     }
   }
-
-
-  
-
 
 
 

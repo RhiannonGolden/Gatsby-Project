@@ -5,6 +5,8 @@
     <script src="script.js"></script>
     <script src="zombies.js"></script>
     <script src="bullet.js"></script>
+    <script src="ammo.js"></script>
+    <script src="hearts.js"></script>
 
   </head>
   <body>
@@ -12,11 +14,14 @@
         <a-assets>
             <a-asset-item id="zombie" src="zombie/scene.gltf" ></a-asset-item>
             <a-asset-item id="bullet" src="bottle_of_champagne/scene.gltf" ></a-asset-item>
+            <a-asset-item id="ammo1" src="bullet/scene.gltf" ></a-asset-item>
+            <a-asset-item id="ammo2" src="bullet_9_mm/scene.gltf" ></a-asset-item>
+            <a-asset-item id="hearts" src="zombie/scene.gltf" ></a-asset-item>
         </a-assets>
 
 
 
-        <a-text id="Zhealth" color="black"></a-text>
+       
         <a-plane color="green" rotation="-90 0 0" width="50" height="50"></a-plane>
       
 
@@ -30,6 +35,9 @@
 
     <a-gltf-model src="#zombie"></a-gltf-model>
     <a-gltf-model src="#bullet"></a-gltf-model>
+    <a-gltf-model src="#ammo1"></a-gltf-model>
+    <a-gltf-model src="#ammo2"></a-gltf-model>
+    <a-gltf-model src="#hearts"></a-gltf-model>
 
   </body>
 </html>
