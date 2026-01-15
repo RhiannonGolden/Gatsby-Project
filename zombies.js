@@ -7,6 +7,7 @@ class Zombie{
     this.speed = speed;
     this.chase = false;
     this.down = false;
+    this.die = false;
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");

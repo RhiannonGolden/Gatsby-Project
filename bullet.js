@@ -1,8 +1,8 @@
 class Bullet{
   constructor(){
    this.a = 0;
-   this.plus = false;
    this.shot = false;
+
 
 
     this.obj = document.createElement("a-gltf-model");

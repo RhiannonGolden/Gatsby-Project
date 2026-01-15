@@ -1,10 +1,11 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [], bullets = [], ammo_count = 5, Phealth_count, Phealth_text, Zhealth_count;
+let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
   Phealth_text = document.getElementById("Phealth");
+  ammo_count = document.getElementById("ammo_count");
 
   for(let i = 0; i < 2; i++){
     let x = rnd(-20,20);
@@ -20,14 +21,28 @@ window.addEventListener("DOMContentLoaded",function() {
     let zombie = new Zombie(x,0.5,z,Zhealth_count,speed);
     zombies.push(zombie);
   }
-  Phealth_count = 105;
+
+   for(let i = 0; i < 10; i++){
+    let x = rnd(-20, 20);
+    let z = rnd(-20, 20);
+    ammos.push(new Ammo(x,z));
+  }
+
+     for(let i = 0; i < 10; i++){
+    let x = rnd(-20, 20);
+    let z = rnd(-20, 20);
+    hearts.push(new Hearts(x,z));
+  }
+
+
+  Phealth_count = 100;
 
 
   window.addEventListener("keydown",function(e){
-    if(e.key == " " && ammo_count > 0){
+    if(e.key == " " && bullets_count > 0){
       let bullet = new Bullet();
       bullets.push(bullet);
-      ammo_count--;
+      bullets_count--;
     }
   })
   
@@ -35,6 +50,8 @@ window.addEventListener("DOMContentLoaded",function() {
 })
 
 function loop(){
+
+  console.log(bullets_count);
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   for(let zombie of zombies){
@@ -49,6 +66,7 @@ function loop(){
         zombie.down = true;
         bullet.obj.remove();
         zombie.healthDown();
+        bullets_count--;
       }
     }
 
@@ -61,40 +79,42 @@ function loop(){
         zombie.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
         zombie.chase = true;
       } 
-      else if( (d1 < 7) && (d1 > 2) && zombie.speed == 0.03){
+      else if( (d1 < 9) && (d1 > 2) && zombie.speed == 0.03){
         zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
         zombie.chase = true;
       }
-      else if(d1 < 2){
+      else if(d1 < 2 && zombie.speed == 0.01){
+        zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
+        zombie.chase = false;
+        Phealth_count -= 0.025;       
+      }
+      else if(d1 < 2 && zombie.speed == 0.03){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
         Phealth_count -= 0.05;        
       }
-
       else{
         zombie.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
         zombie.chase = false;
       }
     }
 
-    if(zombie.Zhealth_count <= 0){
+    if(zombie.Zhealth_count <= 0 && zombie.die==false){
       zombie.obj.setAttribute("animation-mixer", {clip:"FallingBack", loop:"once"});
       zombie.chase = false;
+      zombie.die = true;
       setTimeout(() => {zombie.obj.remove();}, 1300);
       
     }
 
     if(Phealth_count > 100){
       Phealth_count = 100;
-      console.log(Phealth_count);
       //fix load at less than 100 health
     }
     else if(Phealth_count <= 0){
       Phealth_count = 0;
       //end game
     }
-   
-
       
   }
 
@@ -107,7 +127,31 @@ function loop(){
 
 
 
+  for(let ammo of ammos){
+    if( (distance(ammo.obj,camera) < 3) && ammo.pickUp==false){
+      bullets_count++;
+      ammo.pickUp = true;
+      console.log("collide");
+      //ammo.obj.remove();
+      //fix ammo pickup before load in
+    }
+    //ammo.spin();
+  }
+
+
+
+  for(let heart of hearts){
+    if( (distance(heart.obj,camera) < 3) && heart.pickUp==false){
+      Phealth_count += 5;
+      //heart.pickUp = true;
+      //heart.obj.remove();
+      //fix heart pickup before load in
+    }
+    heart.spin();
+  }
   
+
+  //change to timeout(?)
   window.requestAnimationFrame(loop);
 }
 
