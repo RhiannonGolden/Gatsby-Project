@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded",function() {
       Zhealth_count = 100;
       speed = 0.03
     }
-    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed);
+    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, 0);
     zombies.push(zombie);
   }
 
@@ -35,7 +35,7 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
-  Phealth_count = 100;
+  Phealth_count = 75;
 
 
   window.addEventListener("keydown",function(e){
@@ -50,10 +50,10 @@ window.addEventListener("DOMContentLoaded",function() {
 })
 
 function loop(){
-
-  console.log(bullets_count);
+  let idleRotate = rnd(0, 365);
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
+  ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
   for(let zombie of zombies){
     zombie.follow(camera);  
 
@@ -83,12 +83,12 @@ function loop(){
         zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
         zombie.chase = true;
       }
-      else if(d1 < 2 && zombie.speed == 0.01){
+      else if(d1 < 2 && zombie.speed == 0.01 && zombie.PhealthDown == true){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
         Phealth_count -= 0.025;       
       }
-      else if(d1 < 2 && zombie.speed == 0.03){
+      else if(d1 < 2 && zombie.speed == 0.03 && zombie.PhealthDown == true){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
         Phealth_count -= 0.05;        
@@ -96,6 +96,12 @@ function loop(){
       else{
         zombie.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
         zombie.chase = false;
+        zombie.idle = true;
+        //zombie.idleMove(zombie.idleRotate);
+        setTimeout(() => {zombie.idleMove(zombie.idleRotate);}, 10000);
+        //idle when stand compltley still
+        //walk for idleMove
+        //call function again after timeout ends      put in for loop(?)
       }
     }
 
@@ -107,11 +113,8 @@ function loop(){
       
     }
 
-    if(Phealth_count > 100){
-      Phealth_count = 100;
-      //fix load at less than 100 health
-    }
-    else if(Phealth_count <= 0){
+
+    if(Phealth_count <= 0){
       Phealth_count = 0;
       //end game
     }
@@ -128,12 +131,10 @@ function loop(){
 
 
   for(let ammo of ammos){
-    if( (distance(ammo.obj,camera) < 3) && ammo.pickUp==false){
-      bullets_count++;
-      ammo.pickUp = true;
-      console.log("collide");
-      //ammo.obj.remove();
-      //fix ammo pickup before load in
+    if( (distance(ammo.obj,camera) < 3) && ammo.pickUp==true){
+      bullets_count+=2;
+      ammo.pickUp = false;
+      ammo.obj.remove();
     }
     //ammo.spin();
   }
@@ -141,11 +142,10 @@ function loop(){
 
 
   for(let heart of hearts){
-    if( (distance(heart.obj,camera) < 3) && heart.pickUp==false){
+    if( (distance(heart.obj,camera) < 3) && heart.pickUp==true && Phealth_count < 100){
       Phealth_count += 5;
-      //heart.pickUp = true;
-      //heart.obj.remove();
-      //fix heart pickup before load in
+      heart.pickUp = false;
+      heart.obj.remove();
     }
     heart.spin();
   }

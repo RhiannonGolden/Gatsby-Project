@@ -13,6 +13,11 @@ class Hearts{
     this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});    
 
     scene.append(this.obj);
+
+
+    setTimeout(() => {
+      this.pickUp = true;
+    }, 1000);
   }
   
 

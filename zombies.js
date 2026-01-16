@@ -1,5 +1,5 @@
 class Zombie{
-  constructor(x,y,z,Zhealth_count,speed){
+  constructor(x,y,z,Zhealth_count,speed, idleRotate){
     this.x = x;
     this.y = y;
     this.z = z;
@@ -8,6 +8,13 @@ class Zombie{
     this.chase = false;
     this.down = false;
     this.die = false;
+    this.PhealthDown = false;
+    this.idle = true;
+
+    //this.idleSpeed = idleSpeed;
+    //this.idleX = idleX;
+    //this.idleY = idleY;
+    this.idleRotate = idleRotate;
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
@@ -25,6 +32,10 @@ class Zombie{
     this.healthText.setAttribute("color", "black");
 
     this.obj.append(this.healthText);
+
+    setTimeout(() => {
+      this.PhealthDown = true;
+    }, 1000);
   }
 
   angleTo(that){
@@ -65,6 +76,24 @@ class Zombie{
       this.healthText.setAttribute("value",Math.round(this.Zhealth_count));
     }
   }
+
+
+  idleMove(){
+    if(this.idle && this.chase==false){
+      
+      //this.rotateTowards(this.idleRotate);
+      //fix rotation when walk
+
+      //let move = this.obj.object3D.rotation.y;
+      let move = this.idleRotate;
+
+      this.x = this.obj.object3D.position.x += Math.sin(move) * this.speed;
+      this.z = this.obj.object3D.position.z += Math.cos(move) * this.speed;
+
+      this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});  
+    }
+  }
+
 
   
 

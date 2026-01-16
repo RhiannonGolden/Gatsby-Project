@@ -5,7 +5,7 @@ class Ammo{
     this.a = 0;
     this.da = 5;
     this.flag = false;
-    this.pickUp = true;
+    this.pickUp = false;
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#ammo1");
@@ -16,7 +16,7 @@ class Ammo{
 
 
     setTimeout(() => {
-      this.pickUp = false; // now collectible
+      this.pickUp = true;
     }, 1000);
 
   }
