@@ -66,7 +66,7 @@ function loop(){
         zombie.down = true;
         bullet.obj.remove();
         zombie.healthDown();
-        bullets_count--;
+
       }
     }
 

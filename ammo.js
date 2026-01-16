@@ -5,7 +5,7 @@ class Ammo{
     this.a = 0;
     this.da = 5;
     this.flag = false;
-    this.pickUp = false;
+    this.pickUp = true;
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#ammo1");
@@ -13,8 +13,15 @@ class Ammo{
     this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});    
 
     scene.append(this.obj);
+
+
+    setTimeout(() => {
+      this.pickUp = false; // now collectible
+    }, 1000);
+
   }
-  
+
+
 
   spin(){
         this.a += this.da;
