@@ -54,6 +54,8 @@ function loop(){
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
+  //fix text from going into the floor and disappearing
+
   for(let zombie of zombies){
     zombie.follow(camera);  
 
