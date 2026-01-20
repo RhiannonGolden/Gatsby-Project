@@ -10,10 +10,9 @@ class Zombie{
     this.die = false;
     this.PhealthDown = false;
     this.idle = true;
+    this.idleWalk = false;
 
     //this.idleSpeed = idleSpeed;
-    //this.idleX = idleX;
-    //this.idleY = idleY;
     this.idleRotate = idleRotate;
 
     this.obj = document.createElement("a-gltf-model");
@@ -79,16 +78,17 @@ class Zombie{
 
 
   idleMove(){
-    if(this.idle && this.chase==false){
+    if(this.idle && this.chase == false && this.idleWalk == false){
+      this.idleWalk = true;      
       
       //this.rotateTowards(this.idleRotate);
       //fix rotation when walk
 
       //let move = this.obj.object3D.rotation.y;
-      let move = this.idleRotate;
+      this.idleRotate = this.obj.object3D.rotation.y;
 
-      this.x = this.obj.object3D.position.x += Math.sin(move) * this.speed;
-      this.z = this.obj.object3D.position.z += Math.cos(move) * this.speed;
+      this.x += Math.sin(this.idleRotate) * this.speed;
+      this.z += Math.cos(this.idleRotate) * this.speed;
 
       this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});  
     }
