@@ -1,5 +1,5 @@
 class Zombie{
-  constructor(x,y,z,Zhealth_count,speed,idleRotate){
+  constructor(x,y,z,Zhealth_count,speed,idleRotate, idleSpeed, stopTime){
     this.x = x;
     this.y = y;
     this.z = z;
@@ -11,13 +11,15 @@ class Zombie{
     this.PhealthDown = false;
 
     this.idle = true;
-    //this.idleWalk = false;
-    //this.idleSpeed = idleSpeed;
+    this.idleWalk = true;
     this.idleRotate = idleRotate;
+    this.idleSpeed = idleSpeed;
+    this.walkTime = 5000;
+    this.stopTime = stopTime;
+    this.chooseStopTime = false;
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
-    //this.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
     this.obj.setAttribute("scale", "1.25 1 1.25");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});    
 
@@ -78,21 +80,47 @@ class Zombie{
 
 
   idleMove(){
-    console.log(this.idleRotate);
-    if(this.idle && this.chase == false){
+    //console.log(this.idleRotate);
+    if(this.idle && this.chase == false && this.idleWalk){
+
+      this.chooseStoptime = false;
+
+      this.obj.object3D.rotation.y = this.idleRotate;
+
+      this.x += Math.sin(this.idleRotate) * this.idleSpeed;
+      this.z += Math.cos(this.idleRotate) * this.idleSpeed;
+
+      this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});  
+      this.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
+
+      this.walkTime = rnd(2000, 10000);
+
+      setTimeout(() => {this.idleWalk=false; this.chooseStopTime = true;}, 5000);
+
+    }
+  }
+
+  idleStop(){
+    console.log(this.chooseStopTime);
+    //console.log(this.stopTime);
+    if(this.idle && this.chase == false && this.idleWalk == false){
+      this.idleRotate = rnd(0, 360);
+      this.idleSpeed = rnd(1, 25) / 1000;
+      
+      this.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
+
+      if(this.chooseStopTime){
+        this.stopTime = rnd(2000, 10000);
+        setTimeout(() => {this.chooseStopTime = false;}, 10);
+      }
+
+        //setTimeout(() => {this.chooseStopTime = false;}, 1000);
+        //this.chooseStopTime = false;
+      
 
       setTimeout(() => {
-        //this.idleRotate = rnd(0, 365);
-        this.obj.object3D.rotation.y = this.idleRotate;
-
-        this.x += Math.sin(this.idleRotate) * this.speed;
-        this.z += Math.cos(this.idleRotate) * this.speed;
-
-        this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});  
-      },5500);
-      //this setTimeout creates delay before idlewalk again when this.chase becomes true (zombie gets close to player) → (creates stop when player moves out of range)
-
-
+        this.idleWalk=true;
+      }, this.stopTime);
     }
   }
 

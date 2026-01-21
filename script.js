@@ -1,5 +1,5 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], idleRotate;
+let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -7,11 +7,13 @@ window.addEventListener("DOMContentLoaded",function() {
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
 
-  for(let i = 0; i < 2; i++){
+  for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
-    idleRotate = rnd(1, 360);
+    let idleRotate = rnd(0, 360);
+    let idleSpeed = rnd(1, 25) / 1000;
+
     if(Zhealth_count < 7){
       Zhealth_count = 50;
       speed = 0.01;
@@ -19,7 +21,7 @@ window.addEventListener("DOMContentLoaded",function() {
       Zhealth_count = 100;
       speed = 0.03
     }
-    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate);
+    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, 5000);
     zombies.push(zombie);
   }
 
@@ -51,14 +53,13 @@ window.addEventListener("DOMContentLoaded",function() {
 })
 
 function loop(){
-
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
   //fix text from going into the floor and disappearing
 
   for(let zombie of zombies){
     zombie.follow(camera);  
-    //console.log(zombie.idleRotate);
+    
 
     for(let bullet of bullets){
 
@@ -97,26 +98,22 @@ function loop(){
         Phealth_count -= 0.05;        
       }
       else{
-        zombie.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
-
         zombie.chase = false;
         zombie.idle = true;
 
-        //let idleRotate = rnd(0, 360);
         
-        for(let zombie of zombies){
-          zombie.idleMove();
-        }
-        //setTimeout(() => {zombie.idleMove();}, 1000);
+      
+        zombie.idleMove();
+        zombie.idleStop();
 
-        //idle when stand compltley still
-        //walk for idleMove
+        
+
+
         //call function again after timeout ends      put in for loop(?)
 
         //call function every 5 seconds → 
         // function/walking is done for 5 seconds → stand still for 5 seconds → call function again
-      
-        //generate new idleRotate number each time function is called
+  
 
         
 
