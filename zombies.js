@@ -1,5 +1,5 @@
 class Zombie{
-  constructor(x,y,z,Zhealth_count,speed,idleRotate, idleSpeed, walkTime, stopTime){
+  constructor(x, y, z, Zhealth_count, speed, idleRotate, idleSpeed, walkTime, stopTime, followDistance){
     this.x = x;
     this.y = y;
     this.z = z;
@@ -19,6 +19,9 @@ class Zombie{
 
     this.chooseWalkTime = true;
     this.chooseStopTime = false;
+
+    this.followDistance = followDistance;
+
 
 
     this.obj = document.createElement("a-gltf-model");
@@ -83,8 +86,6 @@ class Zombie{
 
 
   idleMove(){
-
-    console.log(this.walkTime);
     if(this.idle && this.chase == false && this.idleWalk){
 
       this.obj.object3D.rotation.y = this.idleRotate;
@@ -98,7 +99,11 @@ class Zombie{
       if(this.chooseWalkTime){
         this.chooseWalkTime = false;
 
-        this.walkTime = rnd(1000, 10000);
+        if(this.speed == 0.01){
+          this.walkTime = rnd(1000, 7000);
+        } else if(this.speed == 0.03){
+          this.walkTime = rnd(3000, 10000);
+        }
 
         setTimeout(() => {
           this.idleWalk=false;
@@ -107,19 +112,10 @@ class Zombie{
     }
   }
 }
-      /*
-      //this.walkTime = rnd(2000, 10000);
-      if(this.chooseWalkTime){
-        //this.walkTime = rnd(2000, 10000);
-        setTimeout(() => {this.chooseWalkTime = false;}, 1);
-      }
-      */
+
 
   
-
   idleStop(){
-    //console.log(this.stopTime);
-
     if(this.idle && this.chase == false && this.idleWalk == false){
       
       
@@ -127,55 +123,30 @@ class Zombie{
       if(this.chooseStopTime){
         this.chooseStopTime = false;
 
-        this.stopTime = rnd(1000, 10000);
+        if(this.speed == 0.01){
+            this.followDistance = rnd(5, 8);
+            this.idleSpeed = rnd(35, 125) / 10000;
+            this.stopTime = rnd(3000, 10000);
+          }
+          else if(this.speed == 0.03){
+            this.followDistance = rnd(7, 12);
+            this.idleSpeed = rnd(50, 150) / 10000;
+            this.stopTime = rnd(1000, 7000);
+          }
 
         setTimeout(() => {
           this.idleWalk = true;
           this.chooseWalkTime = true;
 
           this.idleRotate = rnd(0, 360);
-          this.idleSpeed = rnd(1, 25) / 1000;
+
         }, this.stopTime);
       }
     }
   }
-      
-
-      
-
-
-/*
-      setTimeout(() => {
-        this.idleWalk = true; this.chooseWalkTime = true;
-      }, this.stopTime);
-      
-    }
-      */
   
 
 
   
 
 }
-
-/*
-if(this.chooseStopTime){
-        //this.stopTime = rnd(2000, 10000);
-        setTimeout(() => {this.chooseStopTime = false;}, 1);
-      }
-
-
-
-
-
-      if(this.chooseStopTime){
-        if(this.stopTime > 1000){
-          this.stopTime -= rnd(1000,10000);
-        } else if(this.stopTime < 4000){
-           this.stopTime += rnd(1000,10000);
-        }
-       
-        
-        setTimeout(() => {this.chooseStopTime = false;}, 100);
-      }
-        */

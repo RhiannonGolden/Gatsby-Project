@@ -1,5 +1,5 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ];
+let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -12,18 +12,25 @@ window.addEventListener("DOMContentLoaded",function() {
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
     let idleRotate = rnd(0, 360);
-    let idleSpeed = rnd(1, 25) / 1000;
+    let idleSpeed = rnd(35, 150) / 10000;
     let walkTime = rnd(1000, 10000);
     let stoptime = rnd(1000, 10000);
+    followDistance1 = rnd(5, 8);
+    followDistance2 = rnd(7, 12);
 
     if(Zhealth_count < 7){
       Zhealth_count = 50;
       speed = 0.01;
+      followDistance = followDistance1;
+      
     } else{
       Zhealth_count = 100;
       speed = 0.03
+      followDistance = followDistance2;
+    
     }
-    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime);
+    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime, followDistance);
+
     zombies.push(zombie);
   }
 
@@ -60,8 +67,7 @@ function loop(){
   //fix text from going into the floor and disappearing
 
   for(let zombie of zombies){
-    zombie.follow(camera);
-    
+    zombie.follow(camera);    
 
     for(let bullet of bullets){
 
@@ -76,16 +82,15 @@ function loop(){
       }
     }
 
-
-
     let d1 = distance(zombie.obj, camera);
 
     if(zombie.Zhealth_count > 0){
-      if( (d1 < 7) && (d1 > 2) && zombie.speed == 0.01){
+      if( (d1 < zombie.followDistance) && (d1 > 2) && zombie.speed == 0.01){
         zombie.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
         zombie.chase = true;
+
       } 
-      else if( (d1 < 9) && (d1 > 2) && zombie.speed == 0.03){
+      else if( (d1 < zombie.followDistance) && (d1 > 2) && zombie.speed == 0.03){
         zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
         zombie.chase = true;
       }

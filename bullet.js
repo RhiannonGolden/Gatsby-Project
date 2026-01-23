@@ -11,6 +11,11 @@ class Bullet{
     this.obj.setAttribute("scale","0.5 0.5 0.5");
     let pos = camera.object3D.position;
     this.obj.setAttribute("position",{x:pos.x,y:pos.y,z:pos.z});
+    this.obj.setAttribute("rotation", {x:0, y:5, z:0});
+    
+    console.log(this.obj.object3D.rotation.y);
+    //fix rotation
+
     scene.append(this.obj);
     
     let theta = camera.object3D.rotation.y + Math.PI;
@@ -27,7 +32,7 @@ class Bullet{
     this.obj.object3D.position.y += this.dy;
     this.obj.object3D.position.z += this.dz; 
 
-    //this.obj.object3D.rotation.y = this.theta - Math.PI/2;
+    this.obj.object3D.rotation.y = this.theta - Math.PI/2;
   }
 
 
