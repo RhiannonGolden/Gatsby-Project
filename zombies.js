@@ -1,5 +1,5 @@
 class Zombie{
-  constructor(x,y,z,Zhealth_count,speed,idleRotate, idleSpeed, stopTime){
+  constructor(x,y,z,Zhealth_count,speed,idleRotate, idleSpeed, walkTime, stopTime){
     this.x = x;
     this.y = y;
     this.z = z;
@@ -14,9 +14,12 @@ class Zombie{
     this.idleWalk = true;
     this.idleRotate = idleRotate;
     this.idleSpeed = idleSpeed;
-    this.walkTime = 5000;
+    this.walkTime = walkTime;
     this.stopTime = stopTime;
+
+    this.chooseWalkTime = true;
     this.chooseStopTime = false;
+
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
@@ -80,10 +83,9 @@ class Zombie{
 
 
   idleMove(){
-    //console.log(this.idleRotate);
-    if(this.idle && this.chase == false && this.idleWalk){
 
-      this.chooseStoptime = false;
+    console.log(this.walkTime);
+    if(this.idle && this.chase == false && this.idleWalk){
 
       this.obj.object3D.rotation.y = this.idleRotate;
 
@@ -93,38 +95,87 @@ class Zombie{
       this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});  
       this.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
 
-      this.walkTime = rnd(2000, 10000);
+      if(this.chooseWalkTime){
+        this.chooseWalkTime = false;
 
-      setTimeout(() => {this.idleWalk=false; this.chooseStopTime = true;}, 5000);
+        this.walkTime = rnd(1000, 10000);
 
+        setTimeout(() => {
+          this.idleWalk=false;
+          this.chooseStopTime=true;
+        }, this.walkTime);
     }
   }
+}
+      /*
+      //this.walkTime = rnd(2000, 10000);
+      if(this.chooseWalkTime){
+        //this.walkTime = rnd(2000, 10000);
+        setTimeout(() => {this.chooseWalkTime = false;}, 1);
+      }
+      */
+
+  
 
   idleStop(){
-    console.log(this.chooseStopTime);
     //console.log(this.stopTime);
+
     if(this.idle && this.chase == false && this.idleWalk == false){
-      this.idleRotate = rnd(0, 360);
-      this.idleSpeed = rnd(1, 25) / 1000;
+      
       
       this.obj.setAttribute("animation-mixer", {clip: "Idle", loop:"repeat"});
-
       if(this.chooseStopTime){
-        this.stopTime = rnd(2000, 10000);
-        setTimeout(() => {this.chooseStopTime = false;}, 10);
+        this.chooseStopTime = false;
+
+        this.stopTime = rnd(1000, 10000);
+
+        setTimeout(() => {
+          this.idleWalk = true;
+          this.chooseWalkTime = true;
+
+          this.idleRotate = rnd(0, 360);
+          this.idleSpeed = rnd(1, 25) / 1000;
+        }, this.stopTime);
       }
-
-        //setTimeout(() => {this.chooseStopTime = false;}, 1000);
-        //this.chooseStopTime = false;
-      
-
-      setTimeout(() => {
-        this.idleWalk=true;
-      }, this.stopTime);
     }
   }
+      
+
+      
+
+
+/*
+      setTimeout(() => {
+        this.idleWalk = true; this.chooseWalkTime = true;
+      }, this.stopTime);
+      
+    }
+      */
+  
 
 
   
 
 }
+
+/*
+if(this.chooseStopTime){
+        //this.stopTime = rnd(2000, 10000);
+        setTimeout(() => {this.chooseStopTime = false;}, 1);
+      }
+
+
+
+
+
+      if(this.chooseStopTime){
+        if(this.stopTime > 1000){
+          this.stopTime -= rnd(1000,10000);
+        } else if(this.stopTime < 4000){
+           this.stopTime += rnd(1000,10000);
+        }
+       
+        
+        setTimeout(() => {this.chooseStopTime = false;}, 100);
+      }
+        */

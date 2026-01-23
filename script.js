@@ -13,6 +13,8 @@ window.addEventListener("DOMContentLoaded",function() {
     Zhealth_count = rnd(1, 10);
     let idleRotate = rnd(0, 360);
     let idleSpeed = rnd(1, 25) / 1000;
+    let walkTime = rnd(1000, 10000);
+    let stoptime = rnd(1000, 10000);
 
     if(Zhealth_count < 7){
       Zhealth_count = 50;
@@ -21,7 +23,7 @@ window.addEventListener("DOMContentLoaded",function() {
       Zhealth_count = 100;
       speed = 0.03
     }
-    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, 5000);
+    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime);
     zombies.push(zombie);
   }
 
@@ -58,7 +60,7 @@ function loop(){
   //fix text from going into the floor and disappearing
 
   for(let zombie of zombies){
-    zombie.follow(camera);  
+    zombie.follow(camera);
     
 
     for(let bullet of bullets){
@@ -101,23 +103,8 @@ function loop(){
         zombie.chase = false;
         zombie.idle = true;
 
-        
-      
         zombie.idleMove();
         zombie.idleStop();
-
-        
-
-
-        //call function again after timeout ends      put in for loop(?)
-
-        //call function every 5 seconds → 
-        // function/walking is done for 5 seconds → stand still for 5 seconds → call function again
-  
-
-        
-
-
       }
     }
 
