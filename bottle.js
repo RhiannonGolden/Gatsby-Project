@@ -21,6 +21,9 @@ class Bottle{
     setTimeout(() => {
       this.pickUp = true;
     }, 1000);
+
+
+
   }
   
 

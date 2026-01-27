@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [], bottle_count = 0, bottle_text, collected = [];
+let bottles = [], bottle_count = 0, bottle_text, collected = [], collected_count = 0;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -47,7 +47,7 @@ window.addEventListener("DOMContentLoaded",function() {
     hearts.push(new Hearts(x,z));
   }
 
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 5; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     bottles.push(new Bottle(x,1,z));
@@ -167,15 +167,16 @@ function loop(){
 
 
   for(let bottle of bottles){
-    //bottle.spin();
+    bottle.spin();
     if( (distance(bottle.obj, camera) < 5) && bottle.pickUp==true){
-      bottle_count += 1;
+      bottle_count ++;
       bottle.pickUp = false;
       console.log(bottle_count);
     }
+    //when user is close to bottle and clicks bottle, bottle can be placed on stand
 
     if(bottle_count >= 1){
-      collected.push(new Bottle(0, 3, -2));
+      //place bottle
     }
   }
   
