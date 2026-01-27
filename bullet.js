@@ -3,8 +3,6 @@ class Bullet{
    this.a = 0;
    this.shot = false;
 
-
-
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bullet");
 
@@ -15,6 +13,8 @@ class Bullet{
     
     console.log(this.obj.object3D.rotation.y);
     //fix rotation
+    //add target challenge
+    //think of next challenge
 
     scene.append(this.obj);
     

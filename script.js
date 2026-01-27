@@ -1,5 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
+let bottles = [], bottle_count = 0, bottle_text, collected = [];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -7,7 +8,7 @@ window.addEventListener("DOMContentLoaded",function() {
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
 
-  for(let i = 0; i < 1; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -34,16 +35,22 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 10; i++){
+   for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     ammos.push(new Ammo(x,z));
   }
 
-     for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     hearts.push(new Hearts(x,z));
+  }
+
+  for(let i = 0; i < 10; i++){
+    let x = rnd(-20, 20);
+    let z = rnd(-20, 20);
+    bottles.push(new Bottle(x,1,z));
   }
 
 
@@ -156,6 +163,20 @@ function loop(){
       heart.obj.remove();
     }
     heart.spin();
+  }
+
+
+  for(let bottle of bottles){
+    //bottle.spin();
+    if( (distance(bottle.obj, camera) < 5) && bottle.pickUp==true){
+      bottle_count += 1;
+      bottle.pickUp = false;
+      console.log(bottle_count);
+    }
+
+    if(bottle_count >= 1){
+      collected.push(new Bottle(0, 3, -2));
+    }
   }
   
 
