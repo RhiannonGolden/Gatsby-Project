@@ -8,6 +8,9 @@ window.addEventListener("DOMContentLoaded",function() {
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
 
+  red1 = document.getElementById("red1");
+  red2 = document.getElementById("red2");
+
   for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
@@ -64,11 +67,36 @@ window.addEventListener("DOMContentLoaded",function() {
       bullets_count--;
     }
   })
+
+
+  window.addEventListener("click",function(){
+    console.log("place");
+    let cameraX = camera.object3D.position.x;
+    
+    //let cameraZ = camera.object3D.position.z;
+    
+    let redX = red1.object3D.position.x;
+    //let redZ = red1.object3D.position.z;
+
+    let d4 = distance(cameraX, redX);
+    console.log(d4);
+    
+    if(d4 < 2){
+      new Bottle(redX,1.3,redZ);
+    }
+
+    new Bottle(redX, 1.3, redZ);
+
+    
+  })
+  
   
   loop();
 })
 
 function loop(){
+  
+
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
   //fix text from going into the floor and disappearing
@@ -169,15 +197,19 @@ function loop(){
   for(let bottle of bottles){
     bottle.spin();
     if( (distance(bottle.obj, camera) < 5) && bottle.pickUp==true){
-      bottle_count ++;
+      //bottle_count ++;
       bottle.pickUp = false;
-      console.log(bottle_count);
+      //console.log(bottle_count);
     }
     //when user is close to bottle and clicks bottle, bottle can be placed on stand
 
     if(bottle_count >= 1){
       //place bottle
     }
+
+    
+
+
   }
   
 

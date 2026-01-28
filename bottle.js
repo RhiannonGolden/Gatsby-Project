@@ -8,12 +8,14 @@ class Bottle{
     this.flag = false;
     this.pickUp = false;
     this.clicked = false;
+    //this.color = true;
+    this.collide = false;
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bottle");
     this.obj.setAttribute("scale", "1.5 1.5 1.5");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
-    this.obj.setAttribute("rotation",{x:90, y:9, z:0});
+    this.obj.setAttribute("rotation",{x:this.angle, y:9, z:0});
 
     scene.append(this.obj);
 
@@ -28,9 +30,20 @@ class Bottle{
   
 
   spin(){
-        this.a += this.da;
-        this.obj.setAttribute("rotation",{x:90, y:0, z:this.a});
+    this.a += this.da;
+    this.obj.setAttribute("rotation",{x:90, y:0, z:this.a});
+  }
+
+
+  shoot(){
+    if(this.collide){
+      this.obj.object3D.position.y = 5;
     }
+    
+  }
+
+
+
 
 
 }
