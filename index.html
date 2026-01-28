@@ -23,15 +23,15 @@
 
 
         <a-plane position="0 1 -10" width="7" color="brown" rotation="-90 0 0"></a-plane>
-        <a-cylinder id="red1" position="-3 1.21 -10" color="red" radius="0.25" height="0.25"></a-cylinder>
-        <a-cylinder id="black1" position="-1.5 1.21 -10" color="black" radius="0.25" height="0.25"></a-cylinder>
-        <a-cylinder id="purple1" position="0 1.21 -10" color="purple" radius="0.25" height="0.25"></a-cylinder>
-        <a-cylinder id="yellow1" position="1.5 1.21 -10" color="yellow" radius="0.25" height="0.25"></a-cylinder>
-        <a-cylinder id="blue1" position="3 1.21 -10" color="blue" radius="0.25" height="0.25"></a-cylinder>
+        <a-cylinder id="pedestal1" class="pedestal clickable" position="-3 1.21 -10" color="red" radius="0.25" height="0.25"></a-cylinder>
+        <a-cylinder id="pedestal2" class="pedestal clickable" position="-1.5 1.21 -10" color="black" radius="0.25" height="0.25"></a-cylinder>
+        <a-cylinder id="pedestal3" class="pedestal clickable" position="0 1.21 -10" color="purple" radius="0.25" height="0.25"></a-cylinder>
+        <a-cylinder id="pedestal4" class="pedestal clickable" position="1.5 1.21 -10" color="yellow" radius="0.25" height="0.25"></a-cylinder>
+        <a-cylinder id="pedestal5" class="pedestal clickable" position="3 1.21 -10" color="blue" radius="0.25" height="0.25"></a-cylinder>
 
 
-        <a-cylinder id="red2" position="-3 0.21 -5" color="yellow" radius="0.5" height="0.05"></a-cylinder>
-        <a-cylinder id="blue2" position="-1.5 0.21 -5" color="blue" radius="0.5" height="0.05"></a-cylinder>
+        <a-cylinder position="-3 0.21 -5" color="yellow" radius="0.5" height="0.05"></a-cylinder>
+        <a-cylinder position="-1.5 0.21 -5" color="blue" radius="0.5" height="0.05"></a-cylinder>
         <a-cylinder position="0 0.21 -5" color="red" radius="0.5" height="0.05"></a-cylinder>
         <a-cylinder position="1.5 0.21 -5" color="purple" radius="0.5" height="0.05"></a-cylinder>
         <a-cylinder position="3 0.21 -5" color="black" radius="0.5" height="0.05"></a-cylinder>
@@ -42,7 +42,7 @@
       
 
       <a-camera position="0 1.7 0">
-        <a-cursor>
+        <a-cursor raycaster="objects: .clickable">
           <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
           <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
         </a-cursor>

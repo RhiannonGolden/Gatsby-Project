@@ -7,15 +7,15 @@ class Bottle{
     this.da = 5;
     this.flag = false;
     this.pickUp = false;
-    this.clicked = false;
-    //this.color = true;
-    this.collide = false;
+    this.collected = false;
+    this.placed = false;
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bottle");
+    this.obj.classList.add("clickable");
     this.obj.setAttribute("scale", "1.5 1.5 1.5");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
-    this.obj.setAttribute("rotation",{x:this.angle, y:9, z:0});
+    this.obj.setAttribute("rotation",{x:0, y:9, z:0});
 
     scene.append(this.obj);
 
@@ -25,25 +25,26 @@ class Bottle{
     }, 1000);
 
 
+    this.obj.addEventListener("click", ()=> {
+      if(this.collected==false && ( distance(this.obj, camera)) < 5){
+        this.collected = true;
+        bottle_count++;
+        this.obj.remove();
+      }
+    })
+
+
 
   }
   
 
   spin(){
-    this.a += this.da;
+    if(this.placed==false){
+      this.a += this.da;
     this.obj.setAttribute("rotation",{x:90, y:0, z:this.a});
-  }
-
-
-  shoot(){
-    if(this.collide){
-      this.obj.object3D.position.y = 5;
     }
     
   }
-
-
-
 
 
 }
