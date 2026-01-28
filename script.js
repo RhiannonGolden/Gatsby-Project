@@ -71,23 +71,11 @@ window.addEventListener("DOMContentLoaded",function() {
 
   window.addEventListener("click",function(){
     console.log("place");
-    let cameraX = camera.object3D.position.x;
-    
-    //let cameraZ = camera.object3D.position.z;
-    
-    let redX = red1.object3D.position.x;
-    //let redZ = red1.object3D.position.z;
+    let x = camera.object3D.position.x;
+    let y = camera.object3D.position.z;
 
-    let d4 = distance(cameraX, redX);
-    console.log(d4);
-    
-    if(d4 < 2){
-      new Bottle(redX,1.3,redZ);
-    }
-
-    new Bottle(redX, 1.3, redZ);
-
-    
+    new Bottle(x,1.3,y);
+  
   })
   
   
