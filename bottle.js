@@ -9,6 +9,7 @@ class Bottle{
     this.pickUp = false;
     this.collected = false;
     this.placed = false;
+    this.down = false;
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bottle");
@@ -34,16 +35,24 @@ class Bottle{
     })
 
 
-
   }
   
 
   spin(){
     if(this.placed==false){
-      this.a += this.da;
-    this.obj.setAttribute("rotation",{x:90, y:0, z:this.a});
+      //this.a += this.da;
+      this.obj.setAttribute("rotation",{x:90, y:0, z:0});
     }
-    
+  }
+
+
+  shot(){
+    if(this.down){
+      this.a -= this.da;
+      this.obj.setAttribute("rotation",{x:this.a, y:0, z:0});
+
+
+    }
   }
 
 

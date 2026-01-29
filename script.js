@@ -7,6 +7,7 @@ window.addEventListener("DOMContentLoaded",function() {
   camera = document.querySelector("a-camera");
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
+  bottle_score = document.getElementById("bottle_score");
 
 
   for(let i = 0; i < 0; i++){
@@ -82,26 +83,17 @@ window.addEventListener("DOMContentLoaded",function() {
 
   let pedestals = document.querySelectorAll(".pedestal");
 
-  pedestals.forEach(pedestal => {
+  for(let pedestal of pedestals){
+
   pedestal.addEventListener("click", () => {
 
-    if (bottle_count <= 0) return;
-
     let pos = pedestal.object3D.position;    
-
-    // place bottle on top of pedestal
-    new Bottle(
-      pos.x,
-      1.25,
-      pos.z
-    );
-
+    new Bottle(pos.x, 1.25, pos.z);
     bottle_count--;
+    bottle.placed = true;
+    console.log(bottle.placed);
   });
-});
-
-
-
+};
 
 
   
@@ -110,11 +102,18 @@ window.addEventListener("DOMContentLoaded",function() {
 })
 
 function loop(){
-  console.log(bottle_count);
-
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
   //fix text from going into the floor and disappearing
+
+  if(bottle_count >= 1){
+    bottle_score.setAttribute("value", `${(bottle_count)}`);
+  } else if(bottle_count <= 0){
+    bottle_score.setAttribute("value", `0`);
+  }
+
+
+
 
   for(let zombie of zombies){
     zombie.follow(camera);    
@@ -211,10 +210,24 @@ function loop(){
 
   for(let bottle of bottles){
     bottle.spin();
-    
-    //when user is close to bottle and clicks bottle, bottle can be placed on stand
+    //console.log(bottle.placed);
 
+    for(let bullet of bullets){
+      let d3 = distance(bottle.obj, bullet.obj && bottle.placed);
+      
+      if(d3< 5 && bullet.shot == false){
+        bullet.obj.remove();
+        bullet.shot = true;
 
+        console.log("hit");
+
+        bottle.down = true;
+        //bottle.shot();
+
+      }
+      else(console.log("no hit"));
+
+    }
   }
   
 
