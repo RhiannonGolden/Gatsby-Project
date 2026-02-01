@@ -5,6 +5,7 @@ let bottles = [], bottle_count = 0, bottle_text, collected = [], collected_count
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
+  
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
   bottle_score = document.getElementById("bottle_score");
@@ -83,17 +84,29 @@ window.addEventListener("DOMContentLoaded",function() {
 
   let pedestals = document.querySelectorAll(".pedestal");
 
-  for(let pedestal of pedestals){
+  pedestals.forEach(pedestal => {
+    pedestal.hasBottle = false;
 
-  pedestal.addEventListener("click", () => {
+    pedestal.addEventListener("click", () => {
 
-    let pos = pedestal.object3D.position;    
-    new Bottle(pos.x, 1.25, pos.z);
-    bottle_count--;
-    bottle.placed = true;
-    console.log(bottle.placed);
+      if(bottle_count > 0){
+        if(pedestal.hasBottle == false){
+
+          let pos = pedestal.object3D.position;
+
+          let bottle = new Bottle(pos.x, 1.25, pos.z);
+          bottle.collected = true;
+          bottle.placed = true;
+
+          bottles.push(bottle);
+          bottle_count--;
+
+          pedestal.hasBottle = true;
+        }
+      }
+
+    });
   });
-};
 
 
   
@@ -210,25 +223,23 @@ function loop(){
 
   for(let bottle of bottles){
     bottle.spin();
-    //console.log(bottle.placed);
 
-    for(let bullet of bullets){
-      let d3 = distance(bottle.obj, bullet.obj && bottle.placed);
-      
-      if(d3< 5 && bullet.shot == false){
-        bullet.obj.remove();
+    if(bottle.placed && bottle.down==false){
+      for(let bullet of bullets){
+      if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 3){
         bullet.shot = true;
-
-        console.log("hit");
-
+        bullet.obj.remove();
         bottle.down = true;
-        //bottle.shot();
-
       }
-      else(console.log("no hit"));
-
     }
   }
+  bottle.shot();
+}
+
+
+
+
+
   
 
   //change to timeout(?)

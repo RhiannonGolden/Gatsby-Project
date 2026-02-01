@@ -3,8 +3,11 @@ class Bottle{
     this.x = x;
     this.y = y;
     this.z = z;
+
     this.a = 0;
     this.da = 5;
+    this.a1 = 0;
+
     this.flag = false;
     this.pickUp = false;
     this.collected = false;
@@ -27,29 +30,29 @@ class Bottle{
 
 
     this.obj.addEventListener("click", ()=> {
-      if(this.collected==false && ( distance(this.obj, camera)) < 5){
+      if(this.pickUp && this.collected==false && this.placed==false && distance(this.obj, camera) < 5){
         this.collected = true;
         bottle_count++;
-        this.obj.remove();
+        this.obj.remove();        
       }
-    })
+    });
 
 
   }
   
 
   spin(){
-    if(this.placed==false){
-      //this.a += this.da;
-      this.obj.setAttribute("rotation",{x:90, y:0, z:0});
+    if(this.down==false){
+      this.a += this.da;
+      this.obj.setAttribute("rotation",{x:0, y:this.a, z:0});
     }
   }
 
 
   shot(){
-    if(this.down){
-      this.a -= this.da;
-      this.obj.setAttribute("rotation",{x:this.a, y:0, z:0});
+    if(this.down && this.a1 > -90){
+      this.a1 -= this.da;
+      this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
 
 
     }
