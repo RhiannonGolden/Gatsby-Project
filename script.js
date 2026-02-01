@@ -68,20 +68,8 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   })
 
-/*
-  window.addEventListener("click",function(){
-    
-    if(bottle_count > 0){
-      let x = camera.object3D.position.x;
-      let z = camera.object3D.position.z;
 
-      new Bottle(x, 1.3, z);
-      bottle_count--;
-    }
   
-  })
-    */
-
   let pedestals = document.querySelectorAll(".pedestal");
 
   pedestals.forEach(pedestal => {
