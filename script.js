@@ -81,7 +81,10 @@ window.addEventListener("DOMContentLoaded",function() {
     }
 
     for(let i = 1; i < 5; i++){
-      puzzles.push(new Puzzle(`x${i}`, y1, "i", rotate));
+      //fix for loop to generate puzzle pieces
+      //four different loops (one for each row across)
+      //add i to x
+      puzzles.push(new Puzzle(`x${i}`, y1, i, rotate));
     }
 
     puzzles.push(new Puzzle(x1, y2, "5", rotate));
