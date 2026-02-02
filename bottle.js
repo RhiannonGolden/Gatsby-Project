@@ -42,7 +42,7 @@ class Bottle{
   
 
   spin(){
-    if(this.down==false){
+    if(this.down==false && this.placed){
       this.a += this.da;
       this.obj.setAttribute("rotation",{x:0, y:this.a, z:0});
     }

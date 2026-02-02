@@ -1,0 +1,11 @@
+Model Information:
+* title:	Medkit
+* source:	https://sketchfab.com/3d-models/medkit-5a5af0a596be479f9ec4d0f27aafa6bc
+* author:	Alex Birdman (https://sketchfab.com/gtvorets)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Medkit" (https://sketchfab.com/3d-models/medkit-5a5af0a596be479f9ec4d0f27aafa6bc) by Alex Birdman (https://sketchfab.com/gtvorets) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
