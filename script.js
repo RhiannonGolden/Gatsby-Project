@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [], bullets = [], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [], bottle_count = 0, bottle_text, collected = [], collected_count = 0;
+let scene, camera, zombies = [ ], bullets = [ ], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -9,7 +9,6 @@ window.addEventListener("DOMContentLoaded",function() {
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
   bottle_score = document.getElementById("bottle_score");
-
 
   for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
@@ -57,8 +56,53 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
-  Phealth_count = 75;
 
+
+  for(let i = 0; i < 1; i++){
+    let x1 = -1.5;
+    let x2 = x1+1;
+    let x3 = x2+1;
+    let x4 = x3+1;
+
+    let y1 = 4.5;
+    let y2 = y1-1;
+    let y3 = y2-1;
+    let y4 = y3-1;
+
+    let random = rnd(1,4);
+    if(random == 1){
+      rotate = 90;
+    } else if(random == 2){
+      rotate = 90;
+    } else if(random == 3){
+      rotate = 90;
+    } else if(random == 4){
+      rotate = 90;
+    }
+
+    for(let i = 1; i < 5; i++){
+      puzzles.push(new Puzzle(`x${i}`, y1, "i", rotate));
+    }
+
+    puzzles.push(new Puzzle(x1, y2, "5", rotate));
+    puzzles.push(new Puzzle(x2, y2, "6", rotate));
+    puzzles.push(new Puzzle(x3, y2, "7", rotate));
+    puzzles.push(new Puzzle(x4, y2, "8", rotate));
+
+    puzzles.push(new Puzzle(x1, y3, "9", rotate));
+    puzzles.push(new Puzzle(x2, y3, "10", rotate));
+    puzzles.push(new Puzzle(x3, y3, "11", rotate));
+    puzzles.push(new Puzzle(x4, y3, "12", rotate));
+
+    puzzles.push(new Puzzle(x1, y4, "13", rotate));
+    puzzles.push(new Puzzle(x2, y4, "14", rotate));
+    puzzles.push(new Puzzle(x3, y4, "15", rotate));
+    puzzles.push(new Puzzle(x4, y4, "16", rotate));
+  }
+
+
+
+  Phealth_count = 75;
 
   window.addEventListener("keydown",function(e){
     if(e.key == " " && bullets_count > 0){
@@ -224,6 +268,10 @@ function loop(){
   bottle.shot();
 }
 
+
+for(let puzzle of puzzles){
+
+}
 
 
 
