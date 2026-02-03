@@ -82,9 +82,9 @@ window.addEventListener("DOMContentLoaded",function() {
 
     for(let i = 1; i < 5; i++){
       //fix for loop to generate puzzle pieces
-      //four different loops (one for each row across)
+      //four different loops (one for each row across) or multiple loops in same one
       //add i to x
-      puzzles.push(new Puzzle(`x${i}`, y1, i, rotate));
+      puzzles.push(new Puzzle(-1.5-1+i, 4.5, i, rotate));
     }
 
     puzzles.push(new Puzzle(x1, y2, "5", rotate));
