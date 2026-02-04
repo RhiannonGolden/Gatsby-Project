@@ -17,7 +17,7 @@ class Bottle{
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bottle");
     this.obj.classList.add("clickable");
-    this.obj.setAttribute("scale", "1.5 1.5 1.5");
+    this.obj.setAttribute("scale", "2 2.25 2");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
     this.obj.setAttribute("rotation",{x:0, y:9, z:0});
 
@@ -30,12 +30,13 @@ class Bottle{
 
 
     this.obj.addEventListener("click", ()=> {
-      if(this.pickUp && this.collected==false && this.placed==false && distance(this.obj, camera) < 5){
+      if(this.pickUp && this.collected==false && this.placed==false && distance(this.obj, camera) < 3){
         this.collected = true;
         bottle_count++;
         this.obj.remove();        
       }
     });
+
 
 
   }

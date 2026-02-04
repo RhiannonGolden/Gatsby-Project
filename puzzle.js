@@ -5,9 +5,11 @@ class Puzzle{
     this.src = src;
     this.rotate = rotate;
     this.click = false;
+    this.correct = false;
     
     this.obj = document.createElement("a-box");
     this.obj.setAttribute("src",`pictures/puzzle${src}.jpg`);
+    this.obj.classList.add("clickable");
     this.obj.setAttribute("width", 1);
     this.obj.setAttribute("height", 1);
     this.obj.setAttribute("depth", 0.1);
@@ -19,12 +21,23 @@ class Puzzle{
 
 
     this.obj.addEventListener("click", ()=> {
-      if(this.click == false){
-        this.rotate + 90;
+      if(this.click == false && this.correct == false){
+        this.rotate += 90;
         this.obj.setAttribute("rotation",{x:0, y:0, z:this.rotate});
-        this.click = true;
       }
     });
+
+  }
+
+  correctCheck(){
+    if(this.correct==false){
+      this.obj.setAttribute("color", "red");
+    }
+    if(this.rotate==0 || this.rotate==360){
+      this.correct = true;
+      this.obj.setAttribute("color", "white");
+    }
+
 
   }
   

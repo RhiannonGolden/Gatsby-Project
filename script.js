@@ -1,10 +1,11 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [ ], bullets = [ ], bullets_count = 5, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate;
+let scene, camera, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, blocks = [ ];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
+  cursor = document.querySelector("a-cursor");
   
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
@@ -37,70 +38,56 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 0; i++){
+   for(let i = 0; i < 10; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
-    ammos.push(new Ammo(x,z));
+    let a = rnd(0,360);
+    ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 10; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
-    hearts.push(new Hearts(x,z));
+    let a = rnd(0,360);
+    hearts.push(new Hearts(x,z,a));
+    //fix 3d model for hearts
   }
 
   for(let i = 0; i < 5; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
-    bottles.push(new Bottle(x,1,z));
+    let a = rnd(0,360);
+    bottles.push(new Bottle(x,0,z));
   }
 
 
 
-
-  for(let i = 0; i < 1; i++){
+  for(let i = 1; i < 17; i++){
     let x1 = -1.5;
-    let x2 = x1+1;
-    let x3 = x2+1;
-    let x4 = x3+1;
-
     let y1 = 4.5;
-    let y2 = y1-1;
-    let y3 = y2-1;
-    let y4 = y3-1;
 
-    let random = rnd(1,4);
+    let random = Math.round( rnd(1,3) );
     if(random == 1){
       rotate = 90;
     } else if(random == 2){
-      rotate = 90;
+      rotate = 180;
     } else if(random == 3){
-      rotate = 90;
-    } else if(random == 4){
-      rotate = 90;
+      rotate = 270;
     }
 
-    for(let i = 1; i < 5; i++){
-      //fix for loop to generate puzzle pieces
-      //four different loops (one for each row across) or multiple loops in same one
-      //add i to x
-      puzzles.push(new Puzzle(-1.5-1+i, 4.5, i, rotate));
+
+    if(i < 5){
+      puzzles.push(new Puzzle(x1-1+i, y1, i, rotate));
+      
+    } else if(i >= 5 && i < 9){
+      puzzles.push(new Puzzle(x1-5+i, y1-1, i, rotate));
+    } else if(i >= 9 && i < 13){
+      puzzles.push(new Puzzle(x1-9+i, y1-2, i, rotate));
+    } else if(i >= 13){
+      puzzles.push(new Puzzle(x1-13+i, y1-3, i, rotate));
     }
+      
 
-    puzzles.push(new Puzzle(x1, y2, "5", rotate));
-    puzzles.push(new Puzzle(x2, y2, "6", rotate));
-    puzzles.push(new Puzzle(x3, y2, "7", rotate));
-    puzzles.push(new Puzzle(x4, y2, "8", rotate));
-
-    puzzles.push(new Puzzle(x1, y3, "9", rotate));
-    puzzles.push(new Puzzle(x2, y3, "10", rotate));
-    puzzles.push(new Puzzle(x3, y3, "11", rotate));
-    puzzles.push(new Puzzle(x4, y3, "12", rotate));
-
-    puzzles.push(new Puzzle(x1, y4, "13", rotate));
-    puzzles.push(new Puzzle(x2, y4, "14", rotate));
-    puzzles.push(new Puzzle(x3, y4, "15", rotate));
-    puzzles.push(new Puzzle(x4, y4, "16", rotate));
   }
 
 
@@ -114,6 +101,28 @@ window.addEventListener("DOMContentLoaded",function() {
       bullets_count--;
     }
   })
+
+
+
+
+  window.addEventListener("keydown",function(e){
+    if(e.key == "q"){
+      //change camera to cursor
+      let pos = camera.object3D.position;
+      let block = new Block(pos.x,pos.y,pos.z);
+      blocks.push(block);     
+    }
+
+    for(let block of blocks){
+      if(e.key == "r" && (distance(block.obj, camera) < 6) ){
+        block.obj.remove();
+        //change camera to cursor
+        
+    }
+    }
+    
+  })
+
 
 
   
@@ -169,7 +178,7 @@ function loop(){
     for(let bullet of bullets){
 
       let d2 = distance(zombie.obj, bullet.obj);
-      if(d2 < 3 && bullet.shot == false){
+      if(d2 < 1.85 && bullet.shot == false){
         zombie.Zhealth_count -= 20;
         bullet.shot = true;
         zombie.down = true;
@@ -236,18 +245,18 @@ function loop(){
 
 
   for(let ammo of ammos){
-    if( (distance(ammo.obj,camera) < 3) && ammo.pickUp==true){
+    if( (distance(ammo.obj,camera) < 2) && ammo.pickUp==true){
       bullets_count+=2;
       ammo.pickUp = false;
       ammo.obj.remove();
     }
-    //ammo.spin();
+    ammo.spin();
   }
 
 
 
   for(let heart of hearts){
-    if( (distance(heart.obj,camera) < 3) && heart.pickUp==true && Phealth_count < 100){
+    if( (distance(heart.obj,camera) < 2) && heart.pickUp==true && Phealth_count < 100){
       Phealth_count += 5;
       heart.pickUp = false;
       heart.obj.remove();
@@ -273,7 +282,7 @@ function loop(){
 
 
 for(let puzzle of puzzles){
-
+  puzzle.correctCheck();
 }
 
 
@@ -297,3 +306,7 @@ function distance(obj1,obj2){
   let d = Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2) + Math.pow(z1-z2,2));
   return d;
 }
+
+
+
+//game could start in city and need to find the first portel - puts more of a foucs on zombie fighting

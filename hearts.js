@@ -1,9 +1,9 @@
 class Hearts{
-  constructor(x,z){
+  constructor(x,z,a){
     this.x = x;
     this.z = z;
-    this.a = 0;
-    this.da = 5;
+    this.a = a;
+    this.da = 2.5;
     this.flag = false;
     this.pickUp = false;
     
