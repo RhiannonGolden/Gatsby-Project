@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, blocks = [ ];
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -133,16 +133,16 @@ window.addEventListener("keydown",function(e){
     let rayPoint = rayHit[0].point;
 
       //let pos = camera.object3D.position;
-      //let block = new Block(pos.x,pos.y,pos.z,true);
-      let block = new Block(rayPoint.x,rayPoint.y,rayPoint.z);
-      blocks.push(block);     
+      //let crate = new Crate(pos.x,pos.y,pos.z,true);
+      let crate = new Crate(rayPoint.x,rayPoint.y,rayPoint.z);
+      crates.push(crate);     
       
     }
 
     /*
-    for(let block of blocks){
-      if(e.key == "r" && block.destroy){
-        block.obj.remove();
+    for(let crate of crates){
+      if(e.key == "r" && crate.destroy){
+        crate.obj.remove();
 
         //add 3d model for box
         
