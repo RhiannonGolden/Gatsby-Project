@@ -1,0 +1,11 @@
+Model Information:
+* title:	Wooden Crate
+* source:	https://sketchfab.com/3d-models/wooden-crate-e401f3dc750b450da567c88dccc5b77e
+* author:	3D_Hero (https://sketchfab.com/3D_Hero)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Wooden Crate" (https://sketchfab.com/3d-models/wooden-crate-e401f3dc750b450da567c88dccc5b77e) by 3D_Hero (https://sketchfab.com/3D_Hero) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

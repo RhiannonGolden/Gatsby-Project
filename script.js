@@ -1,12 +1,12 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
-let scene, camera, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
+let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, blocks = [ ];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
-  cursor = document.querySelector("a-cursor");
-  
+  cursor = document.querySelector("cursor");
+
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
   bottle_score = document.getElementById("bottle_score");
@@ -105,7 +105,48 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-  window.addEventListener("keydown",function(e){
+  window.addEventListener("keydown", function (e) {
+  if (e.key === "q") {
+
+    let raycaster = cursor.components.raycaster;
+    let intersections = raycaster.intersections;
+
+    if (intersections.length > 0) {
+      let point = intersections[0].point;
+
+      let x = point.x;
+      let y = point.y;
+      let z = point.z;
+
+      let block = new Block(x, y, z, true);
+      blocks.push(block);
+    }
+  }
+});
+
+
+
+
+  window.addEventListener("keydown", function (e) {
+  if (e.key === "r") {
+
+    let raycaster = cursor.components.raycaster;
+    let intersections = raycaster.intersections;
+
+    if (intersections.length > 0) {
+      let hit = intersections[0].object.el;
+
+      if (hit && hit.classList.contains("clickable")) {
+        hit.remove();
+      }
+    }
+  }
+});
+
+
+
+/*
+window.addEventListener("keydown",function(e){
     if(e.key == "q"){
       //change camera to cursor
       let pos = camera.object3D.position;
@@ -117,11 +158,14 @@ window.addEventListener("DOMContentLoaded",function() {
       if(e.key == "r" && (distance(block.obj, camera) < 6) ){
         block.obj.remove();
         //change camera to cursor
+        //add 3d model for box
         
     }
     }
     
   })
+*/
+
 
 
 
