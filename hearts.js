@@ -9,7 +9,7 @@ class Hearts{
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#hearts");
-    this.obj.setAttribute("scale", "0.25 0.25 0.25");
+    this.obj.setAttribute("scale", "1 1 1");
     this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});    
 
     scene.append(this.obj);

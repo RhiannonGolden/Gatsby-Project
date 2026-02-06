@@ -18,9 +18,9 @@
             <a-asset-item id="zombie" src="zombie/scene.gltf" ></a-asset-item>
             <a-asset-item id="bullet" src="bottle_of_champagne/scene.gltf" ></a-asset-item>
             <a-asset-item id="ammo1" src="ammo_box/scene.gltf" ></a-asset-item>
-            <a-asset-item id="ammo2" src="bullet_9_mm/scene.gltf" ></a-asset-item>
-            <a-asset-item id="hearts" src="zombie/scene.gltf" ></a-asset-item>
+            <a-asset-item id="hearts" src="medkit/scene.gltf" ></a-asset-item>
             <a-asset-item id="bottle" src="bottle_of_champagne/scene.gltf" ></a-asset-item>
+            <a-asset-item id="crate" src="wooden_crate/scene.gltf"><a/
 
             <img id="puzzle1" src="pictures/puzzle1.jpg">
             <img id="puzzle2" src="pictures/puzzle2.jpg">
@@ -42,6 +42,8 @@
 
         </a-assets>
 
+
+        
 
         <a-plane position="0 1 -10" width="7" color="brown" rotation="-90 0 0"></a-plane>
         <a-cylinder id="pedestal1" class="pedestal clickable" position="-3 1.21 -10" color="red" radius="0.25" height="0.25"></a-cylinder>
@@ -66,16 +68,14 @@
           <a-box color="#000080" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0"></a-box>
           <a-box color="#000080" width="0.2" height="4.0" depth="0.4" position="2.1 0 0"></a-box>
 
-          
         
         </a-entity>
 
        
-        <a-plane color="green" rotation="-90 0 0" width="50" height="50"></a-plane>
-      
+        <a-plane class="clickable" color="green" rotation="-90 0 0" width="50" height="50"></a-plane>
 
       <a-camera position="0 1.7 0">
-        <a-cursor raycaster="objects: .clickable" material="color: black">
+        <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
           <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
           <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
           <a-text id="bottle_score" position="4.8 0.55 -3" color="black"></a-text>
@@ -88,8 +88,7 @@
     <a-gltf-model src="#zombie"></a-gltf-model>
     <a-gltf-model src="#bullet"></a-gltf-model>
     <a-gltf-model src="#ammo1"></a-gltf-model>
-    <a-gltf-model src="#ammo2"></a-gltf-model>
-    <a-gltf-model src="#hearts"></a-gltf-model>
+    <a-gltf-model class="clickable" src="#hearts"></a-gltf-model>
 
   </body>
 </html>

@@ -5,11 +5,11 @@ let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_cou
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
   camera = document.querySelector("a-camera");
-  cursor = document.querySelector("cursor");
 
   Phealth_text = document.getElementById("Phealth");
   ammo_count = document.getElementById("ammo_count");
   bottle_score = document.getElementById("bottle_score");
+  cursor = document.getElementById("cursorID");
 
   for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
@@ -50,7 +50,6 @@ window.addEventListener("DOMContentLoaded",function() {
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     hearts.push(new Hearts(x,z,a));
-    //fix 3d model for hearts
   }
 
   for(let i = 0; i < 5; i++){
@@ -104,29 +103,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-
-  window.addEventListener("keydown", function (e) {
-  if (e.key === "q") {
-
-    let raycaster = cursor.components.raycaster;
-    let intersections = raycaster.intersections;
-
-    if (intersections.length > 0) {
-      let point = intersections[0].point;
-
-      let x = point.x;
-      let y = point.y;
-      let z = point.z;
-
-      let block = new Block(x, y, z, true);
-      blocks.push(block);
-    }
-  }
-});
-
-
-
-
+/*
   window.addEventListener("keydown", function (e) {
   if (e.key === "r") {
 
@@ -142,29 +119,39 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   }
 });
+*/
 
 
 
-/*
 window.addEventListener("keydown",function(e){
-    if(e.key == "q"){
-      //change camera to cursor
-      let pos = camera.object3D.position;
-      let block = new Block(pos.x,pos.y,pos.z);
+  if(e.key == "q"){
+
+    let raycaster = cursor.components.raycaster;
+    let rayHit = raycaster.intersections;
+
+      //if (rayHit.length > 0) {
+    let rayPoint = rayHit[0].point;
+
+      //let pos = camera.object3D.position;
+      //let block = new Block(pos.x,pos.y,pos.z,true);
+      let block = new Block(rayPoint.x,rayPoint.y,rayPoint.z);
       blocks.push(block);     
+      
     }
 
+    /*
     for(let block of blocks){
-      if(e.key == "r" && (distance(block.obj, camera) < 6) ){
+      if(e.key == "r" && block.destroy){
         block.obj.remove();
-        //change camera to cursor
+
         //add 3d model for box
         
+      }
     }
-    }
+    */
     
   })
-*/
+
 
 
 
