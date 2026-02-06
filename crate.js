@@ -12,7 +12,8 @@ class Crate{
 
     this.obj.classList.add("clickable");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
-    
+    //this.obj.setAttribute("roation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});}
+    //fix crate rotation so it is placed the way the user/camera is facing
     scene.append(this.obj);
 
 
