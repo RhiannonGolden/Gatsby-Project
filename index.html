@@ -10,10 +10,11 @@
     <script src="bottle.js"></script>
     <script src="puzzle.js"></script>
     <script src="crate.js"></script>
+    <script src="kinema.js"></script>
 
   </head>
   <body>
-    <a-scene>
+    <a-scene physics="debug: false">
         <a-assets>
             <a-asset-item id="zombie" src="zombie/scene.gltf"></a-asset-item>
             <a-asset-item id="bullet" src="bottle_of_champagne/scene.gltf"></a-asset-item>
@@ -74,7 +75,7 @@
        
         <a-plane class="clickable" color="green" rotation="-90 0 0" width="50" height="50"></a-plane>
 
-      <a-camera position="0 1.7 0">
+      <a-camera  kinema-body="radius: 0.8" position="0 1.7 0">
         <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
           <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
           <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>

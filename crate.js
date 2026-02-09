@@ -18,6 +18,7 @@ class Crate{
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
     this.obj.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
 
+    this.obj.setAttribute("dynamic-body","");
     
     scene.append(this.obj);
 

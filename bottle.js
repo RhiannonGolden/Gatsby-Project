@@ -21,6 +21,8 @@ class Bottle{
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
     this.obj.setAttribute("rotation",{x:0, y:9, z:0});
 
+  
+
     scene.append(this.obj);
 
 

@@ -129,8 +129,8 @@ window.addEventListener("keydown",function(e){
     let raycaster = cursor.components.raycaster;
     let rayHit = raycaster.intersections;
 
-      //if (rayHit.length > 0) {
-    let rayPoint = rayHit[0].point;
+    if (rayHit.length > 0) {
+      let rayPoint = rayHit[0].point;
 
       //let pos = camera.object3D.position;
       //let crate = new Crate(pos.x,pos.y,pos.z,true);
@@ -139,8 +139,8 @@ window.addEventListener("keydown",function(e){
       let crate = new Crate(rayPoint.x,rayPoint.y,rayPoint.z,0,0,zRotate);
       crates.push(crate);     
     }
-    
-  })
+  }
+});
 
 
 
