@@ -134,21 +134,11 @@ window.addEventListener("keydown",function(e){
 
       //let pos = camera.object3D.position;
       //let crate = new Crate(pos.x,pos.y,pos.z,true);
-      let crate = new Crate(rayPoint.x,rayPoint.y,rayPoint.z);
+
+      let zRotate = (camera.object3D.rotation.y)*(180/Math.PI);
+      let crate = new Crate(rayPoint.x,rayPoint.y,rayPoint.z,0,0,zRotate);
       crates.push(crate);     
-      
     }
-
-    /*
-    for(let crate of crates){
-      if(e.key == "r" && crate.destroy){
-        crate.obj.remove();
-
-        //add 3d model for box
-        
-      }
-    }
-    */
     
   })
 
@@ -189,7 +179,9 @@ window.addEventListener("keydown",function(e){
   loop();
 })
 
+
 function loop(){
+
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
   //fix text from going into the floor and disappearing

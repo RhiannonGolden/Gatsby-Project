@@ -1,10 +1,14 @@
 class Crate{
-  constructor(x,y,z,placed){
+  constructor(x,y,z,placed,xRotate,yRotate,zRotate){
     //this.obj.setAttribute("static-body","");
     this.placed = placed;
     this.x = x;
     this.y = y;
     this.z = z;
+    this.xRotate = xRotate;
+    this.yRotate = yRotate;
+    this.zRotate = zRotate;
+
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#crate");
@@ -12,8 +16,9 @@ class Crate{
 
     this.obj.classList.add("clickable");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
-    //this.obj.setAttribute("roation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});}
-    //fix crate rotation so it is placed the way the user/camera is facing
+    this.obj.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
+
+    
     scene.append(this.obj);
 
 
@@ -21,8 +26,6 @@ class Crate{
 
     this.obj.addEventListener("click",()=>{
       this.obj.remove();
-      
-      
     })
 
 
