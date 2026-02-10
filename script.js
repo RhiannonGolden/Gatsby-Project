@@ -102,10 +102,15 @@ window.addEventListener("DOMContentLoaded",function() {
   })
 
 //add camera kinema
-//fix shooting
+//fix shooting when kinema added
+//add correct bullet to shooting
 //fix slide backward physics
 //fix falling through floor physics
 //add physics to zombie
+//add lamp 3d model
+//add green/normal light for lamps
+//fix red color on gatsby picture
+
 
 /*
   window.addEventListener("keydown", function (e) {
