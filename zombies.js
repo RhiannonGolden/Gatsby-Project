@@ -27,7 +27,7 @@ class Zombie{
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#zombie");
     this.obj.setAttribute("scale", "1.25 1 1.25");
-    this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});    
+    this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
 
     scene.append(this.obj);
 

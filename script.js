@@ -11,7 +11,7 @@ window.addEventListener("DOMContentLoaded",function() {
   bottle_score = document.getElementById("bottle_score");
   cursor = document.getElementById("cursorID");
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -101,7 +101,10 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   })
 
-
+//fix shooting
+//fix slide backward physics
+//fix falling through floor physics
+//add physics to zombie
 
 /*
   window.addEventListener("keydown", function (e) {
@@ -290,6 +293,10 @@ function loop(){
 
   for(let bottle of bottles){
     bottle.spin();
+
+    if(bottle.placed==false){
+      bottle.obj.setAttribute("dynamic-body","");
+    }
 
     if(bottle.placed && bottle.down==false){
       for(let bullet of bullets){

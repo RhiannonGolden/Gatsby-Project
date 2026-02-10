@@ -21,7 +21,6 @@ class Bottle{
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
     this.obj.setAttribute("rotation",{x:0, y:9, z:0});
 
-  
 
     scene.append(this.obj);
 
@@ -35,7 +34,7 @@ class Bottle{
       if(this.pickUp && this.collected==false && this.placed==false && distance(this.obj, camera) < 3){
         this.collected = true;
         bottle_count++;
-        this.obj.remove();        
+        this.obj.remove();   
       }
     });
 
@@ -54,9 +53,11 @@ class Bottle{
 
   shot(){
     if(this.down && this.a1 > -90){
+      console.log("hit");
       this.a1 -= this.da;
       this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
-
+      
+      //fix bottle fall when shot
 
     }
   }
