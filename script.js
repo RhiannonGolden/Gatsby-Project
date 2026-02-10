@@ -101,6 +101,7 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   })
 
+//add camera kinema
 //fix shooting
 //fix slide backward physics
 //fix falling through floor physics
