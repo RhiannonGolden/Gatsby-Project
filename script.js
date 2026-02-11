@@ -223,16 +223,16 @@ function loop(){
     let d1 = distance(zombie.obj, camera);
 
     if(zombie.Zhealth_count > 0){
-      if( (d1 < zombie.followDistance) && (d1 > 2) && zombie.speed == 0.01){
+      if( (d1 < zombie.followDistance) && (d1 > 1.5) && zombie.speed == 0.01){
         zombie.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
         zombie.chase = true;
 
       } 
-      else if( (d1 < zombie.followDistance) && (d1 > 2) && zombie.speed == 0.03){
+      else if( (d1 < zombie.followDistance) && (d1 > 1.5) && zombie.speed == 0.03){
         zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
         zombie.chase = true;
       }
-      else if(d1 < 2 && zombie.speed == 0.01 && zombie.PhealthDown == true){
+      else if(d1 <= 1.5 && zombie.speed == 0.01 && zombie.PhealthDown == true){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
         Phealth_count -= 0.025;       
@@ -322,7 +322,7 @@ for(let puzzle of puzzles){
 }
 
 
-
+//put all 3d models in an invsible box (a-frame box but set to invisble) -> make box static or dynamic body, not 3d model
 
   
 

@@ -40,11 +40,9 @@
             <img id="puzzle14" src="pictures/puzzle14.jpg">
             <img id="puzzle15" src="pictures/puzzle15.jpg">
             <img id="puzzle16" src="pictures/puzzle16.jpg">
-
-
         </a-assets>
 
-
+        <a-gltf-model src="library/scene.gltf" position="-10 -10.2 0" scale="5 5 5"></a-gltf-model>
         
 
         <a-plane static-body position="0 1 -10" width="7" color="brown" rotation="-90 0 0"></a-plane>
@@ -67,11 +65,11 @@
         </a-entity>
 
 
-        <a-plane static-body class="clickable" color="green" rotation="-90 0 0" width="50" height="50"></a-plane>
+        <a-plane static-body class="clickable" color="green" rotation="-90 0 0" width="100" height="100"></a-plane>
 
         
-        <a-entity position="0 0 0">
-          <a-camera position="0 1.7 0">
+        <a-entity position="0 1.7 0">
+          <a-camera kinema-body="radius: 0.8" position="0 10.7 0">
             <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
               <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
               <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
