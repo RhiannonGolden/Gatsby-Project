@@ -52,7 +52,7 @@ window.addEventListener("DOMContentLoaded",function() {
     hearts.push(new Hearts(x,z,a));
   }
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 5; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
@@ -145,7 +145,7 @@ window.addEventListener("keydown",function(e){
       //let crate = new Crate(pos.x,pos.y,pos.z,true);
 
       let zRotate = (camera.object3D.rotation.y)*(180/Math.PI);
-      let crate = new Crate(rayPoint.x,rayPoint.y,rayPoint.z,0,0,zRotate);
+      let crate = new Crate(rayPoint.x,rayPoint.y+1,rayPoint.z,0,0,zRotate);
       crates.push(crate);     
     }
   }
@@ -168,7 +168,7 @@ window.addEventListener("keydown",function(e){
 
           let pos = pedestal.object3D.position;
 
-          let bottle = new Bottle(pos.x, 1.25, pos.z);
+          let bottle = new Bottle(pos.x, 1.52, pos.z-10.6);
           bottle.collected = true;
           bottle.placed = true;
 

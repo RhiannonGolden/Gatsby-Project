@@ -9,23 +9,30 @@ class Crate{
     this.zRotate = zRotate;
 
 
+    this.box = document.createElement("a-box");
+    this.box.setAttribute("height", "0.7");
+    this.box.setAttribute("width", "1.4");
+    this.box.setAttribute("depth", "0.8");
+    this.box.setAttribute("color", "blue");
+    this.box.setAttribute("opacity", "0.5");
+
+    this.box.setAttribute("position",{x:this.x,y:this.y,z:this.z});
+    this.box.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
+
+    this.box.setAttribute("static-body","");
+    this.box.classList.add("clickable");
+
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#crate");
-    this.obj.setAttribute("scale", "1.5 1.5 1.5");
+    this.obj.setAttribute("scale", "1.45 1.45 1.45");
+    this.obj.object3D.position.y = this.box.object3D.position.y - 0.325;
 
-    this.obj.classList.add("clickable");
-    this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
-    this.obj.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
-
-    this.obj.setAttribute("static-body","");
-    
-    scene.append(this.obj);
+    this.box.append(this.obj);    
+    scene.append(this.box);
 
 
-
-
-    this.obj.addEventListener("click",()=>{
-      this.obj.remove();
+    this.box.addEventListener("click",()=>{
+      this.box.remove();
     })
 
 
