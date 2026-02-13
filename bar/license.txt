@@ -1,0 +1,8 @@
+Model Information:
+* title:	Bar
+* source:	https://sketchfab.com/3d-models/bar-347f632ffd0c4537825d245b93d6f352
+* author:	Katydid (https://sketchfab.com/Katydid.)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works

@@ -38,21 +38,21 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 10; i++){
+   for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     hearts.push(new Hearts(x,z,a));
   }
 
-  for(let i = 0; i < 5; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
@@ -320,10 +320,6 @@ function loop(){
 for(let puzzle of puzzles){
   puzzle.correctCheck();
 }
-
-
-//put all 3d models in an invsible box (a-frame box but set to invisble) -> make box static or dynamic body, not 3d model
-
   
 
   //change to timeout(?)
