@@ -14,6 +14,7 @@ class Bottle{
     this.placed = false;
     this.down = false;
     
+
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bottle");
     this.obj.classList.add("clickable");
@@ -56,9 +57,6 @@ class Bottle{
       console.log("hit");
       this.a1 -= this.da;
       this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
-      
-      //fix bottle fall when shot
-
     }
   }
 

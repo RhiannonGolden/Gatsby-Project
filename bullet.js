@@ -8,12 +8,11 @@ class Bullet{
 
     this.obj.setAttribute("scale","0.5 0.5 0.5");
     let pos = camera.object3D.position;
-    this.obj.setAttribute("position",{x:pos.x,y:pos.y,z:pos.z});
+    this.obj.setAttribute("position",{x:pos.x,y:pos.y+1.7,z:pos.z});
     this.obj.setAttribute("rotation", {x:0, y:5, z:0});
     
     console.log(this.obj.object3D.rotation.y);
     //fix rotation
-    //add target challenge
 
 
     scene.append(this.obj);

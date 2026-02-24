@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded",function() {
   ammo_count = document.getElementById("ammo_count");
   bottle_score = document.getElementById("bottle_score");
   cursor = document.getElementById("cursorID");
+  user = document.getElementById("user");
 
   for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
@@ -52,7 +53,7 @@ window.addEventListener("DOMContentLoaded",function() {
     hearts.push(new Hearts(x,z,a));
   }
 
-  for(let i = 0; i < 5; i++){
+  for(let i = 0; i < 4; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
@@ -94,41 +95,25 @@ window.addEventListener("DOMContentLoaded",function() {
   Phealth_count = 75;
 
   window.addEventListener("keydown",function(e){
-    if(e.key == " " && bullets_count > 0){
+    if(e.key == "r" && bullets_count > 0){
       let bullet = new Bullet();
       bullets.push(bullet);
       bullets_count--;
     }
   })
 
-//add camera kinema
-//fix shooting when kinema added
+//add jumping
 //add correct bullet to shooting
+//fix red color on gatsby picture
+
 //fix slide backward physics
 //fix falling through floor physics
 //add physics to zombie
 //add lamp 3d model
 //add green/normal light for lamps
-//fix red color on gatsby picture
 
 
-/*
-  window.addEventListener("keydown", function (e) {
-  if (e.key === "r") {
 
-    let raycaster = cursor.components.raycaster;
-    let intersections = raycaster.intersections;
-
-    if (intersections.length > 0) {
-      let hit = intersections[0].object.el;
-
-      if (hit && hit.classList.contains("clickable")) {
-        hit.remove();
-      }
-    }
-  }
-});
-*/
 
 
 
@@ -148,6 +133,24 @@ window.addEventListener("keydown",function(e){
       let crate = new Crate(rayPoint.x,rayPoint.y+1,rayPoint.z,0,0,zRotate);
       crates.push(crate);     
     }
+  }
+});
+
+
+window.addEventListener("keydown",function(e){
+  if(e.key == " "){
+    let up = user.object3D.position.y + 0.1;
+    let down = user.object3D.position.y - 0.1;
+
+    let userX = user.object3D.position;
+    let userZ = user.object3D.position;
+
+    user.setAttribute("position",{x:userX,y:up,z:userZ});
+   
+    setTimeout(() => {
+      user.setAttribute("position",{x:userX,y:down,z:userZ});;
+    }, 2000);
+   
   }
 });
 
@@ -190,6 +193,7 @@ window.addEventListener("keydown",function(e){
 
 
 function loop(){
+  console.log(camera.object3D.position.y);
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
@@ -306,7 +310,7 @@ function loop(){
 
     if(bottle.placed && bottle.down==false){
       for(let bullet of bullets){
-      if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 3){
+      if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 0.75){
         bullet.shot = true;
         bullet.obj.remove();
         bottle.down = true;
