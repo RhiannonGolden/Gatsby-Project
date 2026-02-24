@@ -31,7 +31,7 @@ class Puzzle{
 
   correctCheck(){
     if(this.correct==false){
-      this.obj.setAttribute("color", "red");
+      this.obj.setAttribute("color", "rgb(255, 128, 128)");
     }
     if(this.rotate==0 || this.rotate==360){
       this.correct = true;

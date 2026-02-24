@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ];
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -11,6 +11,8 @@ window.addEventListener("DOMContentLoaded",function() {
   bottle_score = document.getElementById("bottle_score");
   cursor = document.getElementById("cursorID");
   user = document.getElementById("user");
+
+  jump = new Jump(user);
 
   for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
@@ -104,7 +106,6 @@ window.addEventListener("DOMContentLoaded",function() {
 
 //add jumping
 //add correct bullet to shooting
-//fix red color on gatsby picture
 
 //fix slide backward physics
 //fix falling through floor physics
@@ -139,23 +140,9 @@ window.addEventListener("keydown",function(e){
 
 window.addEventListener("keydown",function(e){
   if(e.key == " "){
-    let up = user.object3D.position.y + 0.1;
-    let down = user.object3D.position.y - 0.1;
-
-    let userX = user.object3D.position;
-    let userZ = user.object3D.position;
-
-    user.setAttribute("position",{x:userX,y:up,z:userZ});
-   
-    setTimeout(() => {
-      user.setAttribute("position",{x:userX,y:down,z:userZ});;
-    }, 2000);
-   
+    jump.start();   
   }
 });
-
-
-
 
 
   
@@ -194,6 +181,8 @@ window.addEventListener("keydown",function(e){
 
 function loop(){
   console.log(camera.object3D.position.y);
+
+  jump.update();
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
