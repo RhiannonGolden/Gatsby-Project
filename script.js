@@ -12,7 +12,6 @@ window.addEventListener("DOMContentLoaded",function() {
   cursor = document.getElementById("cursorID");
   user = document.getElementById("user");
 
-  jump = new Jump(user);
 
   for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
@@ -104,10 +103,9 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   })
 
-//add jumping
-//add correct bullet to shooting
-
+//understand jumping
 //fix slide backward physics
+
 //fix falling through floor physics
 //add physics to zombie
 //add lamp 3d model
@@ -138,6 +136,7 @@ window.addEventListener("keydown",function(e){
 });
 
 
+jump = new Jump(user);
 window.addEventListener("keydown",function(e){
   if(e.key == " "){
     jump.start();   
@@ -180,7 +179,6 @@ window.addEventListener("keydown",function(e){
 
 
 function loop(){
-  console.log(camera.object3D.position.y);
 
   jump.update();
 

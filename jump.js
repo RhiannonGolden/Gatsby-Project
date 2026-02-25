@@ -1,41 +1,41 @@
 class Jump {
-  constructor(player){
-    this.player = player;
+  constructor(user){
+    this.user = user;
 
     this.jumping = false;
-    this.velocity = 0;
+    this.upDistance = 0;
 
-    this.jumpForce = 0.18;
-    this.gravity = 0.01;
+    this.downDistance = 0.01;
 
-    this.groundY = player.object3D.position.y;
+    this.originalY = user.object3D.position.y;
   }
 
+
+
+  
+
   start(){
-    if(!this.jumping){
+    if(this.jumping == false){
       this.jumping = true;
-      this.velocity = this.jumpForce;
+      this.upDistance = 0.18;
     }
   }
 
   update(){
-    if(!this.jumping) return;
+    if(this.jumping == false) return;
 
-    let pos = this.player.object3D.position;
+    let pos = this.user.object3D.position;
 
-    // apply movement
-    pos.y += this.velocity;
+    pos.y += this.upDistance;
 
-    // gravity
-    this.velocity -= this.gravity;
+    this.upDistance -= this.downDistance;
 
-    // landed
-    if(pos.y <= this.groundY){
-      pos.y = this.groundY;
+    if(pos.y <= this.originalY){
+      pos.y = this.originalY;
       this.jumping = false;
-      this.velocity = 0;
+      this.upDistance = 0;
     }
 
-    this.player.object3D.position.y = pos.y;
+    this.user.object3D.position.y = pos.y;
   }
 }

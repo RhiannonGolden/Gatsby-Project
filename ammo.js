@@ -8,7 +8,7 @@ class Ammo{
     this.pickUp = false;
     
     this.obj = document.createElement("a-gltf-model");
-    this.obj.setAttribute("src","#ammo1");
+    this.obj.setAttribute("src","#ammo");
     this.obj.setAttribute("scale", "1.5 3 1.5");
     this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});    
 

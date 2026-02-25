@@ -6,10 +6,10 @@ class Bullet{
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bullet");
 
-    this.obj.setAttribute("scale","0.5 0.5 0.5");
+    this.obj.setAttribute("scale","2.5 2.5 2.5");
     let pos = camera.object3D.position;
     this.obj.setAttribute("position",{x:pos.x,y:pos.y+1.7,z:pos.z});
-    this.obj.setAttribute("rotation", {x:0, y:5, z:0});
+    this.obj.setAttribute("rotation", {x:0, y:0, z:45});
     
     console.log(this.obj.object3D.rotation.y);
     //fix rotation
@@ -37,7 +37,7 @@ class Bullet{
 
   spin(){
     this.a += 15;
-    this.obj.setAttribute("rotation",{x:90, y:0, z:0});
+    this.obj.setAttribute("rotation",{x:0, y:0, z:90});
     }
 
 
