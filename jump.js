@@ -7,12 +7,12 @@ class Jump {
 
     this.downDistance = 0.01;
 
-    this.originalY = user.object3D.position.y;
+    this.originalY = user.object3D.position.y+1.7;
+
   }
 
 
 
-  
 
   start(){
     if(this.jumping == false){
@@ -22,6 +22,7 @@ class Jump {
   }
 
   update(){
+    console.log(user.object3D.position.y);
     if(this.jumping == false) return;
 
     let pos = this.user.object3D.position;
