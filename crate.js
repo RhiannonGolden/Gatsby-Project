@@ -23,7 +23,7 @@ class Crate{
     this.box.classList.add("clickable");
 
     this.obj = document.createElement("a-gltf-model");
-    this.obj.setAttribute("src","#bullet");
+    this.obj.setAttribute("src","#crate");
     this.obj.setAttribute("scale", "1.75 1.9 1.75");
     this.obj.object3D.position.y = this.box.object3D.position.y - 0.325;
 
