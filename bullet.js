@@ -9,7 +9,7 @@ class Bullet{
     this.obj.setAttribute("scale","2.5 2.5 2.5");
     let pos = camera.object3D.position;
     this.obj.setAttribute("position",{x:pos.x,y:pos.y+1.7,z:pos.z});
-    this.obj.setAttribute("rotation", {x:0, y:0, z:45});
+    //this.obj.setAttribute("rotation", {x:0, y:0, z:45});
     
     console.log(this.obj.object3D.rotation.y);
     //fix rotation
@@ -37,7 +37,7 @@ class Bullet{
 
   spin(){
     this.a += 15;
-    this.obj.setAttribute("rotation",{x:0, y:0, z:90});
+    this.obj.setAttribute("rotation",{x:0, y:0, z:0});
     }
 
 
