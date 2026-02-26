@@ -104,10 +104,8 @@ window.addEventListener("DOMContentLoaded",function() {
   })
 
 //fix jump on objects
-//fix slide backward physics
 
 //fix falling through floor physics
-//add physics to zombie
 //add lamp 3d model
 //add green/normal light for lamps
 

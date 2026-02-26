@@ -176,7 +176,16 @@ AFRAME.registerComponent('kinema-body', {
         velocity.add(this.system.driver.world.gravity.scale(dt * 4.0 / 100));
       }
 
+      // --- apply friction damping ---
+      velocity.x *= 0.85;
+      velocity.z *= 0.85;
+
+      // stop micro-sliding
+      if (Math.abs(velocity.x) < 0.001) velocity.x = 0;
+      if (Math.abs(velocity.z) < 0.001) velocity.z = 0;
+
       body.velocity.copy(velocity);
+
       this.el.setAttribute('velocity', body.velocity);
       this.el.setAttribute('position', body.position);
     };

@@ -8,31 +8,38 @@ class Crate{
     this.yRotate = yRotate;
     this.zRotate = zRotate;
 
-
+/*
     this.box = document.createElement("a-box");
-    this.box.setAttribute("height", "1.25");
-    this.box.setAttribute("width", "1.6");
+    this.box.setAttribute("height", "0.5");
+    this.box.setAttribute("width", "1.5");
     this.box.setAttribute("depth", "1");
     this.box.setAttribute("color", "blue");
-    this.box.setAttribute("opacity", "0");
+    this.box.setAttribute("opacity", "0.5");
 
     this.box.setAttribute("position",{x:this.x,y:this.y-0.60,z:this.z});
     this.box.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
 
     this.box.setAttribute("static-body","");
     this.box.classList.add("clickable");
+*/
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#crate");
-    this.obj.setAttribute("scale", "1.75 2 1.75");
-    this.obj.object3D.position.y = this.box.object3D.position.y - 0.325;
+    this.obj.setAttribute("scale", "1.5 1.25 1.5");
+    //this.obj.object3D.position.y = this.box.object3D.position.y - 0.325;
 
-    this.box.append(this.obj);    
-    scene.append(this.box);
+    this.obj.setAttribute("position",{x:this.x,y:this.y-0.60,z:this.z});
+    this.obj.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
+
+    this.obj.setAttribute("static-body","");
+    this.obj.classList.add("clickable");
+
+    //this.box.append(this.obj);    
+    scene.append(this.obj);
 
 
-    this.box.addEventListener("click",()=>{
-      this.box.remove();
+    this.obj.addEventListener("click",()=>{
+      this.obj.remove();
     })
 
 

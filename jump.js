@@ -8,7 +8,6 @@ class Jump {
     this.downDistance = 0.01;
 
     this.originalY = user.object3D.position.y+1.7;
-
   }
 
 
