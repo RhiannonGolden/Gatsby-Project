@@ -58,7 +58,7 @@ window.addEventListener("DOMContentLoaded",function() {
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
-    bottles.push(new Bottle(x,0,z));
+    bottles.push(new Bottle(x,0.1,z));
   }
 
 
@@ -103,7 +103,7 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   })
 
-//understand jumping
+//fix jump on objects
 //fix slide backward physics
 
 //fix falling through floor physics
@@ -125,12 +125,11 @@ window.addEventListener("keydown",function(e){
     if (rayHit.length > 0) {
       let rayPoint = rayHit[0].point;
 
-      //let pos = camera.object3D.position;
-      //let crate = new Crate(pos.x,pos.y,pos.z,true);
-
       let zRotate = (camera.object3D.rotation.y)*(180/Math.PI);
+      
       let crate = new Crate(rayPoint.x,rayPoint.y+1,rayPoint.z,0,0,zRotate);
-      crates.push(crate);     
+      crates.push(crate);    
+       
     }
   }
 });
@@ -184,7 +183,6 @@ function loop(){
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
-  //fix text from going into the floor and disappearing
 
   if(bottle_count >= 1){
     bottle_score.setAttribute("value", `${(bottle_count)}`);
@@ -268,8 +266,8 @@ function loop(){
 
 
   for(let ammo of ammos){
-    if( (distance(ammo.obj,camera) < 2) && ammo.pickUp==true){
-      bullets_count+=2;
+    if( (distance(ammo.obj,camera) < 1) && ammo.pickUp==true){
+      bullets_count+=5;
       ammo.pickUp = false;
       ammo.obj.remove();
     }

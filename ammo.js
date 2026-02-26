@@ -9,7 +9,7 @@ class Ammo{
     
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#ammo");
-    this.obj.setAttribute("scale", "1.5 3 1.5");
+    this.obj.setAttribute("scale", "7 7 7");
     this.obj.setAttribute("position",{x:this.x,y:0,z:this.z});    
 
     scene.append(this.obj);

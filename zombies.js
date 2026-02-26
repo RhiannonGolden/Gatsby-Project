@@ -29,6 +29,8 @@ class Zombie{
     this.obj.setAttribute("scale", "1.25 1 1.25");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
 
+    //this.obj.setAttribute("kinema-body","0.8");
+
     scene.append(this.obj);
 
 

@@ -12,17 +12,14 @@ class Jump {
   }
 
 
-
-
   start(){
     if(this.jumping == false){
       this.jumping = true;
-      this.upDistance = 0.18;
+      this.upDistance = 0.25;
     }
   }
 
   update(){
-    console.log(user.object3D.position.y);
     if(this.jumping == false) return;
 
     let pos = this.user.object3D.position;
