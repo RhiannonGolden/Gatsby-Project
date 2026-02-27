@@ -14,7 +14,7 @@ class Crate{
     this.obj.setAttribute("scale", "1.55 1.30 1.55");
 
     
-    this.obj.setAttribute("position",{x:this.x,y:this.y-0.5,z:this.z});
+    this.obj.setAttribute("position",{x:this.x,y:this.y-0.55,z:this.z});
     this.obj.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
 
     this.obj.setAttribute("static-body","");

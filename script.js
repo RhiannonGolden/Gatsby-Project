@@ -40,14 +40,14 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 0; i++){
+   for(let i = 0; i < 10; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 10; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
@@ -289,7 +289,7 @@ function loop(){
 
 
   for(let heart of hearts){
-    if( (distance(heart.obj,camera) < 2) && heart.pickUp==true && Phealth_count < 100){
+    if( (distance(heart.obj,camera) < 0.75) && heart.pickUp==true && Phealth_count < 100){
       Phealth_count += 5;
       heart.pickUp = false;
       heart.obj.remove();
