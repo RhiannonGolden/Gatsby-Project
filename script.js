@@ -103,11 +103,15 @@ window.addEventListener("DOMContentLoaded",function() {
     }
   })
 
-//fix jump on objects
+
+
+
+
 
 //fix falling through floor physics
 //add lamp 3d model
 //add green/normal light for lamps
+//add hall of pictures
 
 
 
@@ -137,6 +141,14 @@ jump = new Jump(user);
 window.addEventListener("keydown",function(e){
   if(e.key == " "){
     jump.start();   
+  }
+});
+
+
+swim = new Swim(user);
+window.addEventListener("keydown",function(e){
+  if(e.key == "t"){
+    swim.start();   
   }
 });
 
@@ -178,6 +190,8 @@ window.addEventListener("keydown",function(e){
 function loop(){
 
   jump.update();
+  swim.update();
+  swim.sink();
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);

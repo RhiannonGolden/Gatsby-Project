@@ -8,13 +8,14 @@ class Jump {
     this.downDistance = 0.01;
 
     this.originalY = user.object3D.position.y+1.7;
+    this.aboveWater = true;
   }
 
 
   start(){
-    if(this.jumping == false){
+    if(this.jumping == false && this.aboveWater){
       this.jumping = true;
-      this.upDistance = 0.25;
+      this.upDistance = 0.15;
     }
   }
 
