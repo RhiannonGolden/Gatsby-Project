@@ -20,7 +20,7 @@
 
   </head>
   <body>
-    <a-scene physics="debug: false" light="type: ambient; intensity:1">
+    <a-scene physics="debug: false">
         <a-assets>
             <a-asset-item id="zombie" src="zombie/scene.gltf"></a-asset-item>
             <a-asset-item id="bullet" src="tea_cup/scene.gltf"></a-asset-item>
@@ -48,6 +48,9 @@
             <img id="puzzle16" src="pictures/puzzle16.jpg">
         </a-assets>
 
+        <a-entity light="type: ambient; intensity: 0.2"></a-entity>
+          <a-entity light="type: directional; intensity: 2; castShadow: true" position="5 10 5"></a-entity>
+
         <!--
         <a-gltf-model src="library/scene.gltf" position="-10 -10.2 0" scale="5 5 5"></a-gltf-model>
       -->
@@ -56,10 +59,10 @@
         <a-gltf-model static-body src="art_deco_bar/scene.gltf" scale="2 1.5 1.5"></a-gltf-model>
 
         <a-entity position="0 1.51 2.05">
-          <a-cylinder static-body id="pedestal1" class="pedestal clickable" position="-2.75 0 0" color="black" radius="0.25" height="0.05"></a-cylinder>
-          <a-cylinder static-body id="pedestal2" class="pedestal clickable" position="-1.75 0 0" color="black" radius="0.25" height="0.05"></a-cylinder>
-          <a-cylinder static-body id="pedestal3" class="pedestal clickable" position="1.75 0 0" color="black" radius="0.25" height="0.05"></a-cylinder>
-          <a-cylinder static-body id="pedestal4" class="pedestal clickable" position="2.75 0 0" color="black" radius="0.25" height="0.05"></a-cylinder>
+          <a-cylinder static-body id="pedestal1" class="pedestal clickable" position="-2.75 0 0" color="#006400" radius="0.25" height="0.05"></a-cylinder>
+          <a-cylinder static-body id="pedestal2" class="pedestal clickable" position="-1.75 0 0" color="#006400" radius="0.25" height="0.05"></a-cylinder>
+          <a-cylinder static-body id="pedestal3" class="pedestal clickable" position="1.75 0 0" color="#006400" radius="0.25" height="0.05"></a-cylinder>
+          <a-cylinder static-body id="pedestal4" class="pedestal clickable" position="2.75 0 0" color="#006400" radius="0.25" height="0.05"></a-cylinder>
         </a-entity>
       </a-entity>
       
@@ -83,7 +86,7 @@
 
         
         <a-entity position="0 1.7 0" id="user">
-          <a-camera" kinema-body="radius: 0.8">
+          <a-camera kinema-body="radius: 0.8">
             <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
               <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
               <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>

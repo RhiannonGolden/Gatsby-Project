@@ -116,7 +116,6 @@ window.addEventListener("DOMContentLoaded",function() {
 //fix falling through floor physics
 //add lamp 3d model -> tomorrow
 //add green/normal light for lamps -> today
-//add general lighting for world -> today
 //add hall of pictures
 //shadow for camera(?)
 
@@ -166,9 +165,14 @@ window.addEventListener("keydown",function(e){
     pedestal.hasBottle = false;
 
     pedestal.addEventListener("click", () => {
+      pedestal.setAttribute("material", {color: "#006400", emissive: "#00ff00", emissiveIntensity: 10});
+      if(pedestal.hasBottle){
+          pedestal.setAttribute("material", {color: "#006400", emissive: "#000000", emissiveIntensity: 0});
+        }
 
       if(bottle_count > 0){
         if(pedestal.hasBottle == false){
+          //pedestal.setAttribute("material", {color: "#006400", emissive: "#00ff00", emissiveIntensity: 10});
 
           let pos = pedestal.object3D.position;
 
@@ -181,6 +185,8 @@ window.addEventListener("keydown",function(e){
 
           pedestal.hasBottle = true;
         }
+        
+
       }
 
     });
