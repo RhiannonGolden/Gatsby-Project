@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [];
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -13,7 +13,7 @@ window.addEventListener("DOMContentLoaded",function() {
   user = document.getElementById("user");
 
 
-  for(let i = 0; i < 1; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -40,14 +40,14 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 10; i++){
+   for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
@@ -62,10 +62,17 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
+   for(let i =0;  i < 10; i++){
+    let x = rnd(-10, 10);
+    let z = rnd(-10,10);
+    lamps.push( new Lamp(x,0,z) );
+  }
+
+
 
   for(let i = 1; i < 17; i++){
     let x1 = -1.5;
-    let y1 = 4.5;
+    let y1 = 3.6;
 
     let random = Math.round( rnd(1,3) );
     if(random == 1){
@@ -106,13 +113,11 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-
-
 //fix falling through floor physics
 //add lamp 3d model
-//add green/normal light for lamps
+//add green/normal light for lamps -> today
 //add hall of pictures
-
+//shadow for camera(?)
 
 
 
@@ -166,7 +171,7 @@ window.addEventListener("keydown",function(e){
 
           let pos = pedestal.object3D.position;
 
-          let bottle = new Bottle(pos.x, 1.52, pos.z-10.6);
+          let bottle = new Bottle(pos.x, 1.52, pos.z-12.95);
           bottle.collected = true;
           bottle.placed = true;
 
@@ -339,7 +344,3 @@ function distance(obj1,obj2){
   let d = Math.sqrt(Math.pow(x1-x2,2) + Math.pow(y1-y2,2) + Math.pow(z1-z2,2));
   return d;
 }
-
-
-
-//game could start in city and need to find the first portel - puts more of a foucs on zombie fighting
