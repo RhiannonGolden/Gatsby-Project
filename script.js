@@ -114,8 +114,9 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 //fix falling through floor physics
-//add lamp 3d model
+//add lamp 3d model -> tomorrow
 //add green/normal light for lamps -> today
+//add general lighting for world -> today
 //add hall of pictures
 //shadow for camera(?)
 
