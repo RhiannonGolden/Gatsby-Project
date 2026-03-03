@@ -122,8 +122,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-//use lamp 3d model -> today(?)
-//download pictures -> today
+//fix lamp 3d model lighting
 //fix falling through floor physics
 //add hall of pictures -> tomorrow
 //shadow for camera(?)
