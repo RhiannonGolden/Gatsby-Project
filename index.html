@@ -29,6 +29,7 @@
             <a-asset-item id="bottle" src="bottle_of_champagne/scene.gltf"></a-asset-item>
             <a-asset-item id="crate" src="wooden_crate/scene.gltf"></a-asset-item>
             <a-asset-item id="bar" src="art_deco_bar/scene.gltf"></a-asset-item>
+            <a-asset-item id="lamp" src="lamp/scene.gltf"></a-asset-item>
 
             <img id="puzzle1" src="pictures/puzzle1.jpg">
             <img id="puzzle2" src="pictures/puzzle2.jpg">
@@ -54,8 +55,6 @@
         <!--
         <a-gltf-model src="library/scene.gltf" position="-10 -10.2 0" scale="5 5 5"></a-gltf-model>
       -->
-        
-      <a-gltf-model src="lamp/scene.gltf" position="10 4 0" scale="0.015 0.015 0.015"></a-gltf-model>
 
       <a-entity position="-0 0 -15">
         <a-gltf-model static-body src="art_deco_bar/scene.gltf" scale="2 1.5 1.5"></a-gltf-model>
@@ -70,12 +69,12 @@
       
   
         <a-entity static-body class="picturePuzzle" position="0 2.1 -7" rotation="0 0 0">
-          <a-box color="#000080" width="4.4" height="4" depth="0.1" position="0 0 -0.05"></a-box>
+          <a-box color="blue" width="4.4" height="4" depth="0.1" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
 
-          <a-box color="#000080" width="4.4" height="0.2" depth="0.4" position="0 2.1 0"></a-box>
-          <a-box color="#000080" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0"></a-box>
-          <a-box color="#000080" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0"></a-box>
-          <a-box color="#000080" width="0.2" height="4.0" depth="0.4" position="2.1 0 0"></a-box>
+          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
+          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
+          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
+          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
 
         
         </a-entity>
@@ -109,8 +108,8 @@
     <a-gltf-model src="#bullet"></a-gltf-model>
     <a-gltf-model src="#ammo"></a-gltf-model>
     <a-gltf-model src="#hearts"></a-gltf-model>
-
     <a-gltf-model src="#crate"></a-gltf-model>
+    <a-gltf-model src="#lamp"></a-gltf-model>
 
   </body>
 </html>

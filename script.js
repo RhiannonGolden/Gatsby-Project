@@ -75,7 +75,7 @@ window.addEventListener("DOMContentLoaded",function() {
       //change to better lamp color -> today
     }
     
-    lamps.push(new Lamp(x,0,z,lampColor));
+    lamps.push(new Lamp(x,3,z,lampColor));
   }
 
 
@@ -122,8 +122,6 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-//fix lamp color of light -> today
-//add lamp 3d model to world -> today
 //use lamp 3d model -> today(?)
 //download pictures -> today
 //fix falling through floor physics
