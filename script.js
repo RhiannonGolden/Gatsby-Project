@@ -28,13 +28,12 @@ window.addEventListener("DOMContentLoaded",function() {
       Zhealth_count = 50;
       speed = 0.01;
       followDistance = followDistance1;
-      
     } else{
       Zhealth_count = 100;
       speed = 0.03
       followDistance = followDistance2;
-    
     }
+
     let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime, followDistance);
 
     zombies.push(zombie);
@@ -65,7 +64,18 @@ window.addEventListener("DOMContentLoaded",function() {
    for(let i =0;  i < 10; i++){
     let x = rnd(-10, 10);
     let z = rnd(-10,10);
-    lamps.push( new Lamp(x,0,z) );
+
+    let lampColor = rnd(1,10);
+
+    if(lampColor > 7){
+      lampColor = "#24ce24";
+      
+    } else{
+      lampColor = "#a5b461";
+      //change to better lamp color -> today
+    }
+    
+    lamps.push(new Lamp(x,0,z,lampColor));
   }
 
 
@@ -112,12 +122,14 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-
+//fix lamp color of light -> today
+//add lamp 3d model to world -> today
+//use lamp 3d model -> today(?)
+//download pictures -> today
 //fix falling through floor physics
-//add lamp 3d model -> tomorrow
-//add green/normal light for lamps -> today
-//add hall of pictures
+//add hall of pictures -> tomorrow
 //shadow for camera(?)
+//add sounds (zombies)
 
 
 

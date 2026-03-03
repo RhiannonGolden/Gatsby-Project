@@ -1,7 +1,8 @@
 class Lamp{
-  constructor(x,y,z){
-    this.strength = 5;
-    this.dl = 5;
+  constructor(x,y,z,lampColor){
+    this.strength = 2.5;
+    this.dl = 2.5;
+    this.lampColor = lampColor;
 
     this.obj = document.createElement("a-entity");
 
@@ -16,15 +17,17 @@ class Lamp{
     this.bulb.setAttribute("position","0 3 0");
     this.bulb.setAttribute("radius-bottom",0.5);
     this.bulb.classList.add("clickable");
+    this.bulb.setAttribute("color", "black");
 
-     this.bulb.setAttribute("light", {type: "point", intensity: this.strength, distance: 18, decay: 2, castShadow: true, color: "#fff4cc"});
-
+    this.bulb.setAttribute("light", "type: point; intensity: 0; castShadow: true");
     
     this.bulb.onclick = ()=>{
       this.strength += this.dl;
       this.dl = -this.dl;
 
       this.bulb.setAttribute("light",{intensity:this.strength});
+      this.bulb.setAttribute("opacity", 0.75);
+      this.bulb.setAttribute("material", {color: "black", emissive: this.lampColor, emissiveIntensity:1});
     }
 
     this.obj.append(this.bulb);
