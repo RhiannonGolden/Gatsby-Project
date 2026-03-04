@@ -68,11 +68,10 @@ window.addEventListener("DOMContentLoaded",function() {
     let lampColor = rnd(1,10);
 
     if(lampColor > 7){
-      lampColor = "#24ce24";
+      lampColor = "#27df27";
       
     } else{
-      lampColor = "#a5b461";
-      //change to better lamp color -> today
+      lampColor = "#97b122";
     }
     
     lamps.push(new Lamp(x,3,z,lampColor));
@@ -122,7 +121,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-//fix lamp 3d model lighting
+//toggle lamp lighting on and off (light cone) -> today
 //fix falling through floor physics
 //add hall of pictures -> tomorrow
 //shadow for camera(?)
