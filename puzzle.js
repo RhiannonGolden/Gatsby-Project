@@ -6,6 +6,7 @@ class Puzzle{
     this.rotate = rotate;
     this.click = false;
     this.correct = false;
+    this.completed1 = false;
     
     this.obj = document.createElement("a-box");
     this.obj.setAttribute("src",`pictures/puzzle${src}.jpg`);
@@ -15,6 +16,8 @@ class Puzzle{
     this.obj.setAttribute("depth", 0.1);
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:-6.94});
     this.obj.setAttribute("rotation",{x:0, y:0, z:this.rotate});
+
+    this.obj.setAttribute("color", "rgb(255, 128, 128)");
 
     scene.append(this.obj);
 

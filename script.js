@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzlePartFinished = false, puzzleCompletedTime = 0;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -121,7 +121,6 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-//toggle lamp lighting on and off (light cone) -> today
 //fix falling through floor physics
 //add hall of pictures -> tomorrow
 //shadow for camera(?)
@@ -180,7 +179,6 @@ window.addEventListener("keydown",function(e){
 
       if(bottle_count > 0){
         if(pedestal.hasBottle == false){
-          //pedestal.setAttribute("material", {color: "#006400", emissive: "#00ff00", emissiveIntensity: 10});
 
           let pos = pedestal.object3D.position;
 
@@ -335,15 +333,53 @@ function loop(){
     }
   }
   bottle.shot();
+
+
 }
+
 
 
 for(let puzzle of puzzles){
-  puzzle.correctCheck();
+  console.log(puzzleCompletedTime);
+  //puzzle.correctCheck();
+/*
+  if(puzzle.correct){
+    puzzle.completed = true;
+  } else if(puzzle.correct == false){
+    puzzle.completed = false;
+  }
+*/
+
+
+
+if(puzzle.color == "rgb(255, 128, 128)" ){
+     puzzlePartFinished = false;
+  }
+  else if(puzzle.rotate==0 || puzzle.rotate==360){
+     puzzle.obj.setAttribute("color", "white");
+     puzzlePartFinished = true;
+  }
+
+  if(puzzlePartFinished){
+    puzzleCompletedTime++;
+  }
+  else if(puzzlePartFinished == false){
+    puzzleCompletedTime = 0;
+  }
+
+  if(puzzleCompletedTime > 300){
+    puzzle.completed1 = true;
+  }
+
+
+
 }
 
+
+
+
 for(let lamp of lamps){
-  console.log(lamp.completed1);
+  //console.log(lamp.completed1);
 
   if(lamp.lampColor == "#27df27"){
      if(lamp.strength == 4){
@@ -373,31 +409,6 @@ for(let lamp of lamps){
     lamp.completed1 = true;
   }
 
-
-  //lamp.checkGreenOn();
-  //lamp.checkYellowOn();
-/*
-  if(lamp.greenOn && lamp.yellowOn == false){
-        lamp.completed1 = true;
-      }
-*/
-  
-
-
-
-  /*
-  if(lamp.completed1 && lamp.completed2 == false){
-    setTimeout(() => {
-      if(lamp.completed1){
-        lamp.completed2 = true;
-      }
-    }, 1000);
-  }
-
-  if(lamp.completed1 == false){
-    lamp.completed2 = false;
-  }
-*/
 }
   
 

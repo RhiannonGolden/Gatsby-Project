@@ -18,8 +18,7 @@ class Lamp{
     this.glowLight = document.createElement("a-entity");
     this.glowLight.setAttribute("position","0 -1.5 0");
     this.glowLight.setAttribute("radius-bottom", 12.5);
-    this.glowLight.setAttribute("light", `type: point; color: ${this.lampColor}; intensity: 0; distance: 15; decay: 2; castShadow: true`);
-    //this.glowLight.setAttribute("light", "type: point; color: this.lampColor, intensity: 0; distance: 15, decay: 2, castShadow: true");
+    this.glowLight.setAttribute("light", "type: point; color: this.lampColor, intensity: 0; distance: 15, decay: 2, castShadow: true");
     this.obj.append(this.glowLight);
 
 
@@ -54,50 +53,6 @@ class Lamp{
     this.obj.setAttribute("position",{x:x,y:y,z:z});
     scene.append(this.obj);
   }
-
-
-  
-  checkGreenOn(){
-    if(this.lampColor == "#27df27"){
-
-        if(this.strength == 4){
-          this.greenOn = false;
-        }
-        else if(this.strength == 8){
-          this.greenOn = true;
-        }
-        
-      }
-    }
-    
-
-
-
-    checkYellowOn(){
-      if(this.lampColor == "#b3ca4d"){
-
-        if(this.strength == 4){
-          this.yellowOn = false;
-        }
-        else if(this.strength == 8){
-          this.yellowOn = true;
-        }
-
-      }
-    }
-
-/*
-    checkColor(){
-      checkGreenOn();
-      checkYellowOn();
-
-      if(this.greenOn && this.yellowOn == false){
-        this.completed1 = true;
-      }
-
-    }
-*/
-    
   
 
 

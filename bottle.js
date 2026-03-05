@@ -56,7 +56,6 @@ class Bottle{
 
   shot(){
     if(this.down && this.a1 > -90){
-      console.log("hit");
       this.a1 -= this.da;
       this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
     }
