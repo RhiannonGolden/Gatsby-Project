@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -61,13 +61,13 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
-   for(let i =0;  i < 3; i++){
+   for(let i =0;  i < 5; i++){
     let x = rnd(-10, 10);
     let z = rnd(-10,10);
 
     let lampColor = rnd(1,10);
 
-    if(lampColor > 5){
+    if(lampColor > 7){
       lampColor = "#27df27";
       
     } else{
@@ -345,13 +345,42 @@ for(let puzzle of puzzles){
 for(let lamp of lamps){
   console.log(lamp.completed1);
 
-  lamp.checkGreenOn();
-  lamp.checkYellowOn();
+  if(lamp.lampColor == "#27df27"){
+     if(lamp.strength == 4){
+          lampsOn = false;
+        }
+        else if(lamp.strength == 8){
+          lampsOn = true;
+        }
+  }
+  else if(lamp.lampColor == "#b3ca4d"){
+     if(lamp.strength == 4){
+          lampsOn = true;
+        }
+        else if(lamp.strength == 8){
+          lampsOn = false;
+        }
+  }
 
+  if(lampsOn){
+    lampCompletedTime++;
+  }
+  else if(lampsOn == false){
+    lampCompletedTime = 0;
+  }
+
+  if(lampCompletedTime > 300){
+    lamp.completed1 = true;
+  }
+
+
+  //lamp.checkGreenOn();
+  //lamp.checkYellowOn();
+/*
   if(lamp.greenOn && lamp.yellowOn == false){
         lamp.completed1 = true;
       }
-
+*/
   
 
 

@@ -73,9 +73,6 @@ class Lamp{
 
 
 
-  
-
-
     checkYellowOn(){
       if(this.lampColor == "#b3ca4d"){
 
