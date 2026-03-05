@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [];
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -61,17 +61,17 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
-   for(let i =0;  i < 10; i++){
+   for(let i =0;  i < 3; i++){
     let x = rnd(-10, 10);
     let z = rnd(-10,10);
 
     let lampColor = rnd(1,10);
 
-    if(lampColor > 7){
+    if(lampColor > 5){
       lampColor = "#27df27";
       
     } else{
-      lampColor = "#97b122";
+      lampColor = "#b3ca4d";
     }
     
     lamps.push(new Lamp(x,3,z,lampColor));
@@ -341,7 +341,26 @@ function loop(){
 for(let puzzle of puzzles){
   puzzle.correctCheck();
 }
+
+for(let lamp of lamps){
+  console.log(lamp.completed2);
+  lamp.checkOn();
+
+  if(lamp.completed1 && lamp.completed2 == false){
+    setTimeout(() => {
+      if(lamp.completed1){
+        lamp.completed2 = true;
+      }
+    }, 1000);
+  }
+
+  if(lamp.completed1 == false){
+    lamp.completed2 = false;
+  }
+
+}
   
+
 
   //change to timeout(?)
   window.requestAnimationFrame(loop);
