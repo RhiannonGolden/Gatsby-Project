@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzlePartFinished = false, puzzleCompletedTime = 0;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = true, puzzleCompletedTime = 0;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -172,9 +172,10 @@ window.addEventListener("keydown",function(e){
     pedestal.hasBottle = false;
 
     pedestal.addEventListener("click", () => {
-      pedestal.setAttribute("material", {color: "#006400", emissive: "#00ff00", emissiveIntensity: 10});
+      pedestal.setAttribute("material", {color: "#006400", emissive: "#00ff00, emissiveIntensity: 10"});
+
       if(pedestal.hasBottle){
-          pedestal.setAttribute("material", {color: "#006400", emissive: "#000000", emissiveIntensity: 0});
+          pedestal.setAttribute("material", {color: "#006400", emissive: "#000000, emissiveIntensity: 0"});
         }
 
       if(bottle_count > 0){
@@ -340,40 +341,37 @@ function loop(){
 
 
 for(let puzzle of puzzles){
-  console.log(puzzleCompletedTime);
-  //puzzle.correctCheck();
-/*
+  puzzle.correctCheck();
+  console.log(puzzle.completed1);
+
   if(puzzle.correct){
-    puzzle.completed = true;
+     puzzleFinished = true;
   } else if(puzzle.correct == false){
-    puzzle.completed = false;
-  }
-*/
-
-
-
-if(puzzle.color == "rgb(255, 128, 128)" ){
-     puzzlePartFinished = false;
-  }
-  else if(puzzle.rotate==0 || puzzle.rotate==360){
-     puzzle.obj.setAttribute("color", "white");
-     puzzlePartFinished = true;
+      puzzleFinished = false;
   }
 
-  if(puzzlePartFinished){
+  if(puzzleFinished){
     puzzleCompletedTime++;
   }
-  else if(puzzlePartFinished == false){
+  else if(puzzleFinished == false){
     puzzleCompletedTime = 0;
   }
 
-  if(puzzleCompletedTime > 300){
-    puzzle.completed1 = true;
+  if(puzzleCompletedTime > 200){
+    for(let puzzle of puzzles){
+      puzzle.completed1 = true;
+    }
+    
   }
 
 
 
 }
+
+
+
+
+
 
 
 
@@ -405,7 +403,7 @@ for(let lamp of lamps){
     lampCompletedTime = 0;
   }
 
-  if(lampCompletedTime > 300){
+  if(lampCompletedTime > 200){
     lamp.completed1 = true;
   }
 
