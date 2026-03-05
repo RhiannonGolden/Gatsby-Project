@@ -55,32 +55,53 @@ class Lamp{
     scene.append(this.obj);
   }
 
-  checkOn(){
-    if(this.lampColor == "#27df27" && this.strength == 4){
-      this.greenOn = false;
-    }
-    else if(this.lampColor == "#27df27" && this.strength == 8){
-      this.greenOn = true;
-    }
-    else if(this.lampColor == "#b3ca4d" && this.strength == 4){
-      this.yellowOn = false;
-    }
-    else if(this.lampColor == "#b3ca4d" && this.strength == 8){
-      this.yellowOn = true;
-    }
 
+  
+  checkGreenOn(){
+    if(this.lampColor == "#27df27"){
 
-    if(this.greenOn && this.yellowOn == false){
-      this.completed1 = true;
+        if(this.strength == 4){
+          this.greenOn = false;
+        }
+        else if(this.strength == 8){
+          this.greenOn = true;
+        }
+        
+      }
     }
-    else{
-      this.completed1 = false;
-    }
-
     
-  }
+
+
+
+  
+
+
+    checkYellowOn(){
+      if(this.lampColor == "#b3ca4d"){
+
+        if(this.strength == 4){
+          this.yellowOn = false;
+        }
+        else if(this.strength == 8){
+          this.yellowOn = true;
+        }
+
+      }
+    }
+
+/*
+    checkColor(){
+      checkGreenOn();
+      checkYellowOn();
+
+      if(this.greenOn && this.yellowOn == false){
+        this.completed1 = true;
+      }
+
+    }
+*/
+    
+  
 
 
 }
-
-//since each lamp in script is checking itself, change to green on or yellow off for each lamp -> completed is true when green on or yellow off

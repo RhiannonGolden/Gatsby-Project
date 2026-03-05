@@ -343,9 +343,20 @@ for(let puzzle of puzzles){
 }
 
 for(let lamp of lamps){
-  console.log(lamp.completed2);
-  lamp.checkOn();
+  console.log(lamp.completed1);
 
+  lamp.checkGreenOn();
+  lamp.checkYellowOn();
+
+  if(lamp.greenOn && lamp.yellowOn == false){
+        lamp.completed1 = true;
+      }
+
+  
+
+
+
+  /*
   if(lamp.completed1 && lamp.completed2 == false){
     setTimeout(() => {
       if(lamp.completed1){
@@ -357,7 +368,7 @@ for(let lamp of lamps){
   if(lamp.completed1 == false){
     lamp.completed2 = false;
   }
-
+*/
 }
   
 
