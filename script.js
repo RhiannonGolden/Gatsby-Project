@@ -358,9 +358,7 @@ for(let puzzle of puzzles){
   }
 
   if(puzzleCompletedTime > 200){
-    for(let puzzle of puzzles){
-      puzzle.completed1 = true;
-    }
+    puzzle.completed1 = true;
     
   }
 
