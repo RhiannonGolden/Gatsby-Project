@@ -57,7 +57,7 @@ window.addEventListener("DOMContentLoaded",function() {
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
-    bottles.push(new Bottle(x,0.1,z));
+    bottles.push(new Bottle(x,0.15,z));
   }
 
 
@@ -172,10 +172,10 @@ window.addEventListener("keydown",function(e){
     pedestal.hasBottle = false;
 
     pedestal.addEventListener("click", () => {
-      pedestal.setAttribute("material", {color: "#006400", emissive: "#00ff00, emissiveIntensity: 10"});
+      pedestal.setAttribute("material", {color: "#006400", emissive: "#006400", emissiveIntensity: "10"});
 
       if(pedestal.hasBottle){
-          pedestal.setAttribute("material", {color: "#006400", emissive: "#000000, emissiveIntensity: 0"});
+          pedestal.setAttribute("material", {emissiveIntensity: "0"});
         }
 
       if(bottle_count > 0){
@@ -318,7 +318,7 @@ function loop(){
 
 
   for(let bottle of bottles){
-    console.log(bottles.completed1);
+    console.log(bottle.completed1);
     bottle.spin();
 
     if(bottle.placed==false){

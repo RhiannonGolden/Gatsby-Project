@@ -49,8 +49,9 @@ class Lamp{
       }
 
     }
-
+    
     this.obj.setAttribute("position",{x:x,y:y,z:z});
+    this.obj.setAttribute("static-body","");
     scene.append(this.obj);
   }
   
