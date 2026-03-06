@@ -13,6 +13,7 @@ class Bottle{
     this.collected = false;
     this.placed = false;
     this.down = false;
+    this.completed1 = false;
     
 
     this.obj = document.createElement("a-gltf-model");

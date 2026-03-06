@@ -1,6 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0;
+let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -318,6 +318,7 @@ function loop(){
 
 
   for(let bottle of bottles){
+    console.log(bottles.completed1);
     bottle.spin();
 
     if(bottle.placed==false){
@@ -330,10 +331,17 @@ function loop(){
         bullet.shot = true;
         bullet.obj.remove();
         bottle.down = true;
+        bottlesFinishedCount++;
       }
     }
   }
   bottle.shot();
+
+  if(bottlesFinishedCount >= 4){
+    bottles.completed1 = true;
+  }
+
+
 
 
 }
@@ -342,7 +350,6 @@ function loop(){
 
 for(let puzzle of puzzles){
   puzzle.correctCheck();
-  console.log(puzzle.completed1);
 
   if(puzzle.correct){
      puzzleFinished = true;
@@ -375,8 +382,6 @@ for(let puzzle of puzzles){
 
 
 for(let lamp of lamps){
-  //console.log(lamp.completed1);
-
   if(lamp.lampColor == "#27df27"){
      if(lamp.strength == 4){
           lampsOn = false;
