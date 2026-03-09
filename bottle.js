@@ -13,7 +13,8 @@ class Bottle{
     this.collected = false;
     this.placed = false;
     this.down = false;
-    this.completed1 = false;
+    this.completed1 = true;
+    this.keyCollected = false;
     
 
     this.obj = document.createElement("a-gltf-model");
@@ -24,9 +25,18 @@ class Bottle{
     this.obj.setAttribute("rotation",{x:0, y:9, z:0});
     this.obj.setAttribute("shadow",{receive:true})
 
-
-
     scene.append(this.obj);
+
+
+    this.key = document.createElement("a-gltf-model");
+    this.key.setAttribute("position", "10 0 0");
+    this.key.setAttribute("src","#bottle");
+    this.key.setAttribute("scale", "5 5 5");
+    this.key.setAttribute("visible", false);
+    this.key.classList.add("clickable");
+
+    scene.append(this.key);
+    
 
 
     setTimeout(() => {
@@ -39,6 +49,14 @@ class Bottle{
         this.collected = true;
         bottle_count++;
         this.obj.remove();   
+      }
+    });
+
+
+
+    this.key.addEventListener("click", ()=> {
+      if(this.completed1){
+        this.keyCollected = true;  
       }
     });
 
@@ -60,6 +78,11 @@ class Bottle{
       this.a1 -= this.da;
       this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
     }
+  }
+
+
+  unlocked(){
+      this.key.setAttribute("visible", true);
   }
 
 

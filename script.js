@@ -1,6 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
+let level1Completed = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -56,8 +57,7 @@ window.addEventListener("DOMContentLoaded",function() {
   for(let i = 0; i < 4; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
-    let a = rnd(0,360);
-    bottles.push(new Bottle(x,0.15,z));
+    bottles.push(new Bottle(x,0,z));
   }
 
 
@@ -318,12 +318,9 @@ function loop(){
 
 
   for(let bottle of bottles){
-    console.log(bottle.completed1);
     bottle.spin();
 
-    if(bottle.placed==false){
-      bottle.obj.setAttribute("dynamic-body","");
-    }
+    
 
     if(bottle.placed && bottle.down==false){
       for(let bullet of bullets){
@@ -339,7 +336,15 @@ function loop(){
 
   if(bottlesFinishedCount >= 4){
     bottles.completed1 = true;
+    bottle.unlocked();
+
+    if(bottle.keyCollected){
+      level1Completed = true;
+      user.setAttribute("position", "-10 5 0");
+    }
   }
+
+
 
 
 
@@ -366,6 +371,11 @@ for(let puzzle of puzzles){
 
   if(puzzleCompletedTime > 200){
     puzzle.completed1 = true;
+    
+  }
+
+
+  if(puzzle.completed1){
     
   }
 
