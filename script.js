@@ -343,6 +343,7 @@ function loop(){
       user.setAttribute("position", "-10 5 0");
     }
   }
+  //fix pedstal color change glow to 0 when click after bottle placed
 
 
 
