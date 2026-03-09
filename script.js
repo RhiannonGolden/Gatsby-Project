@@ -172,11 +172,6 @@ window.addEventListener("keydown",function(e){
     pedestal.hasBottle = false;
 
     pedestal.addEventListener("click", () => {
-      pedestal.setAttribute("material", {color: "#006400", emissive: "#006400", emissiveIntensity: "10"});
-
-      if(pedestal.hasBottle){
-          pedestal.setAttribute("material", {emissiveIntensity: "0"});
-        }
 
       if(bottle_count > 0){
         if(pedestal.hasBottle == false){
@@ -191,6 +186,10 @@ window.addEventListener("keydown",function(e){
           bottle_count--;
 
           pedestal.hasBottle = true;
+        }
+
+        if(pedestal.hasBottle){
+          pedestal.setAttribute("material", {color: "#006400", emissive: "#006400", emissiveIntensity: "10"});
         }
         
 
@@ -343,7 +342,7 @@ function loop(){
       user.setAttribute("position", "-10 5 0");
     }
   }
-  //fix pedstal color change glow to 0 when click after bottle placed
+
 
 
 
