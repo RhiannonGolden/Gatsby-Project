@@ -13,7 +13,7 @@ class Bottle{
     this.collected = false;
     this.placed = false;
     this.down = false;
-    this.completed1 = true;
+    this.completed1 = false;
     this.keyCollected = false;
     
 
