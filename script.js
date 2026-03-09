@@ -125,6 +125,7 @@ window.addEventListener("DOMContentLoaded",function() {
 //add hall of pictures -> tomorrow
 //shadow for camera(?)
 //add sounds (zombies)
+//change bottle class back to staic(or dynamic)
 
 
 
