@@ -122,7 +122,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 //fix falling through floor physics
-//add hall of pictures -> tomorrow
+//add hall of pictures
 //shadow for camera(?)
 //add sounds (zombies)
 //change bottle class back to staic(or dynamic)
@@ -336,7 +336,11 @@ function loop(){
 
   if(bottlesFinishedCount >= 4){
     bottles.completed1 = true;
+    
     bottle.unlocked();
+    bottle.up();
+    //4 keys spawn in instead of 1
+    //put these loops in seperate if statements
 
     if(bottle.keyCollected){
       level1Completed = true;

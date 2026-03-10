@@ -7,6 +7,7 @@ class Bottle{
     this.a = 0;
     this.da = 5;
     this.a1 = 0;
+    this.da2 = 1.5;
 
     this.flag = false;
     this.pickUp = false;
@@ -29,13 +30,26 @@ class Bottle{
 
 
     this.key = document.createElement("a-gltf-model");
-    this.key.setAttribute("position", "10 0 0");
-    this.key.setAttribute("src","#bottle");
-    this.key.setAttribute("scale", "5 5 5");
-    this.key.setAttribute("visible", false);
+    this.key.setAttribute("position", "10 1 0");
+    this.key.setAttribute("src","#key");
+    this.key.setAttribute("scale", "0.15 0.15 0.15");
+    this.obj.setAttribute("rotation",{x:0, y:90, z:0});
     this.key.classList.add("clickable");
 
-    scene.append(this.key);
+    this.key_table = document.createElement("a-gltf-model");
+    this.key_table.setAttribute("position", "10 0 0");
+    this.key_table.setAttribute("src","#key_table");
+    this.key_table.setAttribute("scale", "0.01 0.01 0.01");
+
+    this.keySet = document.createElement("a-entity");
+    this.keySet.append(this.key);
+    this.keySet.append(this.key_table);
+
+    this.keySet.setAttribute("visible", false);
+    this.keySet.setAttribute("position", "5 -2 0");
+    this.keySet.setAttribute("shadow",{receive:true})
+    this.keySet.setAttribute("static-body","");
+    scene.append(this.keySet);
     
 
 
@@ -82,7 +96,21 @@ class Bottle{
 
 
   unlocked(){
-      this.key.setAttribute("visible", true);
+    this.keySet.setAttribute("visible", true);
+
+    this.a += this.da2;
+    this.key.setAttribute("rotation",{x:0, y:this.a, z:0});
+  }
+
+
+
+  up(){
+    if(this.keySet.object3D.position.y < 0){
+      this.keySet.object3D.position.y += 0.05;
+    } else{
+      this.keySet.object3D.position.y = 0;
+    }
+    
   }
 
 
