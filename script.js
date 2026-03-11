@@ -1,7 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
-let level1Completed = false, level1KeySpawn = false;
+let level1Key, level1Completed = false, level1KeySpawn = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -200,7 +200,11 @@ window.addEventListener("keydown",function(e){
   });
 
 
-  
+
+  level1Key = new Key(5,0,0);
+
+
+
   
   loop();
 })
@@ -331,24 +335,29 @@ function loop(){
     }
   }
   bottle.shot();
+  console.log(level1Key.completed1);
 
   if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
-    bottles[0].unlocked();
+    level1Key.unlock();
+    level1Key.completed1 = true;
+    
+    //bottles[0].unlocked();
 
-    bottles[0].completed1 = true;
+    //bottles[0].completed1 = true;
     level1KeySpawn = true;
   }
 
   if(level1KeySpawn){
-    bottles[0].up();
+    //bottles[0].up();
+    level1Key.up();
   }
 
 
-
-
-    if(bottle.keyCollected){
-      level1Completed = true;
-      user.setAttribute("position", "-10 5 0");
+  if(level1Key.keyCollected){
+    console.log(level1Key.keyCollected);
+    level1Key.teleport(user,-10, 7, 0);
+    level1Completed = true;
+    //user.setAttribute("position", "-10 5 0");
     }
 
 

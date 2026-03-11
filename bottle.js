@@ -7,7 +7,7 @@ class Bottle{
     this.a = 0;
     this.da = 5;
     this.a1 = 0;
-    this.da2 = 1.5;
+    this.da2 = 0.25;
 
     this.flag = false;
     this.pickUp = false;
@@ -69,8 +69,9 @@ class Bottle{
 
 
     this.key.addEventListener("click", ()=> {
-      if(this.completed1){
+      if(this.completed1 && distance(this.key, camera) < 3){
         this.keyCollected = true;  
+        this.keySet.remove();
       }
     });
 
@@ -97,11 +98,7 @@ class Bottle{
 
   unlocked(){
     this.keySet.setAttribute("visible", true);
-
-    this.a += this.da2;
-    this.key.setAttribute("rotation",{x:0, y:this.a, z:0});
   }
-
 
 
   up(){
@@ -109,12 +106,22 @@ class Bottle{
     if(pos.y < 0){
       pos.y += 0.001;
       this.keySet.setAttribute("position", pos);
-    } else{
+    }
+    
+    else if(pos.y >= 0){
       pos.y = 0;
       this.keySet.setAttribute("position", pos);
+
+      this.a += this.da2;
+      this.key.setAttribute("rotation",{x:0, y:this.a, z:0});
     }
     
   }
+
+
+
+
+
 
 
 }
