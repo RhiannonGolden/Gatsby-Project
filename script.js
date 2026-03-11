@@ -1,7 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
-let level1Completed = false;
+let level1Completed = false, level1KeySpawn = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -320,8 +320,6 @@ function loop(){
   for(let bottle of bottles){
     bottle.spin();
 
-    
-
     if(bottle.placed && bottle.down==false){
       for(let bullet of bullets){
       if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 0.75){
@@ -334,19 +332,24 @@ function loop(){
   }
   bottle.shot();
 
-  if(bottlesFinishedCount >= 4){
-    bottles.completed1 = true;
-    
-    bottle.unlocked();
-    bottle.up();
-    //4 keys spawn in instead of 1
-    //put these loops in seperate if statements
+  if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
+    bottles[0].unlocked();
+
+    bottles[0].completed1 = true;
+    level1KeySpawn = true;
+  }
+
+  if(level1KeySpawn){
+    bottles[0].up();
+  }
+
+
+
 
     if(bottle.keyCollected){
       level1Completed = true;
       user.setAttribute("position", "-10 5 0");
     }
-  }
 
 
 

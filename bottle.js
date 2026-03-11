@@ -14,7 +14,7 @@ class Bottle{
     this.collected = false;
     this.placed = false;
     this.down = false;
-    this.completed1 = false;
+    this.completed = false;
     this.keyCollected = false;
     
 
@@ -105,10 +105,13 @@ class Bottle{
 
 
   up(){
-    if(this.keySet.object3D.position.y < 0){
-      this.keySet.object3D.position.y += 0.05;
+    let pos = this.keySet.getAttribute("position");
+    if(pos.y < 0){
+      pos.y += 0.001;
+      this.keySet.setAttribute("position", pos);
     } else{
-      this.keySet.object3D.position.y = 0;
+      pos.y = 0;
+      this.keySet.setAttribute("position", pos);
     }
     
   }
