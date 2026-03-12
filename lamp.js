@@ -32,6 +32,7 @@ class Lamp{
     this.obj.append(this.cone);
 
 
+
     this.obj.onclick = ()=>{
       this.strength += this.dl;
       this.dl = -this.dl;
@@ -50,8 +51,8 @@ class Lamp{
 
     }
     
+    this.cone.setAttribute("static-body","");
     this.obj.setAttribute("position",{x:x,y:y,z:z});
-    this.obj.setAttribute("static-body","");
     scene.append(this.obj);
   }
   

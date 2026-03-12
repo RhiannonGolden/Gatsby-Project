@@ -1,7 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
-let level1Key, level1Completed = false, level1KeySpawn = false;
+let level1Key, level1Completed = false, level1KeySpawn = false, level2Key, level2Completed = false, level2KeySpawn = false, level3Key, level3Completed = false, level3KeySpawn = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -202,7 +202,8 @@ window.addEventListener("keydown",function(e){
 
 
   level1Key = new Key(5,0,0);
-
+  level2Key = new Key(-5,0,0);
+  level3Key = new Key(0,0,0);
 
 
   
@@ -324,6 +325,7 @@ function loop(){
   for(let bottle of bottles){
     bottle.spin();
 
+
     if(bottle.placed && bottle.down==false){
       for(let bullet of bullets){
       if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 0.75){
@@ -335,38 +337,32 @@ function loop(){
     }
   }
   bottle.shot();
-  console.log(level1Key.completed1);
+
 
   if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
     level1Key.unlock();
     level1Key.completed1 = true;
-    
-    //bottles[0].unlocked();
 
-    //bottles[0].completed1 = true;
     level1KeySpawn = true;
   }
 
   if(level1KeySpawn){
-    //bottles[0].up();
     level1Key.up();
   }
 
 
+  
   if(level1Key.keyCollected){
-    console.log(level1Key.keyCollected);
-    level1Key.teleport(user,-10, 7, 0);
+    //level1Key.teleport(user,-10, 7, 0);
     level1Completed = true;
-    //user.setAttribute("position", "-10 5 0");
+    user.setAttribute("position", "-10 5 0");
+    //fix teleport
     }
 
 
-
-
-
-
-
 }
+
+
 
 
 
@@ -392,9 +388,24 @@ for(let puzzle of puzzles){
   }
 
 
-  if(puzzle.completed1){
-    
+  if(puzzle.completed1 && level2KeySpawn == false){
+    level2Key.unlock();
+    level2Key.completed1 = true;
+
+    level2KeySpawn = true;
   }
+
+  if(level2KeySpawn){
+    level2Key.up();
+  }
+
+
+    if(level2Key.keyCollected){
+    //level2Key.teleport(user,-10, -7, 0);
+    level2Completed = true;
+    user.setAttribute("position", "-10 -7 0");
+    //fix teleport
+    }
 
 
 
@@ -436,6 +447,25 @@ for(let lamp of lamps){
   if(lampCompletedTime > 200){
     lamp.completed1 = true;
   }
+
+  if(lamp.completed1 && level3KeySpawn == false){
+    level3Key.unlock();
+    level3Key.completed1 = true;
+
+    level3KeySpawn = true;
+  }
+
+  if(level3KeySpawn){
+    level3Key.up();
+  }
+
+
+    if(level3Key.keyCollected){
+    //level3Key.teleport(user, 0, -7, 0);
+    level3Completed = true;
+    user.setAttribute("position", "0 -7 0");
+    //fix teleport
+    }
 
 }
   

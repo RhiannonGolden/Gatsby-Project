@@ -17,11 +17,14 @@ class Key{
     this.key.setAttribute("src","#key");
     this.key.setAttribute("scale", "0.15 0.15 0.15");
     this.key.classList.add("clickable");
+    
 
     this.key_table = document.createElement("a-gltf-model");
     this.key_table.setAttribute("position", "10 0 0");
     this.key_table.setAttribute("src","#key_table");
     this.key_table.setAttribute("scale", "0.01 0.01 0.01");
+    //this.key_table.classList.add("clickable");
+    
 
     this.keySet = document.createElement("a-entity");
     this.keySet.append(this.key);
@@ -31,16 +34,19 @@ class Key{
     this.keySet.setAttribute("position",{x:this.x, y:-2, z:this.z});
     this.keySet.setAttribute("shadow",{receive:true})
     this.keySet.setAttribute("static-body","");
-
-
+    //this.keySet.classList.add("clickable");
+    
     scene.append(this.keySet);
+
+
+    
     
 
 
 
 
     this.key.addEventListener("click", ()=> {
-      if(this.completed1){
+      if(this.completed1 && this.keyCollected == false){
         this.keyCollected = true;
         this.keySet.remove(); 
       }
