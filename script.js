@@ -122,9 +122,9 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 //fix falling through floor physics
-//add hall of pictures
-//shadow for camera(?)
-//add sounds (zombies)
+///add hall of pictures
+///shadow for camera(?)
+///add sounds (zombies)
 //change bottle class back to staic(or dynamic)
 
 
@@ -356,7 +356,7 @@ function loop(){
     //level1Key.teleport(user,-10, 7, 0);
     level1Completed = true;
     user.setAttribute("position", "-10 5 0");
-    //fix teleport
+    ///fix teleport
     }
 
 
@@ -404,7 +404,7 @@ for(let puzzle of puzzles){
     //level2Key.teleport(user,-10, -7, 0);
     level2Completed = true;
     user.setAttribute("position", "-10 -7 0");
-    //fix teleport
+    ///fix teleport
     }
 
 
@@ -464,7 +464,7 @@ for(let lamp of lamps){
     //level3Key.teleport(user, 0, -7, 0);
     level3Completed = true;
     user.setAttribute("position", "0 -7 0");
-    //fix teleport
+    ///fix teleport
     }
 
 }
