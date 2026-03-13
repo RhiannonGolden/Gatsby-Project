@@ -45,12 +45,7 @@ class Key{
 
 
 
-    this.key.addEventListener("click", ()=> {
-      if(this.completed1 && this.keyCollected == false){
-        this.keyCollected = true;
-        this.keySet.remove(); 
-      }
-    });
+    
 
 
 
@@ -82,7 +77,19 @@ class Key{
 
 
   teleport(who, newX, newY, newZ){
-    who.setAttribute("position",{x:newX, y:newY, z:newZ});
+
+    this.key.addEventListener("click", ()=> {
+      if(this.completed1 && this.keyCollected == false){
+        this.keyCollected = true;
+        this.keySet.remove(); 
+        console.log("keyClicked");
+
+        who.setAttribute("position",{x:newX, y:newY, z:newZ});
+        
+      }
+    });
+    
+    
   }
 
 

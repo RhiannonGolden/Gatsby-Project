@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded",function() {
   
 
 
-  for(let i = 0; i < 1; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -176,7 +176,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-///add sounds for click lamp & puzzle, collect key, pedestal rise, place crate, destory crate, background music
+///add sounds for click lamp & puzzle, collect key and ammo and health and bottle, place bottle, pedestal rise, place crate, destory crate, background music
 //fix falling through floor physics
 ///add hall of pictures
 //change bottle class back to staic(or dynamic)
@@ -406,8 +406,6 @@ function loop(){
         bottle.down = true;
         bottlesFinishedCount++;
 
-        //let bottleSound = document.getElementById("bottleSound");
-        //bottleSound.play();
       }
     }
   }
@@ -423,20 +421,38 @@ function loop(){
 
   if(level1KeySpawn){
     level1Key.up();
+    level1Key.teleport(user, -10, 5, 0);
   }
 
 
   
   if(level1Key.keyCollected && level1Completed == false){
+    console.log(level1Key.keyCollected);
+    //user.object3D.position.y = 10;
     //level1Key.teleport(user,-10, 7, 0);
+ 
     level1Completed = true;
-    user.setAttribute("position", "-10 5 0");
+    //user.setAttribute("position", "-10 5 0");
     //user.body.position.set(-10,5,0);
     ///fix teleport
     }
 
-
+/*
+  if(level1Completed){
+    bottle_count++;
+  }
+  if(level1Key.completed1){
+    //user.setAttribute("position", "-10 5 0");
+    level1Key.teleport(user, -10, 5, 0);
+  }
+*/
 }
+
+
+
+
+
+  
 
 
 
@@ -479,7 +495,7 @@ for(let puzzle of puzzles){
     if(level2Key.keyCollected){
     //level2Key.teleport(user,-10, -7, 0);
     level2Completed = true;
-    user.setAttribute("position", "-10 -7 0");
+    //user.setAttribute("position", "-10 -7 0");
     ///fix teleport
     }
 
@@ -539,7 +555,7 @@ for(let lamp of lamps){
     if(level3Key.keyCollected){
     //level3Key.teleport(user, 0, -7, 0);
     level3Completed = true;
-    user.setAttribute("position", "0 -7 0");
+    //user.setAttribute("position", "0 -7 0");
     ///fix teleport
     }
 
