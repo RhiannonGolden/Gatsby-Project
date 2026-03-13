@@ -176,7 +176,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-
+///add sounds for click lamp & puzzle, collect key, pedestal rise, place crate, destory crate
 //fix falling through floor physics
 ///add hall of pictures
 //change bottle class back to staic(or dynamic)
