@@ -29,7 +29,7 @@ class Zombie{
     this.obj.setAttribute("scale", "1.25 1 1.25");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
 
-    //this.obj.setAttribute("kinema-body","0.8");
+   this.obj.setAttribute("sound",{src: "#zombieSound", loop:true});
 
     scene.append(this.obj);
 
@@ -72,6 +72,7 @@ class Zombie{
 
       this.x = this.obj.object3D.position.x += Math.sin(move) * this.speed;
       this.z = this.obj.object3D.position.z += Math.cos(move) * this.speed;
+
     }
   }
 

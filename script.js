@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded",function() {
   
 
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 1; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -266,6 +266,10 @@ window.addEventListener("keydown",function(e){
   level3Key = new Key(0,0,0);
 
 
+  zombieAttackSound = document.getElementById("zombieAttackSound");
+  zombieAttackSound.loop = true;
+  zombieAttackSound.volume = 0.20;
+
   
   loop();
 })
@@ -311,21 +315,30 @@ function loop(){
       if( (d1 < zombie.followDistance) && (d1 > 1.5) && zombie.speed == 0.01){
         zombie.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
         zombie.chase = true;
-
+        zombie.obj.components.sound.playSound();
+        zombieAttackSound.pause();
+        zombieAttackSound.currentTime = 0;
       } 
       else if( (d1 < zombie.followDistance) && (d1 > 1.5) && zombie.speed == 0.03){
         zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
         zombie.chase = true;
+        zombie.obj.components.sound.playSound();
+        zombieAttackSound.pause();
+        zombieAttackSound.currentTime = 0; 
       }
       else if(d1 <= 1.5 && zombie.speed == 0.01 && zombie.PhealthDown == true){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
-        Phealth_count -= 0.025;       
+        Phealth_count -= 0.025;  
+        zombieAttackSound.play();  
+        zombie.obj.components.sound.stopSound();   
       }
       else if(d1 < 2 && zombie.speed == 0.03 && zombie.PhealthDown == true){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
         zombie.chase = false;
-        Phealth_count -= 0.05;        
+        Phealth_count -= 0.05;
+        zombieAttackSound.play();   
+        zombie.obj.components.sound.stopSound();     
       }
       else{
         zombie.chase = false;
