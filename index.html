@@ -51,6 +51,11 @@
             <img id="puzzle14" src="pictures/puzzle14.jpg">
             <img id="puzzle15" src="pictures/puzzle15.jpg">
             <img id="puzzle16" src="pictures/puzzle16.jpg">
+
+            <audio id="walkSound" src="walking.mp3" preload="auto"></audio>
+            <audio id="bottleSound" src="bottle.mp3" preload="auto"></audio>
+            <audio id="jumpSound" src="jumpSound.mp3" preload="auto"></audio>
+            <audio id="throwSound" src="throwSound.mp3" preload="auto"></audio>
         </a-assets>
 
         <a-entity light="type: ambient; intensity: -0.5"></a-entity>
@@ -97,8 +102,10 @@
               <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
               <a-text id="bottle_score" position="4.8 0.55 -3" color="black"></a-text>
               <a-gltf-model src="#bottle" position="4.5 0.5 -3" scale="1.5 1.5 1.5" rotation="30 20 0"></a-gltf-model>
+              
             </a-cursor>
           </a-camera>
+
         </a-entity>
       
 

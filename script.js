@@ -2,6 +2,7 @@ let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
 let level1Key, level1Completed = false, level1KeySpawn = false, level2Key, level2Completed = false, level2KeySpawn = false, level3Key, level3Completed = false, level3KeySpawn = false;
+let walking = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -12,6 +13,8 @@ window.addEventListener("DOMContentLoaded",function() {
   bottle_score = document.getElementById("bottle_score");
   cursor = document.getElementById("cursorID");
   user = document.getElementById("user");
+
+  
 
 
   for(let i = 0; i < 0; i++){
@@ -67,7 +70,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
     let lampColor = rnd(1,10);
 
-    if(lampColor > 7){
+    if(lampColor > 6){
       lampColor = "#27df27";
       
     } else{
@@ -111,20 +114,71 @@ window.addEventListener("DOMContentLoaded",function() {
 
   Phealth_count = 75;
 
+  throwSound = document.getElementById("throwSound");
+  throwSound.loop = false;
+  throwSound.volume = 1;
   window.addEventListener("keydown",function(e){
     if(e.key == "r" && bullets_count > 0){
       let bullet = new Bullet();
       bullets.push(bullet);
       bullets_count--;
+      throwSound.play();
     }
-  })
+  });
+
+
+  walkSound = document.getElementById("walkSound");
+  walkSound.loop = true;
+  walkSound.volume = 0.4;
+  let wDown = false, aDown = false, sDown = false, dDown = false;
+
+  window.addEventListener("keydown",function(e){
+    if(e.key == "w"){
+      wDown = true;
+      walkSound.play();
+    } else if(e.key == "a"){
+      aDown = true;
+      walkSound.play();
+    }
+    else if(e.key == "s"){
+      sDown = true;
+      walkSound.play();
+    }
+    else if(e.key == "d"){
+      dDown = true;
+      walkSound.play();
+    }
+  });
+
+
+    window.addEventListener("keyup",function(e){
+    if(e.key == "w"){
+      wDown = false;
+      walkSound.pause();
+      walkSound.currentTime = 0;
+    } else if(e.key == "a"){
+      aDown = false;
+      walkSound.pause(); 
+      walkSound.currentTime = 0;
+    }
+    else if(e.key == "s"){
+      sDown = false;
+      walkSound.pause(); 
+      walkSound.currentTime = 0;
+    }
+    else if(e.key == "d"){
+      dDown = false;
+      walkSound.pause(); 
+      walkSound.currentTime = 0;
+    }
+  });
+
+
 
 
 
 //fix falling through floor physics
 ///add hall of pictures
-///shadow for camera(?)
-///add sounds (zombies)
 //change bottle class back to staic(or dynamic)
 
 
@@ -150,10 +204,16 @@ window.addEventListener("keydown",function(e){
 });
 
 
+jumpSound = document.getElementById("jumpSound");
+jumpSound.loop = false;
+jumpSound.volume = 0.5;
+
 jump = new Jump(user);
 window.addEventListener("keydown",function(e){
   if(e.key == " "){
     jump.start();   
+    setTimeout(() => {jumpSound.play();}, 200);
+    
   }
 });
 
@@ -325,7 +385,6 @@ function loop(){
   for(let bottle of bottles){
     bottle.spin();
 
-
     if(bottle.placed && bottle.down==false){
       for(let bullet of bullets){
       if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 0.75){
@@ -333,6 +392,9 @@ function loop(){
         bullet.obj.remove();
         bottle.down = true;
         bottlesFinishedCount++;
+
+        //let bottleSound = document.getElementById("bottleSound");
+        //bottleSound.play();
       }
     }
   }
@@ -352,10 +414,11 @@ function loop(){
 
 
   
-  if(level1Key.keyCollected){
+  if(level1Key.keyCollected && level1Completed == false){
     //level1Key.teleport(user,-10, 7, 0);
     level1Completed = true;
     user.setAttribute("position", "-10 5 0");
+    //user.body.position.set(-10,5,0);
     ///fix teleport
     }
 

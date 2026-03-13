@@ -26,6 +26,8 @@ class Bottle{
     this.obj.setAttribute("rotation",{x:0, y:9, z:0});
     this.obj.setAttribute("shadow",{receive:true})
 
+    this.obj.setAttribute("sound",{src: "#bottleSound", loop:false});
+
     scene.append(this.obj);
 
 
@@ -90,8 +92,14 @@ class Bottle{
 
   shot(){
     if(this.down && this.a1 > -90){
-      this.a1 -= this.da;
+      this.obj.components.sound.playSound();
+
+    setTimeout(() => {
+        this.a1 -= this.da;
       this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
+    }, 100);
+
+      
     }
   }
 
