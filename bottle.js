@@ -95,36 +95,16 @@ class Bottle{
       this.obj.components.sound.playSound();
 
     setTimeout(() => {
-        this.a1 -= this.da;
+      this.a1 -= this.da;
       this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
-    }, 100);
+    }, 150);
 
       
     }
   }
 
 
-  unlocked(){
-    this.keySet.setAttribute("visible", true);
-  }
 
-
-  up(){
-    let pos = this.keySet.getAttribute("position");
-    if(pos.y < 0){
-      pos.y += 0.001;
-      this.keySet.setAttribute("position", pos);
-    }
-    
-    else if(pos.y >= 0){
-      pos.y = 0;
-      this.keySet.setAttribute("position", pos);
-
-      this.a += this.da2;
-      this.key.setAttribute("rotation",{x:0, y:this.a, z:0});
-    }
-    
-  }
 
 
 

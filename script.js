@@ -1,7 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
-let level1Key, level1Completed = false, level1KeySpawn = false, level2Key, level2Completed = false, level2KeySpawn = false, level3Key, level3Completed = false, level3KeySpawn = false;
+let level1Key, level1Completed = false, level1KeySpawn = false, level1Teleport = false, level1Teleported = false;
 let walking = false;
 
 window.addEventListener("DOMContentLoaded",function() {
@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded",function() {
   
 
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 10; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -176,15 +176,16 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-///add sounds for click lamp & puzzle, collect key and ammo and health and bottle, place bottle, pedestal rise, place crate, destory crate, background music
-//fix falling through floor physics
+///add sounds for collect key and ammo and health and bottle, pedestal rise, background music
 ///add hall of pictures
 //change bottle class back to staic(or dynamic)
 
 
 
 
-
+cratePlace = document.getElementById("cratePlace");
+cratePlace.loop = false;
+cratePlace.volume = 0.5;
 window.addEventListener("keydown",function(e){
   if(e.key == "q"){
 
@@ -197,7 +198,10 @@ window.addEventListener("keydown",function(e){
       let zRotate = (camera.object3D.rotation.y)*(180/Math.PI);
       
       let crate = new Crate(rayPoint.x,rayPoint.y+1,rayPoint.z,0,0,zRotate);
-      crates.push(crate);    
+      crates.push(crate);  
+      
+      cratePlace.currentTime = 0;
+      cratePlace.play();  
        
     }
   }
@@ -229,6 +233,10 @@ window.addEventListener("keydown",function(e){
   
   let pedestals = document.querySelectorAll(".pedestal");
 
+  bottlePlace = document.getElementById("bottlePlace");
+  bottlePlace.loop = false;
+  bottlePlace.volume = 1;
+
   pedestals.forEach(pedestal => {
     pedestal.hasBottle = false;
 
@@ -247,10 +255,12 @@ window.addEventListener("keydown",function(e){
           bottle_count--;
 
           pedestal.hasBottle = true;
+          
         }
 
         if(pedestal.hasBottle){
           pedestal.setAttribute("material", {color: "#006400", emissive: "#006400", emissiveIntensity: "10"});
+          bottlePlace.play();
         }
         
 
@@ -262,8 +272,7 @@ window.addEventListener("keydown",function(e){
 
 
   level1Key = new Key(5,0,0);
-  level2Key = new Key(-5,0,0);
-  level3Key = new Key(0,0,0);
+
 
 
   zombieAttackSound = document.getElementById("zombieAttackSound");
@@ -410,43 +419,41 @@ function loop(){
     }
   }
   bottle.shot();
+}
 
 
-  if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
-    level1Key.unlock();
-    level1Key.completed1 = true;
+if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
+  level1Key.unlock();
+  level1Key.completed1 = true;
 
-    level1KeySpawn = true;
+  level1KeySpawn = true;
+}
+
+
+
+if(level1KeySpawn){
+  level1Key.up();
+
+  if(level1Key.keyCollected){
+    console.log("collected");
   }
+}
 
-  if(level1KeySpawn){
-    level1Key.up();
-    level1Key.teleport(user, -10, 5, 0);
-  }
-
-
-  
-  if(level1Key.keyCollected && level1Completed == false){
-    console.log(level1Key.keyCollected);
-    //user.object3D.position.y = 10;
-    //level1Key.teleport(user,-10, 7, 0);
- 
-    level1Completed = true;
-    //user.setAttribute("position", "-10 5 0");
-    //user.body.position.set(-10,5,0);
-    ///fix teleport
-    }
 
 /*
-  if(level1Completed){
-    bottle_count++;
-  }
-  if(level1Key.completed1){
-    //user.setAttribute("position", "-10 5 0");
-    level1Key.teleport(user, -10, 5, 0);
-  }
-*/
+if(level1Key.keyCollected && !level1Teleported){
+  level1Key.teleport(user,-10,5,0);
+  level1Teleported = true;
 }
+
+if(level1Key.keyCollected && level1Completed == false){
+  level1Completed = true;
+}
+    */
+
+
+
+
 
 
 
@@ -480,24 +487,7 @@ for(let puzzle of puzzles){
   }
 
 
-  if(puzzle.completed1 && level2KeySpawn == false){
-    level2Key.unlock();
-    level2Key.completed1 = true;
 
-    level2KeySpawn = true;
-  }
-
-  if(level2KeySpawn){
-    level2Key.up();
-  }
-
-
-    if(level2Key.keyCollected){
-    //level2Key.teleport(user,-10, -7, 0);
-    level2Completed = true;
-    //user.setAttribute("position", "-10 -7 0");
-    ///fix teleport
-    }
 
 
 
@@ -540,24 +530,7 @@ for(let lamp of lamps){
     lamp.completed1 = true;
   }
 
-  if(lamp.completed1 && level3KeySpawn == false){
-    level3Key.unlock();
-    level3Key.completed1 = true;
 
-    level3KeySpawn = true;
-  }
-
-  if(level3KeySpawn){
-    level3Key.up();
-  }
-
-
-    if(level3Key.keyCollected){
-    //level3Key.teleport(user, 0, -7, 0);
-    level3Completed = true;
-    //user.setAttribute("position", "0 -7 0");
-    ///fix teleport
-    }
 
 }
   

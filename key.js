@@ -9,6 +9,7 @@ class Key{
     
     this.completed1 = false;
     this.keyCollected = false;
+    this.relocate = false;
     
 
 
@@ -40,7 +41,12 @@ class Key{
 
 
     
-    
+    this.key.addEventListener("click", ()=> {
+      if(this.completed1 && this.keyCollected == false){
+        this.keyCollected = true;
+        this.keySet.remove();     
+      }
+    });
 
 
 
@@ -76,21 +82,10 @@ class Key{
   }
 
 
-  teleport(who, newX, newY, newZ){
+  teleport(who,newX,newY,newZ){
+    if(this)
+    who.setAttribute("position",{x:newX,y:newY,z:newZ});
 
-    this.key.addEventListener("click", ()=> {
-      if(this.completed1 && this.keyCollected == false){
-        this.keyCollected = true;
-        this.keySet.remove(); 
-        console.log("keyClicked");
-
-        who.setAttribute("position",{x:newX, y:newY, z:newZ});
-        
-      }
-    });
-    
-    
   }
-
 
 }

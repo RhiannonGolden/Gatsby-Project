@@ -17,7 +17,7 @@ class Puzzle{
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:-6.94});
     this.obj.setAttribute("rotation",{x:0, y:0, z:this.rotate});
 
-    //this.obj.setAttribute("color", "rgb(255, 128, 128)");
+    this.obj.setAttribute("sound",{src: "#puzzleMove", loop:false});
 
     scene.append(this.obj);
 
@@ -25,8 +25,14 @@ class Puzzle{
 
     this.obj.addEventListener("click", ()=> {
       if(this.click == false && this.correct == false){
+
+        this.obj.components.sound.currentTime = 0;
+        this.obj.components.sound.playSound();
+
         this.rotate += 90;
         this.obj.setAttribute("rotation",{x:0, y:0, z:this.rotate});
+
+        
       }
     });
 

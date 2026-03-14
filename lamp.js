@@ -31,9 +31,15 @@ class Lamp{
     this.cone.setAttribute("material", {emissive: this.lampColor});
     this.obj.append(this.cone);
 
+    this.obj.setAttribute("sound",{src: "#lampSwitch", loop:false});
 
 
-    this.obj.onclick = ()=>{
+
+    this.obj.addEventListener("click",()=>{
+
+      this.obj.components.sound.currentTime = 0;
+      this.obj.components.sound.playSound();
+      
       this.strength += this.dl;
       this.dl = -this.dl;
 
@@ -49,7 +55,7 @@ class Lamp{
         this.cone.setAttribute("material", {emissiveIntensity:2});  
       }
 
-    }
+    });
     
     this.cone.setAttribute("static-body","");
     this.obj.setAttribute("position",{x:x,y:y,z:z});

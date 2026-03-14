@@ -13,6 +13,7 @@ class Crate{
     this.obj.setAttribute("src","#crate");
     this.obj.setAttribute("scale", "1.55 1.30 1.55");
 
+    this.obj.setAttribute("sound",{src: "#woodBreak", loop:false});
     
     this.obj.setAttribute("position",{x:this.x,y:this.y-0.55,z:this.z});
     this.obj.setAttribute("rotation",{x:this.xRotate,y:this.yRotate,z:this.zRotate});
@@ -25,6 +26,8 @@ class Crate{
 
     this.obj.addEventListener("click",()=>{
       this.obj.remove();
+      this.obj.components.sound.currentTime = 0;
+      this.obj.components.sound.playSound();
     })
 
 
