@@ -83,8 +83,6 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
   for(let i = 1; i < 17; i++){
-    let x1 = -1.5;
-    let y1 = 3.6;
 
     let random = Math.round( rnd(1,3) );
     if(random == 1){
@@ -97,14 +95,14 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
     if(i < 5){
-      puzzles.push(new Puzzle(x1-1+i, y1, i, rotate));
+      puzzles.push(new Puzzle(-1+i, 0, i, rotate));
       
     } else if(i >= 5 && i < 9){
-      puzzles.push(new Puzzle(x1-5+i, y1-1, i, rotate));
+      puzzles.push(new Puzzle(-5+i, -1, i, rotate));
     } else if(i >= 9 && i < 13){
-      puzzles.push(new Puzzle(x1-9+i, y1-2, i, rotate));
+      puzzles.push(new Puzzle(-9+i, -2, i, rotate));
     } else if(i >= 13){
-      puzzles.push(new Puzzle(x1-13+i, y1-3, i, rotate));
+      puzzles.push(new Puzzle(-13+i, -3, i, rotate));
     }
       
 
@@ -397,7 +395,7 @@ function loop(){
 
   for(let ammo of ammos){
     if( (distance(ammo.obj,camera) < 1) && ammo.pickUp==true){
-      //itemCollect.currentTime = 0;
+      itemCollect.currentTime = 0;
       itemCollect.play();
       bullets_count+=5;
       ammo.pickUp = false;
@@ -410,7 +408,7 @@ function loop(){
 
   for(let heart of hearts){
     if( (distance(heart.obj,camera) < 0.75) && heart.pickUp==true && Phealth_count < 100){
-      //itemCollect.currentTime = 0;
+      itemCollect.currentTime = 0;
       itemCollect.play();
       Phealth_count += 5;
       heart.pickUp = false;

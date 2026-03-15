@@ -76,8 +76,6 @@ class Key{
       this.a += this.da;
       this.key.setAttribute("rotation",{x:0, y:this.a, z:0});
     }
-
-    //this.key.components.sound.playSound();
     
   }
 

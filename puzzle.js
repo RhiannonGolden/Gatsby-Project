@@ -14,7 +14,7 @@ class Puzzle{
     this.obj.setAttribute("width", 1);
     this.obj.setAttribute("height", 1);
     this.obj.setAttribute("depth", 0.1);
-    this.obj.setAttribute("position",{x:this.x,y:this.y,z:-6.94});
+    this.obj.setAttribute("position",{x:-1.5+this.x,y:3.6+this.y,z:-6.94});
     this.obj.setAttribute("rotation",{x:0, y:0, z:this.rotate});
 
     this.obj.setAttribute("sound",{src: "#puzzleMove", loop:false});
@@ -40,7 +40,7 @@ class Puzzle{
 
   correctCheck(){
     if(this.correct==false){
-      this.obj.setAttribute("color", "rgb(255, 128, 128)");
+      this.obj.setAttribute("color", "rgb(238, 190, 190)");
     }
     if(this.rotate==0 || this.rotate==360){
       this.correct = true;
