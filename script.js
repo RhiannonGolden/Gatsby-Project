@@ -65,7 +65,7 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
-   for(let i =0;  i < 5; i++){
+   for(let i = 0;  i < 4; i++){
     let x = rnd(-10, 10);
     let z = rnd(-10,10);
 
@@ -80,6 +80,15 @@ window.addEventListener("DOMContentLoaded",function() {
     
     lamps.push(new Lamp(x,3,z,lampColor));
   }
+
+  
+   for(let i = 0;  i < 1; i++){
+    let x = rnd(-10, 10);
+    let z = rnd(-10,10);
+    
+    lamps.push(new Lamp(x,3,z,"#27df27"));
+  }
+
 
 
 
@@ -436,7 +445,9 @@ function loop(){
     }
   }
   bottle.shot();
+
 }
+
 
 
 if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
@@ -484,7 +495,6 @@ for(let puzzle of puzzles){
 
   if(puzzleCompletedTime > 200){
     puzzle.completed1 = true;
-    
   }
 
   if(puzzle.completed1 && level2KeySpawn == false){

@@ -5,7 +5,7 @@ class Key{
     this.z = z;
 
     this.a = 0;
-    this.da = 0.3;
+    this.da = 0.2;
     
     this.completed1 = false;
     this.keyCollected = false;
@@ -14,7 +14,7 @@ class Key{
 
 
     this.key = document.createElement("a-gltf-model");
-    this.key.setAttribute("position", "10 1 0");
+    this.key.setAttribute("position", "0 1 0");
     this.key.setAttribute("src","#key");
     this.key.setAttribute("scale", "0.15 0.15 0.15");
     this.key.classList.add("clickable");
@@ -22,7 +22,7 @@ class Key{
     
 
     this.key_table = document.createElement("a-gltf-model");
-    this.key_table.setAttribute("position", "10 0 0");
+    this.key_table.setAttribute("position", "0 0 0");
     this.key_table.setAttribute("src","#key_table");
     this.key_table.setAttribute("scale", "0.01 0.01 0.01");
     this.key_table.setAttribute("sound",{src: "#challengeComplete", loop:false});
@@ -65,7 +65,7 @@ class Key{
   up(){
     let pos = this.keySet.getAttribute("position");
     if(pos.y < 0){
-      pos.y += 0.001;
+      pos.y += 0.0075;
       this.keySet.setAttribute("position", pos);
     }
     
