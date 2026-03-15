@@ -176,7 +176,6 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-///add sounds for background music
 ///add hall of pictures
 //change bottle class back to staic(or dynamic)
 
