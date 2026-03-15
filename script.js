@@ -1,8 +1,9 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, puzzles = [ ], rotate, crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false, puzzleFinished = false, puzzleCompletedTime = 0, bottlesFinished = false, bottlesFinishedCount = 0;
-let level1Key, level1Completed = false, level1KeySpawn = false, level1Teleport = false, level1Teleported = false;
-let walking = false;
+let level1Key, level1Completed = false, level1KeySpawn = false, level1Teleport = false, level1Teleported = false, level1KeySoundPlayed = false;
+let level2Key, level2Completed = false, level2KeySpawn = false, level2Teleport = false, level2Teleported = false, level2KeySoundPlayed = false;
+let level3Key, level3Completed = false, level3KeySpawn = false, level3Teleport = false, level3Teleported = false, level3KeySoundPlayed = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -174,7 +175,6 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-///add hall of pictures
 //change bottle class back to staic(or dynamic)
 
 
@@ -269,6 +269,8 @@ window.addEventListener("keydown",function(e){
 
 
   level1Key = new Key(5,0,0);
+  level2Key = new Key(10,0,0);
+  level3Key = new Key(15,0,0);
 
 
 
@@ -440,20 +442,24 @@ function loop(){
 if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
   level1Key.unlock();
   level1Key.completed1 = true;
-
   level1KeySpawn = true;
 }
 
 
-
 if(level1KeySpawn){
   level1Key.up();
-  tableUp.play();
-  level1KeySpawn = false;
+
+  if(level1KeySoundPlayed == false){
+    tableUp.currentTime = 0;
+    tableUp.play();
+    level1KeySoundPlayed = true;
+  }
+
 
   if(level1Key.keyCollected){
     console.log("collected");
   }
+  
 }
 
 
@@ -481,8 +487,27 @@ for(let puzzle of puzzles){
     
   }
 
+  if(puzzle.completed1 && level2KeySpawn == false){
+    level2Key.unlock();
+    level2Key.completed1 = true;
+    level2KeySpawn = true;
+  }
 
 
+  if(level2KeySpawn){
+    level2Key.up();
+
+    if(level2KeySoundPlayed == false){
+      tableUp.currentTime = 0;
+      tableUp.play();
+      level2KeySoundPlayed = true;
+    }
+
+    if(level2Key.keyCollected){
+      console.log("collected");
+    }
+      
+  }
 
 
 
@@ -523,6 +548,30 @@ for(let lamp of lamps){
 
   if(lampCompletedTime > 200){
     lamp.completed1 = true;
+  }
+
+
+  if(lamp.completed1 && level3KeySpawn == false){
+    level3Key.unlock();
+    level3Key.completed1 = true;
+    level3KeySpawn = true;
+  }
+
+
+  if(level3KeySpawn){
+    level3Key.up();
+
+    if(level3KeySoundPlayed == false){
+      tableUp.currentTime = 0;
+      tableUp.play();
+      level3KeySoundPlayed = true;
+    }
+
+
+    if(level3Key.keyCollected){
+      console.log("collected");
+    }
+    
   }
 
   

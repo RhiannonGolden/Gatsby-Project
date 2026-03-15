@@ -5,7 +5,7 @@ class Key{
     this.z = z;
 
     this.a = 0;
-    this.da = 0.45;
+    this.da = 0.3;
     
     this.completed1 = false;
     this.keyCollected = false;
@@ -34,7 +34,7 @@ class Key{
     this.keySet.append(this.key_table);
 
     this.keySet.setAttribute("visible", false);
-    this.keySet.setAttribute("position",{x:this.x, y:-2, z:this.z});
+    this.keySet.setAttribute("position",{x:this.x, y:-6, z:this.z});
     this.keySet.setAttribute("shadow",{receive:true})
     this.keySet.setAttribute("static-body","");
     //this.keySet.classList.add("clickable");
@@ -65,7 +65,7 @@ class Key{
   up(){
     let pos = this.keySet.getAttribute("position");
     if(pos.y < 0){
-      pos.y += 0.005;
+      pos.y += 0.001;
       this.keySet.setAttribute("position", pos);
     }
     
