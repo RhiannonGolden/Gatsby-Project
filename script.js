@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded",function() {
   
 
 
-  for(let i = 0; i < 10; i++){
+  for(let i = 0; i < 0; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -43,14 +43,14 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 0; i++){
+   for(let i = 0; i < 5; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 5; i++){
     let x = rnd(-20, 20);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
@@ -176,7 +176,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
 
-///add sounds for collect key and ammo and health and bottle, pedestal rise, background music
+///add sounds for background music
 ///add hall of pictures
 //change bottle class back to staic(or dynamic)
 
@@ -279,12 +279,25 @@ window.addEventListener("keydown",function(e){
   zombieAttackSound.loop = true;
   zombieAttackSound.volume = 0.20;
 
+  itemCollect = document.getElementById("itemCollect");
+  itemCollect.loop = false;
+  itemCollect.volume = 0.25;
+
+  tableUp = document.getElementById("tableUp");
+  tableUp.loop = false;
+  tableUp.volume = 1;
+
+  music = document.getElementById("music");
+  music.loop = true;
+  music.volume = 1;
   
   loop();
 })
 
 
 function loop(){
+  music.play();
+
 
   jump.update();
   swim.update();
@@ -325,15 +338,15 @@ function loop(){
         zombie.obj.setAttribute("animation-mixer", {clip: "Walk_InPlace", loop:"repeat"});
         zombie.chase = true;
         zombie.obj.components.sound.playSound();
-        zombieAttackSound.pause();
         zombieAttackSound.currentTime = 0;
+        zombieAttackSound.pause();
       } 
       else if( (d1 < zombie.followDistance) && (d1 > 1.5) && zombie.speed == 0.03){
         zombie.obj.setAttribute("animation-mixer", {clip: "Run_InPlace", loop:"repeat"});
         zombie.chase = true;
         zombie.obj.components.sound.playSound();
-        zombieAttackSound.pause();
         zombieAttackSound.currentTime = 0; 
+        zombieAttackSound.pause();
       }
       else if(d1 <= 1.5 && zombie.speed == 0.01 && zombie.PhealthDown == true){
         zombie.obj.setAttribute("animation-mixer", {clip: "Attack", loop:"repeat"});
@@ -385,6 +398,8 @@ function loop(){
 
   for(let ammo of ammos){
     if( (distance(ammo.obj,camera) < 1) && ammo.pickUp==true){
+      //itemCollect.currentTime = 0;
+      itemCollect.play();
       bullets_count+=5;
       ammo.pickUp = false;
       ammo.obj.remove();
@@ -396,6 +411,8 @@ function loop(){
 
   for(let heart of hearts){
     if( (distance(heart.obj,camera) < 0.75) && heart.pickUp==true && Phealth_count < 100){
+      //itemCollect.currentTime = 0;
+      itemCollect.play();
       Phealth_count += 5;
       heart.pickUp = false;
       heart.obj.remove();
@@ -414,6 +431,7 @@ function loop(){
         bullet.obj.remove();
         bottle.down = true;
         bottlesFinishedCount++;
+        bottle.shotSound();
 
       }
     }
@@ -433,33 +451,13 @@ if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
 
 if(level1KeySpawn){
   level1Key.up();
+  tableUp.play();
+  level1KeySpawn = false;
 
   if(level1Key.keyCollected){
     console.log("collected");
   }
 }
-
-
-/*
-if(level1Key.keyCollected && !level1Teleported){
-  level1Key.teleport(user,-10,5,0);
-  level1Teleported = true;
-}
-
-if(level1Key.keyCollected && level1Completed == false){
-  level1Completed = true;
-}
-    */
-
-
-
-
-
-
-
-
-
-  
 
 
 
@@ -530,11 +528,12 @@ for(let lamp of lamps){
     lamp.completed1 = true;
   }
 
+  
 
 
 }
   
-
+  
 
   //change to timeout(?)
   window.requestAnimationFrame(loop);

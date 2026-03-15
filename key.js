@@ -5,7 +5,7 @@ class Key{
     this.z = z;
 
     this.a = 0;
-    this.da = 0.25;
+    this.da = 0.45;
     
     this.completed1 = false;
     this.keyCollected = false;
@@ -18,12 +18,14 @@ class Key{
     this.key.setAttribute("src","#key");
     this.key.setAttribute("scale", "0.15 0.15 0.15");
     this.key.classList.add("clickable");
+    //this.key.setAttribute("sound",{src: "#tableUp", loop:false});
     
 
     this.key_table = document.createElement("a-gltf-model");
     this.key_table.setAttribute("position", "10 0 0");
     this.key_table.setAttribute("src","#key_table");
     this.key_table.setAttribute("scale", "0.01 0.01 0.01");
+    this.key_table.setAttribute("sound",{src: "#challengeComplete", loop:false});
     //this.key_table.classList.add("clickable");
     
 
@@ -43,15 +45,12 @@ class Key{
     
     this.key.addEventListener("click", ()=> {
       if(this.completed1 && this.keyCollected == false){
+        this.key_table.components.sound.playSound();
         this.keyCollected = true;
-        this.keySet.remove();     
+        this.key.remove();
+
       }
     });
-
-
-
-
-    
 
 
 
@@ -63,11 +62,10 @@ class Key{
   }
 
 
-
   up(){
     let pos = this.keySet.getAttribute("position");
     if(pos.y < 0){
-      pos.y += 0.001;
+      pos.y += 0.005;
       this.keySet.setAttribute("position", pos);
     }
     
@@ -78,6 +76,8 @@ class Key{
       this.a += this.da;
       this.key.setAttribute("rotation",{x:0, y:this.a, z:0});
     }
+
+    //this.key.components.sound.playSound();
     
   }
 

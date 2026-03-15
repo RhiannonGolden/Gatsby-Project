@@ -15,7 +15,6 @@ class Bottle{
     this.placed = false;
     this.down = false;
     this.completed = false;
-    this.keyCollected = false;
     
 
     this.obj = document.createElement("a-gltf-model");
@@ -65,6 +64,9 @@ class Bottle{
         this.collected = true;
         bottle_count++;
         this.obj.remove();   
+        
+        itemCollect.currentTime = 0;
+        itemCollect.play();
       }
     });
 
@@ -92,15 +94,14 @@ class Bottle{
 
   shot(){
     if(this.down && this.a1 > -90){
-      this.obj.components.sound.playSound();
-
-    setTimeout(() => {
       this.a1 -= this.da;
-      this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});
-    }, 150);
-
-      
+      this.obj.setAttribute("rotation",{x:this.a1, y:0, z:0});      
     }
+  }
+
+
+  shotSound(){
+    this.obj.components.sound.playSound();
   }
 
 
