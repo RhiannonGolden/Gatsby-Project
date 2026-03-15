@@ -34,7 +34,7 @@ class Key{
     this.keySet.append(this.key_table);
 
     this.keySet.setAttribute("visible", false);
-    this.keySet.setAttribute("position",{x:this.x, y:-6, z:this.z});
+    this.keySet.setAttribute("position",{x:this.x, y:-4, z:this.z});
     this.keySet.setAttribute("shadow",{receive:true})
     this.keySet.setAttribute("static-body","");
     //this.keySet.classList.add("clickable");
