@@ -1,0 +1,67 @@
+<html>
+    <head>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="script.js"></script>
+    <script src="zombies.js"></script>
+    <script src="bullet.js"></script>
+    <script src="FLyCloud.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded",function() {
+          scene = document.querySelector("a-scene");
+
+          Door3 = this.document.getElementById("level4D");
+          Door3.addEventListener("click",function(){
+            window.location="Level4.html";
+
+
+          })
+        })
+    </script>
+ 
+    </head>
+
+    <body>
+        <a-scene>
+            <a-assets>
+             <img id="grass" src="png-clipart-tile-floor-brick-wall-brick-texture-angle-thumbnail.png">
+             <img id="sky2" src="sky-sea-march-08-2024.jpg">
+             <img id="Level3w" src="Image/Woodw.jpg">
+             <img id="Level3fl" src="Image/WoodC.jpg">
+             <img id="Level3cl" src="Image/WoodC.jpg">
+            </a-assets>
+
+
+      <!--Level3--><!--Casino(Jordan)-->
+        <!--base--><a-entity color="yellow" position="1 0 66" scale="2 1 2">
+        <!--Floor-->
+          <a-box color="#A16135" src="#Level3fl" repeat="15 15" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
+        <!--Walls-->
+          <!--SW--><a-box src="#Level3w" repeat="2 1" position="-60.6   24.8 0 " height="50" depth="100" width="0.2"></a-box>
+          <!--BW--><a-box src="#Level3w" repeat="1 1" rotation="0 90 0" position="1.9 24.7 50.1" height=50" depth="125.4" width="0.2"></a-box>
+          <!--SW--><a-box src="#Level3w" repeat="2 1" position="64.6 24.8 0" height="50" depth="100" width="0.2"></a-box>
+          <!--BW--><a-box src="#Level3w" repeat="1 1" rotation="0 90 0" position="2 24.8 -49.9" height="50" depth="125.4" width="0.2"></a-box>
+         
+          <!--Celling-->
+             <a-box color="#BD764D" src="#Level3cl" repeat="15  15" position="2 49.9 2" height="0.2" width="125" depth="105"></a-box>
+        </a-entity>
+      <!--Level/3-->
+
+        <a-entity id="level4D">
+          <a-cylinder color="red" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90 hieght="3"></a-cylinder>
+          <a-box side="double" height="5" depth="3.5" position="0 2.5 0"></a-box>
+          <a-box color="red" side="double" height="5" depth=".25" position="0 2.5 1.875"></a-box>
+          <a-box color="red" side="double" height="5" depth=".25" position="0 2.5 -1.875"></a-box>
+        </a-entity>
+
+
+      <a-plane scale="4 4" src="#grass" repeat="20 20" side="double" rotation="90 0 0" height="200"  width="200" color="green"></a-plane>
+      <a-sky src="#sky2"></a-sky> 
+      
+
+      <a-camera wasd-controls="acceleration: 200; fly: True" position="0 1 -4">
+        <a-cursor></a-cursor>
+      </a-camera>
+
+        </a-scene>
+    </body>
+</html>
