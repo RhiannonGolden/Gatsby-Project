@@ -62,8 +62,9 @@ window.addEventListener("DOMContentLoaded",function() {
 
   let totalBottles = 4;
   for(let i = 0; i < totalBottles; i++){
-    let bx = 0;
-    let bz = 0;
+    //let bx = 0;
+    //let bz = 0;
+    let x, z;
     let safe = false;
 
     for(let a = 0; a < 20; a++){
@@ -72,11 +73,11 @@ window.addEventListener("DOMContentLoaded",function() {
       safe = true;
 
       for(let bottle of bottles){
-        let bottleX = bottle.obj.object3D.position.x;
-        let bottleZ = bottle.obj.object3D.position.z;
-        let d = Math.sqrt((x - bottleX) ** 2 + (z - bottleZ) ** 2);
+        //let bottleX = bottle.obj.object3D.position.x;
+        //let bottleZ = bottle.obj.object3D.position.z;
+        //let d = Math.sqrt((x - bottleX) ** 2 + (z - bottleZ) ** 2);
 
-        if (d < 2){
+        if (distance(bottle.obj,bottle.obj) < 2){
           safe = false;
           break;
          }
@@ -102,15 +103,15 @@ for(let i = 1; i < totalLamps; i++){
 
 
   for(let a = 0; a < 20; a++){
-    x = rnd(-10,10);
-    z = rnd(-10,10);
+    x = rnd(-5,5);
+    z = rnd(-5,5);
     safe = true;
 
     for(let lamp of lamps){
-      let lampX = lamp.obj.object3D.position.x;
-      let lampZ = lamp.obj.object3D.position.z;
-      let d = Math.sqrt((x - lampX)**2 + (z - lampZ)**2);
-      if(d < 4){
+      //let lampX = lamp.obj.object3D.position.x;
+      //let lampZ = lamp.obj.object3D.position.z;
+      //let d = Math.sqrt((x - lampX)**2 + (z - lampZ)**2);
+      if(distance(lamp.obj, lamp.obj) < 3){
         safe = false;
         break;
       }
@@ -131,13 +132,6 @@ for(let i = 1; i < totalLamps; i++){
 
   lamps.push(new Lamp(x, 3, z, lampColor));
 }
-
-
-
-  
-
-    
-
 
 
 
@@ -229,11 +223,6 @@ for(let i = 1; i < totalLamps; i++){
       walkSound.currentTime = 0;
     }
   });
-
-
-
-
-//change bottle class back to staic(or dynamic)
 
 
 
@@ -634,7 +623,6 @@ for(let lamp of lamps){
   
   
 
-  //change to timeout(?)
   window.requestAnimationFrame(loop);
 }
 
