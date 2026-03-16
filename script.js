@@ -58,36 +58,85 @@ window.addEventListener("DOMContentLoaded",function() {
     hearts.push(new Hearts(x,z,a));
   }
 
-  for(let i = 0; i < 4; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
-    bottles.push(new Bottle(x,0,z));
-  }
 
 
-   for(let i = 0;  i < 4; i++){
-    let x = rnd(-10, 10);
-    let z = rnd(-10,10);
+  let totalBottles = 4;
+  for(let i = 0; i < totalBottles; i++){
+    let bx = 0;
+    let bz = 0;
+    let safe = false;
 
-    let lampColor = rnd(1,10);
+    for(let a = 0; a < 20; a++){
+      x = rnd(-5, 5);
+      z = rnd(-5, 5);
+      safe = true;
 
-    if(lampColor > 6){
-      lampColor = "#27df27";
-      
-    } else{
-      lampColor = "#b3ca4d";
+      for(let bottle of bottles){
+        let bottleX = bottle.obj.object3D.position.x;
+        let bottleZ = bottle.obj.object3D.position.z;
+        let d = Math.sqrt((x - bottleX) ** 2 + (z - bottleZ) ** 2);
+
+        if (d < 2){
+          safe = false;
+          break;
+         }
+      }
+
+      if(safe){
+        break;
+      }
     }
-    
-    lamps.push(new Lamp(x,3,z,lampColor));
+    bottles.push(new Bottle(x, 0, z));
   }
 
   
-   for(let i = 0;  i < 1; i++){
-    let x = rnd(-10, 10);
-    let z = rnd(-10,10);
-    
-    lamps.push(new Lamp(x,3,z,"#27df27"));
+
+
+
+lamps.push(new Lamp(rnd(-10,10), 3, rnd(-10,10), "#27df27"));
+
+let totalLamps = 5;
+for(let i = 1; i < totalLamps; i++){
+  let x, z;
+  let safe = false;
+
+
+  for(let a = 0; a < 20; a++){
+    x = rnd(-10,10);
+    z = rnd(-10,10);
+    safe = true;
+
+    for(let lamp of lamps){
+      let lampX = lamp.obj.object3D.position.x;
+      let lampZ = lamp.obj.object3D.position.z;
+      let d = Math.sqrt((x - lampX)**2 + (z - lampZ)**2);
+      if(d < 4){
+        safe = false;
+        break;
+      }
+    }
+
+    if(safe) break;
   }
+
+
+  let lampColorRnd = rnd(1,10);
+  let lampColor;
+  if(lampColorRnd > 6){
+    lampColor = "#27df27";
+  } else {
+    lampColor = "#b3ca4d";
+  }
+
+
+  lamps.push(new Lamp(x, 3, z, lampColor));
+}
+
+
+
+  
+
+    
 
 
 
