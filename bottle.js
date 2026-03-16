@@ -19,6 +19,7 @@ class Bottle{
 
     this.obj = document.createElement("a-gltf-model");
     this.obj.setAttribute("src","#bottle");
+    this.obj.setAttribute("static-body","");
     this.obj.classList.add("clickable");
     this.obj.setAttribute("scale", "2 2.25 2");
     this.obj.setAttribute("position",{x:this.x,y:this.y,z:this.z});
@@ -30,27 +31,7 @@ class Bottle{
     scene.append(this.obj);
 
 
-    this.key = document.createElement("a-gltf-model");
-    this.key.setAttribute("position", "10 1 0");
-    this.key.setAttribute("src","#key");
-    this.key.setAttribute("scale", "0.15 0.15 0.15");
-    this.obj.setAttribute("rotation",{x:0, y:90, z:0});
-    this.key.classList.add("clickable");
-
-    this.key_table = document.createElement("a-gltf-model");
-    this.key_table.setAttribute("position", "10 0 0");
-    this.key_table.setAttribute("src","#key_table");
-    this.key_table.setAttribute("scale", "0.01 0.01 0.01");
-
-    this.keySet = document.createElement("a-entity");
-    this.keySet.append(this.key);
-    this.keySet.append(this.key_table);
-
-    this.keySet.setAttribute("visible", false);
-    this.keySet.setAttribute("position", "5 -2 0");
-    this.keySet.setAttribute("shadow",{receive:true})
-    this.keySet.setAttribute("static-body","");
-    scene.append(this.keySet);
+  
     
 
 
@@ -70,14 +51,6 @@ class Bottle{
       }
     });
 
-
-
-    this.key.addEventListener("click", ()=> {
-      if(this.completed1 && distance(this.key, camera) < 3){
-        this.keyCollected = true;  
-        this.keySet.remove();
-      }
-    });
 
 
 
