@@ -18,7 +18,7 @@ window.addEventListener("DOMContentLoaded",function() {
   
 
 
-  for(let i = 0; i < 0; i++){
+  for(let i = 0; i < 10; i++){
     let x = rnd(-20,20);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
@@ -277,12 +277,7 @@ window.addEventListener("keydown",function(e){
 });
 
 
-swim = new Swim(user);
-window.addEventListener("keydown",function(e){
-  if(e.key == "t"){
-    swim.start();   
-  }
-});
+
 
 
   
@@ -357,8 +352,7 @@ function loop(){
 
 
   jump.update();
-  swim.update();
-  swim.sink();
+
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
