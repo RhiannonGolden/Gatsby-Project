@@ -1,230 +1,150 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
-     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.3/dist/aframe-physics-system.min.js"></script>
     <script src="script.js"></script>
     <script src="zombies.js"></script>
     <script src="bullet.js"></script>
-    <script src="ammo.js"></script>
-    <script src="hearts.js"></script>
-    <script src="bottle.js"></script>
-    <script src="puzzle.js"></script>
-    <script src="crate.js"></script>
-    <script src="kinema.js"></script>
-    <script src="jump.js"></script>
-    <script src="lamp.js"></script>
-    <script src="key.js"></script>
- 
+    <script src="Barrier.js"></script>
+    <script>
+     window.addEventListener("DOMContentLoaded",function() {
+
+      buton1 = this.document.getElementById("b1");
+          buton1.addEventListener("click",function(){
+            window.location="Level1.html";
+          })
+      buton2 = this.document.getElementById("b2");
+          buton2.addEventListener("click",function(){
+            window.location="HTP.html";
+          })
+
+      buton3 = this.document.getElementById("b3");
+          buton3.addEventListener("click",function(){
+            window.location="Level1.html";
+
+          })
+        })
+    </script>
+
+    <style>
+     body {
+       background-image: url('indBK.jpg');
+       background-repeat: no-repeat;
+       background-attachment: fixed;
+       background-size: cover;
+          }
+
+      #Title{
+        position: relative;
+        
+        color: gold;
+        font-size: 55px;
+        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        left: 650px;
+        top: 200px;
+        font-style: italic;
+
+      }
+      #Title:hover{
+        animation-name: myAnimation;
+        animation-duration: 4s;
+      }
+
+      .but{
+        position: relative;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+      }
+
+      #b1{
+        background-color: #009200;
+        border: 2px solid black;
+        border-radius: 18px;
+        left: 750px;
+        top: 500px; 
+      }
+
+      #b1:hover {
+         color: rgb(0, 0, 0);
+         background-color: aquamarine;
+         border-color: rgb(0, 0, 0);
+         text-transform: uppercase;
+         font-size: 18px;
+      }
+
+      #b2{
+        background-color: #0035a8;
+        border: 2px solid black;
+        border-radius: 18px;
+        left: 750px;
+        top: 500px; 
+      }
+
+      #b2:hover {
+         color: rgb(0, 0, 0);
+         background-color: aquamarine;
+         border-color: rgb(0, 0, 0);
+         text-transform: uppercase;
+         font-size: 18px;
+      }
+
+      #b3{
+        background-color: #5c0000;
+        border: 2px solid black;
+        border-radius: 18px;
+        left: 750px;
+        top: 500px; 
+      }
+
+      #b3:hover {
+         color: rgb(0, 0, 0);
+         background-color: aquamarine;
+         border-color: rgb(0, 0, 0);
+         text-transform: uppercase;
+         font-size: 18px;
+      }
+      @keyframes myAnimation {
+        from {color: gold;}
+        to {color: Green;}
+        }
+   /* body{  
+      display: flex;
+      background-image: url('Gatzbyintropage.avif');
+      z-index: -2;
+      scrollbar-width: auto;
+      background-repeat: repeat-x;
+      
+  
+    }
+    
+    #t1{
+      z-index: 2;
+      color: rgb(212, 49, 49);
+      position: relative;
+      left: 510px;
+      bottom: -300px;
+      text-align: justify;
+    }*/
+
+    </style> 
 
 
   </head>
   <body>
-    <a-scene physics="debug: false">
-        <a-assets>
-            <a-asset-item id="zombie" src="zombie/scene.gltf"></a-asset-item>
-            <a-asset-item id="bullet" src="tea_cup/scene.gltf"></a-asset-item>
-            <a-asset-item id="ammo" src="teapot_and_cups_teapot_set_3d_model/scene.gltf"></a-asset-item>
-            <a-asset-item id="hearts" src="medkit/scene.gltf"></a-asset-item>
-            <a-asset-item id="bottle" src="bottle_of_champagne/scene.gltf"></a-asset-item>
-            <a-asset-item id="crate" src="wooden_crate/scene.gltf"></a-asset-item>
-            <a-asset-item id="bar" src="art_deco_bar/scene.gltf"></a-asset-item>
-            <a-asset-item id="lamp" src="lamp/scene.gltf"></a-asset-item>
-            <a-asset-item id="key" src="key/scene.gltf"></a-asset-item>
-            <a-asset-item id="key_table" src="key_table/scene.gltf"></a-asset-item>
-           
+    <h1 id="Title">The Great Gatzby Adventure</h1>
+    <button id="b1" class="but" type="button"> Start </button>
+    <button id="b2" class="but" type="button"> How To Play </button>
+    <button id="b3" class="but" type="button"> Multiplayer(1-4) </button>
+    
+    
+    
 
-            <img id="puzzle1" src="pictures/puzzle1.jpg">
-            <img id="puzzle2" src="pictures/puzzle2.jpg">
-            <img id="puzzle3" src="pictures/puzzle3.jpg">
-            <img id="puzzle4" src="pictures/puzzle4.jpg">
-            <img id="puzzle5" src="pictures/puzzle5.jpg">
-            <img id="puzzle6" src="pictures/puzzle6.jpg">
-            <img id="puzzle7" src="pictures/puzzle7.jpg">
-            <img id="puzzle8" src="pictures/puzzle8.jpg">
-            <img id="puzzle9" src="pictures/puzzle9.jpg">
-            <img id="puzzle10" src="pictures/puzzle10.jpg">
-            <img id="puzzle11" src="pictures/puzzle11.jpg">
-            <img id="puzzle12" src="pictures/puzzle12.jpg">
-            <img id="puzzle13" src="pictures/puzzle13.jpg">
-            <img id="puzzle14" src="pictures/puzzle14.jpg">
-            <img id="puzzle15" src="pictures/puzzle15.jpg">
-            <img id="puzzle16" src="pictures/puzzle16.jpg">
-
-            <img id="picture1" src="pictures/picture1.png">
-            <img id="picture2" src="pictures/picture2.webp">
-            <img id="picture3" src="pictures/picture3.webp">
-            <img id="picture4" src="pictures/picture4.webp">
-            <img id="picture5" src="pictures/picture5.webp">
-            <img id="picture6" src="pictures/picture6.webp">
-            <img id="picture7" src="pictures/picture7.webp">
-            <img id="picture8" src="pictures/picture8.webp">
-            <img id="picture9" src="pictures/picture9.jpg">
-
-            <audio id="walkSound" src="sounds/walking.mp3" preload="auto"></audio>
-            <audio id="bottleSound" src="sounds/bottle.mp3" preload="auto"></audio>
-            <audio id="jumpSound" src="sounds/jumpSound.mp3" preload="auto"></audio>
-            <audio id="throwSound" src="sounds/throwSound.mp3" preload="auto"></audio>
-            <audio id="zombieSound" src="sounds/zombieSound.mp3" preload="auto"></audio>
-            <audio id="zombieAttackSound" src="sounds/zombieAttackSound.mp3" preload="auto"></audio>
-            <audio id="bottlePlace" src="sounds/bottlePlace.mp3" preload="auto"></audio>
-            <audio id="itemCollect" src="sounds/itemCollect.mp3" preload="auto"></audio>
-            <audio id="cratePlace" src="sounds/cratePlace.mp3" preload="auto"></audio>
-            <audio id="woodBreak" src="sounds/woodBreak.mp3" preload="auto"></audio>
-            <audio id="lampSwitch" src="sounds/lampSwitch.mp3" preload="auto"></audio>
-            <audio id="puzzleMove" src="sounds/puzzleMove.mp3" preload="auto"></audio>
-            <audio id="challengeComplete" src="sounds/challengeComplete.mp3" preload="auto"></audio>
-            <audio id="tableUp" src="sounds/tableUp.mp3" preload="auto"></audio>
-            <audio id="itemPickUp" src="sounds/itemPickUp.mp3" preload="auto"></audio>
-            <audio id="music" src="sounds/music.mp3" preload="auto"></audio>
-        </a-assets>
-
-        <a-entity light="type: ambient; intensity: -0.5"></a-entity>
-          <a-entity light="type: directional; intensity: 2; castShadow: true" position="5 10 5"></a-entity>
-
-      <a-entity position="-0 0 -15">
-        <a-gltf-model static-body src="art_deco_bar/scene.gltf" scale="2 1.5 1.5"></a-gltf-model>
-
-        <a-entity position="0 1.51 2.05">
-          <a-cylinder static-body id="pedestal1" class="pedestal clickable" position="-2.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
-          <a-cylinder static-body id="pedestal2" class="pedestal clickable" position="-1.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
-          <a-cylinder static-body id="pedestal3" class="pedestal clickable" position="1.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
-          <a-cylinder static-body id="pedestal4" class="pedestal clickable" position="2.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
-        </a-entity>
-      </a-entity>
-      
-  
-      <a-entity class="pictureHall" position="0 2.3 -7">
-
-        <a-entity static-body class="picture6" position="0 0 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture6" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture8" position="-5 0 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture8" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picturePuzzle" position="-10 0 0"
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture3" position="-15 0 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture3" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture2" position="-20 0 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture2" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture5" position="0 0 14" rotation="0 180 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture5" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture1" position="-5 0 14" rotation="0 180 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture1" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture9" position="-10 0 14" rotation="0 180 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture9" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture7" position="-15 0 14" rotation="0 180 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture7" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-
-        <a-entity static-body class="picture4" position="-20 0 14" rotation="0 180 0">
-          <a-box color="#1e90ff" width="4.4" height="4" depth="0.3" position="0 0 -0.05" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box src="#picture4" width="4.3" height="4" depth="0.1" position="0 0 0.06" rotation="0 0 0"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="4.4" height="0.2" depth="0.4" position="0 -2.1 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="-2.1 0 0" material="metalness: 0.8; roughness: 0.1" ></a-box>
-          <a-box color="#1e90ff" width="0.2" height="4.0" depth="0.4" position="2.1 0 0" material="metalness: 0.8; roughness: 0.1"></a-box>
-        </a-entity>
-        
-
-
-      </a-entity>
-
-
-
-
-        <a-plane shadow="receive: true" static-body class="clickable" color="white" rotation="-90 0 0" width="100" height="100"></a-plane>
-        
-
-        
-        <a-entity position="0 1.7 0" id="user">
-          <a-camera kinema-body="radius: 0.8">
-            <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
-              <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
-              <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
-              <a-text id="bottle_score" position="4.8 0.55 -3" color="black"></a-text>
-              <a-gltf-model src="#bottle" position="4.5 0.5 -3" scale="1.5 1.5 1.5" rotation="30 20 0"></a-gltf-model>
-              
-            </a-cursor>
-          </a-camera>
-
-        </a-entity>
-      
-
-
-
-
-
-    </a-scene>
-
-    <a-gltf-model src="#zombie"></a-gltf-model>
-    <a-gltf-model src="#bullet"></a-gltf-model>
-    <a-gltf-model src="#ammo"></a-gltf-model>
-    <a-gltf-model src="#hearts"></a-gltf-model>
-    <a-gltf-model src="#crate"></a-gltf-model>
-    <a-gltf-model src="#lamp"></a-gltf-model>
-    <a-gltf-model src="#key"></a-gltf-model>
-    <a-gltf-model src="#key_table"></a-gltf-model>
 
 
   </body>

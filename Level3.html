@@ -1,10 +1,19 @@
 <html>
     <head>
-    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
-    <script src="script.js"></script>
-    <script src="zombies.js"></script>
-    <script src="bullet.js"></script>
-    <script src="FLyCloud.js"></script>
+      <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.3/dist/aframe-physics-system.min.js"></script>
+      <script src="level3.js"></script>
+      <script src="zombies.js"></script>
+      <script src="bullet.js"></script>
+      <script src="ammo.js"></script>
+      <script src="hearts.js"></script>
+      <script src="bottle.js"></script>
+      <script src="crate.js"></script>
+      <script src="kinema.js"></script>
+      <script src="jump.js"></script>
+      <script src="key.js"></script>
+
     <script>
         window.addEventListener("DOMContentLoaded",function() {
           scene = document.querySelector("a-scene");
@@ -14,30 +23,85 @@
             window.location="Level4.html";
 
 
-          })
+          });
+
+          
+        let objects = document.querySelectorAll("a-box, a-cylinder, a-plane");
+
+        objects.forEach(function(obj){
+          if(!obj.hasAttribute("dynamic-body") && !obj.hasAttribute("static-body")){
+          obj.setAttribute("static-body","");
+          obj.classList.add("clickable");
+        }
+
+  });
+
+
+          
         })
     </script>
  
     </head>
 
     <body>
-        <a-scene>
+        <a-scene physics="debug: false">
             <a-assets>
-             <img id="grass" src="png-clipart-tile-floor-brick-wall-brick-texture-angle-thumbnail.png">
-             <img id="sky2" src="sky-sea-march-08-2024.jpg">
+             <img id="sky2" src="Image/sky-sea-march-08-2024.jpg">
              <img id="Level3w" src="Image/Woodw.jpg">
              <img id="Level3fl" src="Image/WoodC.jpg">
              <img id="Level3cl" src="Image/WoodC.jpg">
+
+             <a-asset-item id="zombie" src="zombie/scene.gltf"></a-asset-item>
+              <a-asset-item id="bullet" src="tea_cup/scene.gltf"></a-asset-item>
+              <a-asset-item id="ammo" src="teapot_and_cups_teapot_set_3d_model/scene.gltf"></a-asset-item>
+              <a-asset-item id="hearts" src="medkit/scene.gltf"></a-asset-item>
+              <a-asset-item id="bottle" src="bottle_of_champagne/scene.gltf"></a-asset-item>
+              <a-asset-item id="crate" src="wooden_crate/scene.gltf"></a-asset-item>
+              <a-asset-item id="bar" src="art_deco_bar/scene.gltf"></a-asset-item>
+              <a-asset-item id="key" src="key/scene.gltf"></a-asset-item>
+              <a-asset-item id="key_table" src="key_table/scene.gltf"></a-asset-item>   
+
+        <audio id="walkSound" src="sounds/walking.mp3" preload="auto"></audio>
+        <audio id="bottleSound" src="sounds/bottle.mp3" preload="auto"></audio>
+        <audio id="jumpSound" src="sounds/jumpSound.mp3" preload="auto"></audio>
+        <audio id="throwSound" src="sounds/throwSound.mp3" preload="auto"></audio>
+        <audio id="zombieSound" src="sounds/zombieSound.mp3" preload="auto"></audio>
+        <audio id="zombieAttackSound" src="sounds/zombieAttackSound.mp3" preload="auto"></audio>
+        <audio id="bottlePlace" src="sounds/bottlePlace.mp3" preload="auto"></audio>
+        <audio id="itemCollect" src="sounds/itemCollect.mp3" preload="auto"></audio>
+        <audio id="cratePlace" src="sounds/cratePlace.mp3" preload="auto"></audio>
+        <audio id="woodBreak" src="sounds/woodBreak.mp3" preload="auto"></audio>
+        <audio id="challengeComplete" src="sounds/challengeComplete.mp3" preload="auto"></audio>
+        <audio id="tableUp" src="sounds/tableUp.mp3" preload="auto"></audio>
+        <audio id="itemPickUp" src="sounds/itemPickUp.mp3" preload="auto"></audio>
+        <audio id="music" src="sounds/music.mp3" preload="auto"></audio>
+      
+
             </a-assets>
 
+      <a-entity light="type: ambient; intensity: 0.5"></a-entity>
+      <a-entity light="type: directional; intensity: 2; castShadow: true" position="5 10 5"></a-entity>
 
+
+      <a-entity position="-0 0 -15">
+        <a-gltf-model static-body src="art_deco_bar/scene.gltf" scale="2 1.5 1.5"></a-gltf-model>
+
+        <a-entity position="0 1.51 2.05">
+          <a-cylinder static-body id="pedestal1" class="pedestal clickable" position="-2.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
+          <a-cylinder static-body id="pedestal2" class="pedestal clickable" position="-1.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
+          <a-cylinder static-body id="pedestal3" class="pedestal clickable" position="1.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
+          <a-cylinder static-body id="pedestal4" class="pedestal clickable" position="2.75 0 0" color="#006400" radius="0.25" height="0.05" material="metalness: 0.8; roughness: 0.1"></a-cylinder>
+        </a-entity>
+      </a-entity>
+
+<a-entity position="0 -0.5 -20" scale="0.25 0.25 0.25">
       <!--Level3--><!--Casino(Jordan)-->
         <!--base--><a-entity color="yellow" position="1 0 66" scale="2 1 2">
         <!--Floor-->
-          <a-box color="#A16135" src="#Level3fl" repeat="15 15" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
+          <a-box static-body color="#A16135" src="#Level3fl" repeat="15 15" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
         <!--Walls-->
           <!--SW--><a-box src="#Level3w" repeat="2 1" position="-60.6   24.8 0 " height="50" depth="100" width="0.2"></a-box>
-          <!--BW--><a-box src="#Level3w" repeat="1 1" rotation="0 90 0" position="1.9 24.7 50.1" height=50" depth="125.4" width="0.2"></a-box>
+          <!--BW--><a-box src="#Level3w" repeat="1 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4" width="0.2"></a-box>
           <!--SW--><a-box src="#Level3w" repeat="2 1" position="64.6 24.8 0" height="50" depth="100" width="0.2"></a-box>
           <!--BW--><a-box src="#Level3w" repeat="1 1" rotation="0 90 0" position="2 24.8 -49.9" height="50" depth="125.4" width="0.2"></a-box>
          
@@ -47,21 +111,44 @@
       <!--Level/3-->
 
         <a-entity id="level4D">
-          <a-cylinder color="red" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90 hieght="3"></a-cylinder>
+          <a-cylinder color="red" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90" height="3"></a-cylinder>
           <a-box side="double" height="5" depth="3.5" position="0 2.5 0"></a-box>
           <a-box color="red" side="double" height="5" depth=".25" position="0 2.5 1.875"></a-box>
           <a-box color="red" side="double" height="5" depth=".25" position="0 2.5 -1.875"></a-box>
         </a-entity>
+      </a-entity>
 
 
-      <a-plane scale="4 4" src="#grass" repeat="20 20" side="double" rotation="90 0 0" height="200"  width="200" color="green"></a-plane>
+      <a-plane static-body position="0 -0.5 0" scale="4 4" repeat="20 20" rotation="-90 0 0" height="200"  width="200" color="green"></a-plane>
       <a-sky src="#sky2"></a-sky> 
       
-
+      
+        <a-entity position="0 1.7 0" id="user">
+          <a-camera kinema-body="radius: 0.8">
+            <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
+              <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
+              <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
+              <a-text id="bottle_score" position="4.8 0.55 -3" color="black"></a-text>
+              <a-gltf-model src="#bottle" position="4.5 0.5 -3" scale="1.5 1.5 1.5" rotation="30 20 0"></a-gltf-model>
+              
+            </a-cursor>
+          </a-camera>
+        </a-entity>
+      
+      <!--
       <a-camera wasd-controls="acceleration: 200; fly: True" position="0 1 -4">
         <a-cursor></a-cursor>
       </a-camera>
-
+    -->
         </a-scene>
+
+    <a-gltf-model src="#zombie"></a-gltf-model>
+    <a-gltf-model src="#bullet"></a-gltf-model>
+    <a-gltf-model src="#ammo"></a-gltf-model>
+    <a-gltf-model src="#hearts"></a-gltf-model>
+    <a-gltf-model src="#crate"></a-gltf-model>
+    <a-gltf-model src="#key"></a-gltf-model>
+    <a-gltf-model src="#key_table"></a-gltf-model>
+
     </body>
 </html>
