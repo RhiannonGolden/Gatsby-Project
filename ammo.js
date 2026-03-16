@@ -4,7 +4,6 @@ class Ammo{
     this.z = z;
     this.a = a;
     this.da = 2.5;
-    this.flag = false;
     this.pickUp = false;
     
     this.obj = document.createElement("a-gltf-model");

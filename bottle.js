@@ -7,7 +7,6 @@ class Bottle{
     this.a = 0;
     this.da = 5;
     this.a1 = 0;
-    this.da2 = 0.25;
 
     this.flag = false;
     this.pickUp = false;
