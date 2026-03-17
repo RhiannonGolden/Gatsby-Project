@@ -1,7 +1,6 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let speed, bottles = [ ], bottle_count = 0, bottle_text, collected = [ ], collected_count = 0, crates = [ ], jump, bottlesFinished = false, bottlesFinishedCount = 0;
-let level1Key, level1Completed = false, level1KeySpawn = false, level1Teleport = false, level1Teleported = false, level1KeySoundPlayed = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -13,80 +12,7 @@ window.addEventListener("DOMContentLoaded",function() {
   cursor = document.getElementById("cursorID");
   user = document.getElementById("user");
 
-  
-
-
-  for(let i = 0; i < 10; i++){
-    let x = rnd(-20,20);
-    let z = rnd(-20,20);
-    Zhealth_count = rnd(1, 10);
-    let idleRotate = rnd(0, 360);
-    let idleSpeed = rnd(35, 150) / 10000;
-    let walkTime = rnd(1000, 10000);
-    let stoptime = rnd(1000, 10000);
-    followDistance1 = rnd(5, 8);
-    followDistance2 = rnd(7, 12);
-
-    if(Zhealth_count < 7){
-      Zhealth_count = 50;
-      speed = 0.01;
-      followDistance = followDistance1;
-    } else{
-      Zhealth_count = 100;
-      speed = 0.03
-      followDistance = followDistance2;
-    }
-
-    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime, followDistance);
-
-    zombies.push(zombie);
-  }
-
-   for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
-    let a = rnd(0,360);
-    ammos.push(new Ammo(x,z,a));
-  }
-
-  for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
-    let a = rnd(0,360);
-    hearts.push(new Hearts(x,z,a));
-  }
-
-
-
-  let totalBottles = 4;
-  for(let i = 0; i < totalBottles; i++){
-    let x, z;
-    let safe = false;
-
-    for(let a = 0; a < 20; a++){
-      x = rnd(-5, 5);
-      z = rnd(-5, 5);
-      safe = true;
-
-      for(let bottle of bottles){
-        let bottleX = bottle.obj.object3D.position.x;
-        let bottleZ = bottle.obj.object3D.position.z;
-        let d = Math.sqrt((x - bottleX) ** 2 + (z - bottleZ) ** 2);
-
-        if (d < 2){
-          safe = false;
-          break;
-         }
-      }
-
-      if(safe){
-        break;
-      }
-    }
-    bottles.push(new Bottle(x, 0, z));
-  }
-
-  
+    
 
 
 
@@ -194,54 +120,6 @@ window.addEventListener("keydown",function(e){
 
 
 
-
-
-  
-  let pedestals = document.querySelectorAll(".pedestal");
-
-  bottlePlace = document.getElementById("bottlePlace");
-  bottlePlace.loop = false;
-  bottlePlace.volume = 1;
-
-  pedestals.forEach(pedestal => {
-    pedestal.hasBottle = false;
-
-    pedestal.addEventListener("click", () => {
-
-      if(bottle_count > 0){
-        if(pedestal.hasBottle == false){
-
-          let pos = pedestal.object3D.position;
-
-          let bottle = new Bottle(pos.x, 1.52, pos.z-12.95);
-          bottle.collected = true;
-          bottle.placed = true;
-
-          bottles.push(bottle);
-          bottle_count--;
-
-          pedestal.hasBottle = true;
-          
-        }
-
-        if(pedestal.hasBottle){
-          pedestal.setAttribute("material", {color: "#006400", emissive: "#006400", emissiveIntensity: "10"});
-          bottlePlace.play();
-        }
-        
-
-      }
-
-    });
-  });
-
-
-
-  level1Key = new Key(5,0,0);
-
-
-
-
   zombieAttackSound = document.getElementById("zombieAttackSound");
   zombieAttackSound.loop = true;
   zombieAttackSound.volume = 0.20;
@@ -274,14 +152,6 @@ function loop(){
 
   Phealth_text.setAttribute("value",`Health: ${Math.round(Phealth_count)}`);
   ammo_count.setAttribute("value", `Ammo: ${(bullets_count)}`);
-
-  if(bottle_count >= 1){
-    bottle_score.setAttribute("value", `${(bottle_count)}`);
-  } else if(bottle_count <= 0){
-    bottle_score.setAttribute("value", `0`);
-  }
-
-
 
 
   for(let zombie of zombies){
@@ -388,57 +258,8 @@ function loop(){
     }
     heart.spin();
   }
-
-
-  for(let bottle of bottles){
-    bottle.spin();
-
-    if(bottle.placed && bottle.down==false){
-      for(let bullet of bullets){
-      if(bullet.shot == false && distance(bottle.obj, bullet.obj) < 0.75){
-        bullet.shot = true;
-        bullet.obj.remove();
-        bottle.down = true;
-        bottlesFinishedCount++;
-        bottle.shotSound();
-
-      }
-    }
-  }
-  bottle.shot();
-
-}
-
-
-
-if(bottlesFinishedCount >= 4 && level1KeySpawn == false){
-  level1Key.unlock();
-  level1Key.completed1 = true;
-  level1KeySpawn = true;
-}
-
-
-if(level1KeySpawn){
-  level1Key.up();
-
-  if(level1KeySoundPlayed == false){
-    tableUp.currentTime = 0;
-    tableUp.play();
-    level1KeySoundPlayed = true;
-  }
-
-
-  if(level1Key.keyCollected){
-    Door3 = this.document.getElementById("level4D");
-          Door3.addEventListener("click",function(){
-            window.location="Level4.html";
-
-
-          });
-  }
-  
-}
-
+//change floor level3
+//fix light levels
     
 
   window.requestAnimationFrame(loop);

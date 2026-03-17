@@ -392,7 +392,10 @@ for(let lamp of lamps){
 
 
     if(level3Key.keyCollected){
-      console.log("collected");
+      Door2 = this.document.getElementById("level3D");
+          Door2.addEventListener("click",function(){
+            window.location="Level3.html";
+          })
     }
     
   }

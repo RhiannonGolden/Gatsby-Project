@@ -18,12 +18,6 @@
         window.addEventListener("DOMContentLoaded",function() {
           scene = document.querySelector("a-scene");
 
-          Door3 = this.document.getElementById("level4D");
-          Door3.addEventListener("click",function(){
-            window.location="Level4.html";
-
-
-          });
 
           
         let objects = document.querySelectorAll("a-box, a-cylinder, a-plane");
@@ -79,7 +73,7 @@
 
             </a-assets>
 
-      <a-entity light="type: ambient; intensity: 0.5"></a-entity>
+      <a-entity light="type: ambient; intensity: 0.1"></a-entity>
       <a-entity light="type: directional; intensity: 2; castShadow: true" position="5 10 5"></a-entity>
 
 

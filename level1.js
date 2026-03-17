@@ -1,7 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
 let puzzles = [ ], rotate, crates = [ ], jump, puzzleFinished = false, puzzleCompletedTime = 0;
-let level2Key, level2Completed = false, level2KeySpawn = false, level2Teleport = false, level2Teleported = false, level2KeySoundPlayed = false;
+let level2Key, level2Completed = false, level2KeySpawn = false, level2Teleport = false, level2Teleported = false, level2KeySoundPlayed = false, level2KeyCollected = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -369,9 +369,15 @@ for(let puzzle of puzzles){
       level2KeySoundPlayed = true;
     }
 
-    if(level2Key.keyCollected){
-      console.log("collected");
-    }
+    Door1 = this.document.getElementById("level2D");
+        
+        if(level2Key.keyCollected){
+          Door1.addEventListener("click",function(){
+          window.location="Level2.html";
+        })
+        }
+
+
       
   }
 
