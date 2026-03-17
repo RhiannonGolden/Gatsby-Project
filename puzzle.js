@@ -14,7 +14,7 @@ class Puzzle{
     this.obj.setAttribute("width", 1);
     this.obj.setAttribute("height", 1);
     this.obj.setAttribute("depth", 0.1);
-    this.obj.setAttribute("position",{x:-11.5+this.x,y:3.8+this.y,z:-6.94});
+    this.obj.setAttribute("position",{x:23.5+this.x,y:3.8+this.y,z:-28.9});
     this.obj.setAttribute("rotation",{x:0, y:0, z:this.rotate});
 
     this.obj.setAttribute("sound",{src: "#puzzleMove", loop:false});

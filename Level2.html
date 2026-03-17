@@ -70,13 +70,13 @@
       
       </a-assets>
 
-      <a-entity light="type: ambient; intensity: 0.5"></a-entity>
+      <a-entity light="type: ambient; intensity: 0.1"></a-entity>
       <a-entity light="type: directional; intensity: 2; castShadow: true" position="5 10 5"></a-entity>
 
 
       <a-entity scale="1 1 0.5" position="0 -0.5 0">
       <!--Level2--><!--House1(Daisy)-->
-      <a-box src="#Level2fl" repeat="10 10" position="-2 0 2" height="0.8" width="125" depth="125"></a-box>
+      <a-box src="#Level2fl" repeat="10 10" position="0 0 2" height="0.8" width="125" depth="125"></a-box>
       <a-box src="#Level2sl" repeat="3 3" position="-2 49.7 2" height="0.2" width="125" depth="125"></a-box>
         <!--baseb1--><a-entity color="purple" position="-4 0 164.5" scale="1 1 2">
         <!--Floor-->
@@ -88,7 +88,7 @@
           <!--BW--><a-box src="#Level2W" repeat="2 1" rotation="0 90 0" position="2 24.8 -49.9" height="49.8" depth="125.2" width="0.2"></a-box>
          
           <!--Celling-->
-             <a-box  src="#Level2sl" repeat="3 3" position="2 49.7 0" height="0.2" width="125.5" depth="100"></a-box>
+             <a-box  src="#Level2sl" repeat="1 1" position="2 49.7 0" height="0.2" width="125.5" depth="100"></a-box>
         </a-entity>
         <!--baseb2--><a-entity color="green" rotation="0 180 0"  position="0 0 -160.5" scale="1 1 2">
         <!--Floor-->
@@ -141,7 +141,7 @@
       
 
       <a-entity position="0 1.7 0" id="user">
-          <a-camera kinema-body="radius: 0.8">
+          <a-camera kinema-body="radius: 0.8" position="5 0 0">
             <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
               <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
               <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>

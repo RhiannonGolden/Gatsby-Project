@@ -258,8 +258,6 @@ function loop(){
     }
     heart.spin();
   }
-//change floor level3
-//fix light levels
     
 
   window.requestAnimationFrame(loop);

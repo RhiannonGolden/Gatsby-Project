@@ -15,8 +15,8 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
   for(let i = 0; i < 10; i++){
-    let x = rnd(-20,20);
-    let z = rnd(-20,20);
+    let x = rnd(-40,40);
+    let z = rnd(-30,30);
     Zhealth_count = rnd(1, 10);
     let idleRotate = rnd(0, 360);
     let idleSpeed = rnd(35, 150) / 10000;
@@ -35,28 +35,28 @@ window.addEventListener("DOMContentLoaded",function() {
       followDistance = followDistance2;
     }
 
-    let zombie = new Zombie(x,0.5,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime, followDistance);
+    let zombie = new Zombie(x,0,z,Zhealth_count,speed, idleRotate, idleSpeed, walkTime, stoptime, followDistance);
 
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
+   for(let i = 0; i < 7; i++){
+    let x = rnd(-30, 30);
+    let z = rnd(-30, 30);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
+  for(let i = 0; i < 7; i++){
+    let x = rnd(-30, 30);
+    let z = rnd(-30, 30);
     let a = rnd(0,360);
     hearts.push(new Hearts(x,z,a));
   }
 
 
 
-lamps.push(new Lamp(rnd(-10,10), 3, rnd(-10,10), "#27df27"));
+lamps.push(new Lamp(rnd(-20,20), 3, rnd(-20,20), "#27df27"));
 
 let totalLamps = 5;
 for(let i = 1; i < totalLamps; i++){
@@ -65,15 +65,15 @@ for(let i = 1; i < totalLamps; i++){
 
 
   for(let a = 0; a < 20; a++){
-    x = rnd(-5,5);
-    z = rnd(-5,5);
+    x = rnd(-20,20);
+    z = rnd(-20,20);
     safe = true;
 
     for(let lamp of lamps){
       let lampX = lamp.obj.object3D.position.x;
       let lampZ = lamp.obj.object3D.position.z;
       let d = Math.sqrt((x - lampX)**2 + (z - lampZ)**2);
-      if(d < 3){
+      if(d < 5){
         safe = false;
         break;
       }
@@ -226,8 +226,9 @@ window.addEventListener("keydown",function(e){
 
 
 function loop(){
-  music.play();
-
+  if(music.paused){
+    music.play();
+  }
 
   jump.update();
 

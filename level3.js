@@ -17,7 +17,7 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
   for(let i = 0; i < 10; i++){
-    let x = rnd(-20,20);
+    let x = rnd(-30,30);
     let z = rnd(-20,20);
     Zhealth_count = rnd(1, 10);
     let idleRotate = rnd(0, 360);
@@ -42,15 +42,15 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
+   for(let i = 0; i < 7; i++){
+    let x = rnd(-25, 25);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
+  for(let i = 0; i < 7; i++){
+    let x = rnd(-25, 25);
     let z = rnd(-20, 20);
     let a = rnd(0,360);
     hearts.push(new Hearts(x,z,a));
@@ -64,8 +64,8 @@ window.addEventListener("DOMContentLoaded",function() {
     let safe = false;
 
     for(let a = 0; a < 20; a++){
-      x = rnd(-5, 5);
-      z = rnd(-5, 5);
+      x = rnd(-25, 25);
+      z = rnd(-15, 20);
       safe = true;
 
       for(let bottle of bottles){
@@ -83,7 +83,7 @@ window.addEventListener("DOMContentLoaded",function() {
         break;
       }
     }
-    bottles.push(new Bottle(x, 0, z));
+    bottles.push(new Bottle(x, 0.25, z));
   }
 
   
@@ -267,7 +267,7 @@ function loop(){
     music.play();
   }
 
-
+  console.log(camera.object3D.position.x);
 
   jump.update();
 

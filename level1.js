@@ -15,8 +15,8 @@ window.addEventListener("DOMContentLoaded",function() {
 
 
   for(let i = 0; i < 10; i++){
-    let x = rnd(-20,20);
-    let z = rnd(-20,20);
+    let x = rnd(-50,50);
+    let z = rnd(-40,40);
     Zhealth_count = rnd(1, 10);
     let idleRotate = rnd(0, 360);
     let idleSpeed = rnd(35, 150) / 10000;
@@ -40,16 +40,16 @@ window.addEventListener("DOMContentLoaded",function() {
     zombies.push(zombie);
   }
 
-   for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
+   for(let i = 0; i < 7; i++){
+    let x = rnd(-40, 40);
+    let z = rnd(-30, 30);
     let a = rnd(0,360);
     ammos.push(new Ammo(x,z,a));
   }
 
-  for(let i = 0; i < 5; i++){
-    let x = rnd(-20, 20);
-    let z = rnd(-20, 20);
+  for(let i = 0; i < 7; i++){
+    let x = rnd(-40, 40);
+    let z = rnd(-30, 30);
     let a = rnd(0,360);
     hearts.push(new Hearts(x,z,a));
   }
@@ -213,7 +213,9 @@ window.addEventListener("keydown",function(e){
 
 
 function loop(){
-  music.play();
+  if(music.paused){
+    music.play();
+  }
 
 
   jump.update();
