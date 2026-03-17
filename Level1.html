@@ -209,11 +209,11 @@
         <a-sound src="src: url(bensound-mademoiselle.mp3)" autoplay="true" position="0 2 5"></a-sound>
       -->
 
-      <a-entity position="0 -0.5 0" scale="0.5 0.5 0.5">
+      <a-entity position="0 0 0" scale="0.5 0.5 0.5">
       <!--Level1--><!--Bar(Meyer)-->
        <!--base--><a-entity scale="2 1 2">
                     <!--Floor-->
-                      <a-box src="#Level1F" repeat="5 5" position="2 0 2" height="0.001" width="125" depth="100"></a-box>
+                      <a-box static-body src="#Level1F" repeat="5 5" position="2 0 2" height="0.001" width="125" depth="100"></a-box>
                       <!--SF--> <a-box src="#Level1F" position="-50.5 25 2" height="0.2" width="20" depth="100" ></a-box>
                       <!--SF--> <a-box src="#Level1F" position="54.5 25 2" height="0.2" width="20" depth="100" ></a-box>
                       <!--MF--> <a-box src="#Level1F" rotation="0 90 0" position="-23 25 2" height="0.2" width="10" depth="35" ></a-box>
@@ -507,7 +507,7 @@
           </a-entity>
 
           <a-entity position="-15 25 4" scale="2 2 2" id="level2D">
-                    <a-cylinder color="blue" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90 hieght="3"></a-cylinder>
+                    <a-cylinder color="blue" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90" height="3"></a-cylinder>
                     <a-box side="double" height="5" depth="3.5" position="0 2.5 0"></a-box>
                     <a-box  color="blue" side="double" height="5" depth=".25" position="0 2.5 1.875"></a-box>
                     <a-box  color="blue" side="double" height="5" depth=".25" position="0 2.5 -1.875"></a-box>
@@ -1068,7 +1068,7 @@
 
 
       
-          <a-plane position="0 -0.75 0" scale="4 4" src="#grass" repeat="100 100" side="double" rotation="-90 0 0" height="200"  width="200" ></a-plane>
+          <a-plane position="0 -0.75 0" repeat="100 100" side="double" rotation="-90 0 0" height="200"  width="200" ></a-plane>
           <a-sky src="#sky1"></a-sky> 
 
       <a-entity position="0 1.7 0" id="user">

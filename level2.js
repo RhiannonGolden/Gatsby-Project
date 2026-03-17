@@ -1,7 +1,7 @@
 let rnd = (l,u) => Math.random() * (u-l) + l
 let scene, camera, cursor, zombies = [ ], bullets = [ ], bullets_count = 10, Phealth_count, Phealth_text, Zhealth_count, ammos = [ ], hearts = [ ], followDistance1, followDistance2, followDistance;
-let puzzles = [ ], rotate, crates = [ ], jump, puzzleFinished = false, puzzleCompletedTime = 0;
-let level2Key, level2Completed = false, level2KeySpawn = false, level2Teleport = false, level2Teleported = false, level2KeySoundPlayed = false;
+let crates = [ ], jump, lamps = [], lampCompletedTime = 0, lampsOn = false;
+let level3Key, level3Completed = false, level3KeySpawn = false, level3Teleport = false, level3Teleported = false, level3KeySoundPlayed = false;
 
 window.addEventListener("DOMContentLoaded",function() {
   scene = document.querySelector("a-scene");
@@ -55,31 +55,45 @@ window.addEventListener("DOMContentLoaded",function() {
   }
 
 
-  for(let i = 1; i < 17; i++){
 
-    let random = Math.round( rnd(1,3) );
-    if(random == 1){
-      rotate = 90;
-    } else if(random == 2){
-      rotate = 180;
-    } else if(random == 3){
-      rotate = 270;
+lamps.push(new Lamp(rnd(-10,10), 3, rnd(-10,10), "#27df27"));
+
+let totalLamps = 5;
+for(let i = 1; i < totalLamps; i++){
+  let x, z;
+  let safe = false;
+
+
+  for(let a = 0; a < 20; a++){
+    x = rnd(-5,5);
+    z = rnd(-5,5);
+    safe = true;
+
+    for(let lamp of lamps){
+      let lampX = lamp.obj.object3D.position.x;
+      let lampZ = lamp.obj.object3D.position.z;
+      let d = Math.sqrt((x - lampX)**2 + (z - lampZ)**2);
+      if(d < 3){
+        safe = false;
+        break;
+      }
     }
 
-
-    if(i < 5){
-      puzzles.push(new Puzzle(-1+i, 0, i, rotate));
-      
-    } else if(i >= 5 && i < 9){
-      puzzles.push(new Puzzle(-5+i, -1, i, rotate));
-    } else if(i >= 9 && i < 13){
-      puzzles.push(new Puzzle(-9+i, -2, i, rotate));
-    } else if(i >= 13){
-      puzzles.push(new Puzzle(-13+i, -3, i, rotate));
-    }
-      
-
+    if(safe) break;
   }
+
+
+  let lampColorRnd = rnd(1,10);
+  let lampColor;
+  if(lampColorRnd > 6){
+    lampColor = "#27df27";
+  } else {
+    lampColor = "#b3ca4d";
+  }
+
+
+  lamps.push(new Lamp(x, 3, z, lampColor));
+}
 
 
 
@@ -187,8 +201,7 @@ window.addEventListener("keydown",function(e){
 
 
 
-
-  level2Key = new Key(10,0,0);
+  level3Key = new Key(15,0,0);
 
 
 
@@ -329,59 +342,67 @@ function loop(){
     heart.spin();
   }
 
+  
 
-
-
-
-for(let puzzle of puzzles){
-  puzzle.correctCheck();
-
-  if(puzzle.correct){
-     puzzleFinished = true;
-  } else if(puzzle.correct == false){
-      puzzleFinished = false;
+for(let lamp of lamps){
+  if(lamp.lampColor == "#27df27"){
+     if(lamp.strength == 4){
+          lampsOn = false;
+        }
+        else if(lamp.strength == 8){
+          lampsOn = true;
+        }
+  }
+  else if(lamp.lampColor == "#b3ca4d"){
+     if(lamp.strength == 4){
+          lampsOn = true;
+        }
+        else if(lamp.strength == 8){
+          lampsOn = false;
+        }
   }
 
-  if(puzzleFinished){
-    puzzleCompletedTime++;
+  if(lampsOn){
+    lampCompletedTime++;
   }
-  else if(puzzleFinished == false){
-    puzzleCompletedTime = 0;
-  }
-
-  if(puzzleCompletedTime > 200){
-    puzzle.completed1 = true;
+  else if(lampsOn == false){
+    lampCompletedTime = 0;
   }
 
-  if(puzzle.completed1 && level2KeySpawn == false){
-    level2Key.unlock();
-    level2Key.completed1 = true;
-    level2KeySpawn = true;
+  if(lampCompletedTime > 200){
+    lamp.completed1 = true;
   }
 
 
-  if(level2KeySpawn){
-    level2Key.up();
+  if(lamp.completed1 && level3KeySpawn == false){
+    level3Key.unlock();
+    level3Key.completed1 = true;
+    level3KeySpawn = true;
+  }
 
-    if(level2KeySoundPlayed == false){
+
+  if(level3KeySpawn){
+    level3Key.up();
+
+    if(level3KeySoundPlayed == false){
       tableUp.currentTime = 0;
       tableUp.play();
-      level2KeySoundPlayed = true;
+      level3KeySoundPlayed = true;
     }
 
-    if(level2Key.keyCollected){
+
+    if(level3Key.keyCollected){
       console.log("collected");
     }
-      
+    
   }
 
+  
 
 
 }
-
-
-
-
+  
+  
 
   window.requestAnimationFrame(loop);
 }

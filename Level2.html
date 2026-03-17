@@ -14,8 +14,6 @@
     <script src="lamp.js"></script>
     <script src="key.js"></script>
 
-    <script src="FLyCloud.js"></script>
-
     <script>
         window.addEventListener("DOMContentLoaded",function(){
           scene = document.querySelector("a-scene");
@@ -45,7 +43,6 @@
     <body>
       <a-scene physics="debug: false">
         <a-assets>
-          <img id="grass" src="png-clipart-tile-floor-brick-wall-brick-texture-angle-thumbnail.png">
           <img id="sky2" src="sky-sea-march-08-2024.jpg">
           <img id="Level2W" src="Image/WallL2.jpg">
           <img id="Level2fl" src="Image/Woodfl.jpg">
@@ -80,12 +77,13 @@
       <a-entity light="type: directional; intensity: 2; castShadow: true" position="5 10 5"></a-entity>
 
 
+      <a-entity scale="1 1 0.5" position="0 -0.5 0">
       <!--Level2--><!--House1(Daisy)-->
       <a-box src="#Level2fl" repeat="10 10" position="-2 0 2" height="0.8" width="125" depth="125"></a-box>
       <a-box src="#Level2sl" repeat="3 3" position="-2 49.7 2" height="0.2" width="125" depth="125"></a-box>
         <!--baseb1--><a-entity color="purple" position="-4 0 164.5" scale="1 1 2">
         <!--Floor-->
-          <a-box src="#Level2fl" repeat="10 10" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
+          <a-box static-body src="#Level2fl" repeat="10 10" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
         <!--Walls-->
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="-60.6   24.7 0 " height="50" depth="100" width="0.2"></a-box>
           <!--BW--><a-box color="purple" src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4" width="0.2"></a-box>
@@ -100,7 +98,7 @@
           <a-box src="#Level2fl" repeat="10 10" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
         <!--Walls-->
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="-60.6   24.7 0 " height="50" depth="100" width="0.2"></a-box>
-          <!--BW--><a-box color="green" src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4 width="0.2"></a-box>
+          <!--BW--><a-box src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4" width="0.2"></a-box>
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="64.6 24.7 0" height="50" depth="100" width="0.2"></a-box>
           <!--BW--><a-box src="#Level2W" repeat="2 1" rotation="0 90 0" position="2 24.8 -49.9" height="49.8" depth="125.2" width="0.2"></a-box>
          
@@ -112,7 +110,7 @@
           <a-box src="#Level2fl" repeat="10 10" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
         <!--Walls-->
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="-60.6   24.7 0 " height="50" depth="100" width="0.2"></a-box>
-          <!--BW--><a-box color="blue" src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4 width="0.2"></a-box>
+          <!--BW--><a-box color="blue" src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4" width="0.2"></a-box>
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="64.6 24.7 0" height="50" depth="100" width="0.2"></a-box>
           <!--BW--><a-box src="#Level2W" repeat="2 1" rotation="0 90 0" position="2 24.8 -49.9" height="49.8" depth="125.2" width="0.2"></a-box>
          
@@ -124,7 +122,7 @@
           <a-box src="#Level2fl" repeat="10 10" position="2 0 0" height="0.8" width="125" depth="100"></a-box>
         <!--Walls-->
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="-60.6   24.7 0 " height="50" depth="100" width="0.2"></a-box>
-          <!--BW--><a-box color="yellow" src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" depth="125.4 width="0.2"></a-box>
+          <!--BW--><a-box color="yellow" src="#Level2W" repeat="2 1" rotation="0 90 0" position="1.9 24.7 50.1" height="50" "depth="125.4" width="0.2"></a-box>
           <!--SW--><a-box src="#Level2W" repeat="3 1" position="64.6 24.7 0" height="50" depth="100" width="0.2"></a-box>
           <!--BW--><a-box src="#Level2W" repeat="2 1" rotation="0 90 0" position="2 24.8 -49.9" height="49.8" depth="125.5" width="0.2"></a-box>
          
@@ -134,13 +132,14 @@
       <!--Level/2-->
 
         <a-entity id="level3D">
-          <a-cylinder color="green" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90 hieght="3"></a-cylinder>
+          <a-cylinder color="green" side="double" radius="2" theta-length="180" position="0 5 0" rotation="0 0 90" height="3"></a-cylinder>
           <a-box side="double" height="5" depth="3.5" position="0 2.5 0"></a-box>
           <a-box color="green" side="double" height="5" depth=".25" position="0 2.5 1.875"></a-box>
           <a-box color="green" side="double" height="5" depth=".25" position="0 2.5 -1.875"></a-box>
         </a-entity>
+        </a-entity>
 
-      <a-plane scale="4 4" src="#grass" repeat="20 20" side="double" rotation="90 0 0" height="200"  width="200" color="green"></a-plane>
+      <a-plane repeat="20 20" position="0 -1 0" side="double" rotation="-90 0 0" height="400"  width="800" color="green"></a-plane>
       <a-sky src="#sky2"></a-sky> 
       
 
@@ -149,13 +148,12 @@
             <a-cursor id="cursorID" raycaster="objects: .clickable" material="color: black">
               <a-text id="Phealth" position="-4.5 -0.75 -3" color="black"></a-text>
               <a-text id="ammo_count" position="-4.5 -0.25 -3" color="black"></a-text>
-              <a-text id="bottle_score" position="4.8 0.55 -3" color="black"></a-text>
-              <a-gltf-model src="#bottle" position="4.5 0.5 -3" scale="1.5 1.5 1.5" rotation="30 20 0"></a-gltf-model>
-              
             </a-cursor>
           </a-camera>
-
         </a-entity>
+      
+
+
 
         </a-scene>
 
