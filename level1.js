@@ -292,8 +292,7 @@ function loop(){
 
 
     if(Phealth_count <= 0){
-      Phealth_count = 0;
-      //end game
+      window.location="lose.html";
     }
       
   }
