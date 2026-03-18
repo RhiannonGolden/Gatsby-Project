@@ -213,7 +213,7 @@ window.addEventListener("keydown",function(e){
 
           let pos = pedestal.object3D.position;
 
-          let bottle = new Bottle(pos.x, 1.52, pos.z-12.95);
+          let bottle = new Bottle(pos.x, 1.62, pos.z-23);
           bottle.collected = true;
           bottle.placed = true;
 
@@ -267,7 +267,6 @@ function loop(){
     music.play();
   }
 
-  console.log(camera.object3D.position.x);
 
   jump.update();
 
