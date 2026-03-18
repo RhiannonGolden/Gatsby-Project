@@ -349,6 +349,7 @@ function loop(){
 
 
     if(Phealth_count <= 0){
+      Phealth_count = 0;
       window.location="lose.html";
     }
       
