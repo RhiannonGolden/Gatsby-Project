@@ -85,7 +85,7 @@ for(let i = 1; i < totalLamps; i++){
 
   let lampColorRnd = rnd(1,10);
   let lampColor;
-  if(lampColorRnd > 6){
+  if(lampColorRnd > 5){
     lampColor = "#27df27";
   } else {
     lampColor = "#b3ca4d";
